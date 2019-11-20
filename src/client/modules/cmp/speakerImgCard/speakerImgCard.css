@@ -1,0 +1,27 @@
+img {
+  border-radius: 0.25em 0.25em 0 0;
+  object-fit: cover;
+  height: 20em;
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  img {
+    height: 16em;
+  }
+}
+
+.img-card {
+  background-color: rgb(241, 241, 241);
+  margin: 1em;
+  border: 1px solid #f1f1f1;
+  box-shadow: 0.1875em 0.3125em 0.625em #aaa;
+  border-radius: 0.3125em;
+}
+
+.links {
+  height: 3em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,0 +1,23 @@
+:host {
+  width: 100%;
+}
+
+.tabs {
+  display: flex;
+}
+
+button {
+  box-sizing: border-box;
+  padding: 1rem;
+  font-size: 1.25rem;
+  outline: none;
+  width: 100%;
+  border-radius: 0.3125rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.5);
+}
+
+button[data-selected='true'] {
+  background-color: var(--primary-color-dark);
+  color: white;
+  text-shadow: 1px 1px #005588;
+}

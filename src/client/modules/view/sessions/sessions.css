@@ -1,0 +1,24 @@
+.container {
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  max-width: 1200px;
+  margin: auto;
+  padding: 2rem;
+}
+
+base-tabs {
+  position: sticky;
+  top: 56px;
+}
+
+cmp-sessions {
+  flex-grow: 2;
+}
+
+@media screen and (max-width: 480px) {
+  .container {
+    padding: 0;
+  }
+}

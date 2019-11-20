@@ -1,0 +1,27 @@
+[
+  {
+    "name": "all",
+    "label": "All",
+    "link": "sessions/all"
+  },
+  {
+    "name": "admin",
+    "label": "Admin",
+    "link": "sessions/admin"
+  },
+  {
+    "name": "developer",
+    "label": "Developer",
+    "link": "sessions/developer"
+  },
+  {
+    "name": "marketing",
+    "label": "Marketing/Misc",
+    "link": "sessions/marketing"
+  },
+  {
+    "name": "executive",
+    "label": "Executive",
+    "link": "sessions/executive"
+  }
+]

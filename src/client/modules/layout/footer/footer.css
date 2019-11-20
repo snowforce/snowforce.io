@@ -1,0 +1,97 @@
+input {
+  box-sizing: border-box;
+  width: 100%;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  border: none;
+  box-shadow: 1px 1px 0.625rem 0 #005588;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+.container {
+  background-color: var(--primary-color);
+  color: white;
+  width: 100%;
+  padding-top: 2rem;
+  padding-bottom: 7rem;
+}
+
+.columns {
+  max-width: 75%;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  min-width: 11rem;
+}
+
+.col-header {
+  text-shadow: 1px 1px #005588;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 2.5rem;
+  padding-top: 0.5rem;
+}
+
+.item {
+  text-shadow: 1px 1px #005588;
+  font-size: 1.25rem;
+  font-weight: 300;
+  line-height: 1.5625rem;
+  margin: 0.25rem 0;
+}
+
+.contact {
+  order: 1;
+}
+
+.conference {
+  order: 2;
+}
+
+.planning {
+  order: 3;
+}
+
+.about {
+  order: 4;
+}
+
+@media only screen and (max-width: 1024px) {
+  .col {
+    width: 40%;
+  }
+
+  .contact {
+    order: 5;
+  }
+
+  .conference {
+    order: 2;
+  }
+
+  .planning {
+    order: 1;
+  }
+
+  .about {
+    order: 4;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .contact {
+    width: 50%;
+  }
+}

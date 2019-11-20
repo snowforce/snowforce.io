@@ -1,0 +1,17 @@
+<template>
+  <div class="container">
+    <layout-header onnavigate={handleNavigateEvent}></layout-header>
+
+    <!-- this is lwc:dom="manual" because navigo is going to
+        swap out the content based on the url with the set page method -->
+    <div
+      class="content"
+      lwc:dom="manual"
+      onopenmenu={handleOpenMenuEvent}
+      onnavigate={handleNavigateEvent}
+    ></div>
+
+    <layout-footer onnavigate={handleNavigateEvent}></layout-footer>
+    <base-back-button scroll-top={scrollEvent}></base-back-button>
+  </div>
+</template>

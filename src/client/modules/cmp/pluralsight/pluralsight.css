@@ -1,0 +1,13 @@
+.pluralsight {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.pluralsight img {
+  margin: auto;
+  width: 95vw;
+  max-width: 40rem;
+}

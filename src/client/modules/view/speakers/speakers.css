@@ -1,0 +1,43 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+:host {
+  width: 100%;
+}
+
+.cards {
+  width: 95%;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card {
+  margin: 0.75rem;
+}
+
+h1 {
+  text-align: center;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  margin-block-end: 0;
+}
+
+@media only screen and (max-width: 800px) {
+  h1 {
+    font-size: 1.5em;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .cards {
+    width: 100%;
+  }
+  .card {
+    margin: 0.5rem;
+  }
+}

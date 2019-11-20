@@ -1,0 +1,47 @@
+<template>
+  <div class="container">
+    <div class="title">
+      <h1>{session.title}</h1>
+    </div>
+    <div class="info">
+      <div class="speaker-names">
+        <template for:each={speakers} for:item="speaker">
+          <base-link href={speaker.link} key={speaker.id}>
+            <div class="speaker">
+              <img src={speaker.img} alt={speaker.imgAlt} />
+              <span
+                >{speaker.personalTitle} {speaker.firstName}
+                {speaker.lastName}</span
+              >
+            </div>
+          </base-link>
+        </template>
+      </div>
+      <template for:each={session.abstract} for:item="sec">
+        <p key={sec.noId}>
+          {sec}
+        </p>
+      </template>
+      <table>
+        <tr>
+          <th>Session Format</th>
+          <td>{session.type}</td>
+        </tr>
+        <tr>
+          <th>Level</th>
+          <td>{session.audienceLevel}</td>
+        </tr>
+        <tr>
+          <th>Audience</th>
+          <td class="audience">
+            <template for:each={session.audience} for:item="a">
+              <span key={a.noId} onclick={manualNav} data-audience={a}>
+                {a}
+              </span>
+            </template>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</template>

@@ -1,0 +1,25 @@
+{
+  "name": "Snowforce",
+  "short_name": "Snowforce",
+  "start_url": "/",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "./favicon.ico",
+      "type": "image/ico",
+      "sizes": "192x192"
+    },
+    {
+      "src": "https://snowforce.s3-us-west-1.amazonaws.com/app/snowforce-badge-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "https://snowforce.s3-us-west-1.amazonaws.com/app/snowforce-badge-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "background_color": "rgb(255, 255, 255)",
+  "theme_color": "rgb(0, 160, 255)"
+}

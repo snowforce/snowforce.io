@@ -1,0 +1,27 @@
+<template>
+  <div class="icon-row">
+    <a if:true={social.twitter} href={social.twitter} aria-label="Twitter">
+      <base-icon name="twitter"></base-icon>
+    </a>
+    <a if:true={social.facebook} href={social.facebook} aria-label="Facebook">
+      <base-icon name="facebook"></base-icon>
+    </a>
+    <a if:true={social.linkedin} href={social.linkedin} aria-label="Linkedin">
+      <base-icon name="linkedin"></base-icon>
+    </a>
+    <a
+      if:true={social.instagram}
+      href={social.instagram}
+      aria-label="Instagram"
+    >
+      <base-icon name="instagram"></base-icon>
+    </a>
+    <a
+      if:true={social.trailhead}
+      href={social.trailhead}
+      aria-label="Trailhead"
+    >
+      <base-icon name="trailhead"></base-icon>
+    </a>
+  </div>
+</template>

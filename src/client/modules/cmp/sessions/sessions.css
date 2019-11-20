@@ -1,0 +1,34 @@
+h3 {
+  margin-block-start: 0.5rem;
+  margin-block-end: 0.5rem;
+}
+
+h4 {
+  display: inline;
+}
+
+.card {
+  box-sizing: border-box;
+  padding: 1rem;
+  min-height: 2rem;
+  margin: 1rem 2rem;
+  background: #00a0ff1a;
+  border-radius: 1rem;
+  box-shadow: 2px 2px 8px 1px rgba(0, 0, 0, 0.5);
+}
+
+.speakers {
+  display: inline-block;
+}
+
+.speakers:before {
+  content: '\00a0-\00a0';
+}
+
+.speakers .speaker:not(:last-child):after {
+  content: ',\00a0';
+}
+
+.room:before {
+  content: '\00a0';
+}

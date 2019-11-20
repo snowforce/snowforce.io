@@ -1,0 +1,11 @@
+:host {
+  display: inline-block;
+  width: 2rem;
+
+  /* Fill the SVG with the current font color */
+  fill: currentColor;
+}
+
+img {
+  width: 2rem;
+}

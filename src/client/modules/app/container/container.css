@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+.content {
+  flex: 1 0 auto;
+  position: relative;
+  margin-top: var(--header-height);
+}
+
+layout-footer {
+  flex-shrink: 0;
+}

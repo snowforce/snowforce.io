@@ -1,0 +1,38 @@
+.header {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.cmp-image-grid {
+  padding: 1rem;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.column {
+  flex: 25%;
+  max-width: 25%;
+}
+
+.column img {
+  max-width: 100%;
+  vertical-align: middle;
+  box-shadow: 3px 5px 10px #aaaaaa;
+}
+
+@media only screen and (max-width: 800px) {
+  .column {
+    flex: 50%;
+    max-width: 50%;
+  }
+}
+
+@media only screen and (max-width: 414px) {
+  .column {
+    flex: 100%;
+    max-width: 100%;
+  }
+}

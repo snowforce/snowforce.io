@@ -1,0 +1,30 @@
+<template>
+  <div class="flip-card">
+    <div class="flip-card-inner">
+      <div class="flip-card-front">
+        <div class="hover">
+          <img src={speaker.img} alt={speaker.imgAlt} />
+        </div>
+        <div class="content">
+          <div class="speaker">
+            {speaker.firstName} {speaker.lastName}
+          </div>
+          <div>
+            {speaker.title}
+          </div>
+        </div>
+      </div>
+      <div class="flip-card-back">
+        <base-link href={speaker.link} class="content">
+          <h3>{speaker.firstName} {speaker.lastName}</h3>
+          <div class="bio">
+            {speaker.bio}
+          </div>
+        </base-link>
+        <div class="links">
+          <base-social social={speaker.social}></base-social>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

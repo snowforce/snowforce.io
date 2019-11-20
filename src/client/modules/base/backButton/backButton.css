@@ -1,0 +1,37 @@
+button {
+  cursor: pointer;
+  position: fixed;
+  left: 2rem;
+  background: none;
+  border: none;
+  border-radius: 50%;
+  outline: none;
+
+  transition: all 0.3s ease;
+}
+
+.back-arrow {
+  display: inline-block;
+  fill: white;
+  background: #0393e8b3;
+  border-radius: 50%;
+  box-shadow: 0.1875rem 0.125rem 1.3125rem 0.25rem rgba(255, 255, 255, 0.75);
+  width: 3rem;
+}
+
+.hide {
+  pointer-events: none;
+  bottom: -10rem;
+  opacity: 0;
+}
+
+.display {
+  bottom: 2rem;
+  opacity: 1;
+}
+
+@media only screen and (max-width: 500px) {
+  .back-arrow {
+    width: 4rem;
+  }
+}

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Snowforce</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Community Salesforce Event for the  built out with Lightning Web Components."
+    />
+    <meta name="theme-color" content="#00a0ff" />
+    <link rel="shortcut icon" href="./favicon.ico" />
+    <link rel="manifest" href="/manifest.json" />
+
+    <meta name="apple-mobile-web-app-title" content="Appscope" />
+
+    <!-- TODO: apple-touch-startup-image - https://medium.com/appscope/designing-native-like-progressive-web-apps-for-ios-1b3cdda1d0e8 -->
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta http-equiv="x-ua-compatible" content="IE=Edge" />
+
+    <link
+      rel="apple-touch-icon"
+      href="https://snowforce.s3-us-west-1.amazonaws.com/app/snowforce-badge-192.png"
+    />
+
+    <link
+      rel="preconnect"
+      href="https://snowforce.s3-us-west-1.amazonaws.com"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-1V6964G978"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+
+      gtag('config', 'G-1V6964G978');
+    </script>
+
+    <style>
+      :root {
+        --primary-color: #00a0ff;
+        --primary-color-dark: #0393e8;
+
+        --background-color: #fff;
+        --background-color-lighter: #323232;
+        --font-color: #14171a;
+
+        --header-height: 3.5rem;
+        --header-font-color: #fff;
+
+        --section-height: calc(100vh - var(--header-height));
+
+        --spacing-small: 0.625rem;
+        --spacing-medium: 1rem;
+        --spacing-large: 1.5rem;
+        --spacing-x-large: 2rem;
+      }
+
+      body,
+      html {
+        height: 100%;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        font-family: 'Raleway', sans-serif;
+        color: var(--font-color);
+
+        /* PWA Fixes */
+        -webkit-user-select: none;
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none;
+
+        /* In some weird scenarios body will get stuck on the bottom screen in PWA format scroll is set in app */
+        overflow: hidden;
+      }
+
+      .unsupported {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .unsupported_title,
+      .unsupported_message {
+        padding: 0 var(--spacing-medium);
+        text-align: center;
+      }
+
+      .unsupported_title {
+        padding-bottom: var(--spacing-medium);
+
+        font-size: 1.5rem;
+        font-weight: 500;
+        line-height: 2rem;
+        text-transform: uppercase;
+
+        color: var(--primary-color);
+      }
+
+      .unsupported_message {
+        opacity: 0.7;
+      }
+    </style>
+  </head>
+  <body ontouchstart="">
+    <noscript>
+      <div class="unsupported">
+        <div class="unsupported_title">This page cannot be loaded!</div>
+        <div class="unsupported_message">
+          This application requires javascript to work properly.
+        </div>
+      </div>
+    </noscript>
+    <app-container></app-container>
+  </body>
+
+  <script type="module">
+    import { Workbox } from 'https://storage.googleapis.com/workbox-cdn/releases/4.1.0/workbox-window.prod.mjs';
+
+    if ('serviceWorker' in navigator) {
+      const wb = new Workbox('/sw.js');
+      // TODO: determine method for updating Service Worker
+      wb.register();
+    }
+  </script>
+</html>

@@ -1,0 +1,14 @@
+<template>
+  <div class="tabs" onclick={clickedTab}>
+    <template for:each={_tabs} for:item="tab">
+      <button
+        key={tab.name}
+        data-selected={tab.selected}
+        data-link={tab.link}
+        data-name={tab.name}
+      >
+        {tab.label}
+      </button>
+    </template>
+  </div>
+</template>

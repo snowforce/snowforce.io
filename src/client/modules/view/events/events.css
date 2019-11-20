@@ -1,0 +1,68 @@
+.small-section {
+  max-width: 70rem;
+  margin: auto;
+  position: relative;
+  padding: 1rem;
+
+  border-radius: 0.5rem;
+  margin-bottom: 2rem;
+  background-color: #daf1ffa6;
+  box-shadow: 0 0.1875rem 1rem 0.25rem rgba(201, 201, 201, 0.91);
+}
+
+.absolute-box {
+  position: absolute;
+  right: 5%;
+  top: -0.5em;
+  z-index: 1;
+}
+
+.new-icon {
+  width: 2.5em;
+  transform: rotate(-45deg);
+}
+
+base-tabs {
+  position: relative;
+  top: 0;
+  margin: auto;
+  max-width: 70rem;
+  width: 100%;
+  cursor: pointer;
+}
+
+h2 {
+  margin-block-start: 0.5em;
+  margin-block-end: 0.5em;
+}
+
+.cell > div {
+  margin-left: 1rem;
+}
+
+h3 {
+  margin-block-start: 0.5em;
+  margin-block-end: 0.25em;
+}
+
+.carousel {
+  box-sizing: border-box;
+  display: flex;
+  width: 80%;
+  max-width: 60rem;
+  margin: auto;
+  padding: 2rem 0;
+  min-height: 20rem;
+}
+
+.time {
+  padding: 0 1rem;
+  font-style: italic;
+}
+
+.description {
+  font-size: 1.15rem;
+  margin-block-start: 0.5em;
+  margin-block-end: 0.5em;
+  line-height: 1.5;
+}

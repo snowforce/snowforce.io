@@ -1,0 +1,69 @@
+<template>
+  <div class="container">
+    <div class="columns">
+      <div class="col contact">
+        <label for="SlackSignup">
+          <div class="col-header">Join us on Slack</div>
+          <input
+            type="email"
+            name="SlackSignup"
+            onkeyup={enrollSlack}
+            disabled
+          />
+        </label>
+      </div>
+      <div class="col conference">
+        <base-link href="/" class="col-header">
+          Conference
+        </base-link>
+        <base-link href="/speakers" class="item">
+          Speakers
+        </base-link>
+        <base-link href="/sponsors" class="item">
+          Sponsors
+        </base-link>
+        <!-- TODO: track sessions and schedule correctly -->
+        <base-link href="/sessions" class="item">
+          Schedule
+        </base-link>
+        <base-link href="/venue" class="item">
+          Venue
+        </base-link>
+      </div>
+      <div class="col planning">
+        <base-link href="/planning" class="col-header">
+          Coming Soon
+        </base-link>
+        <base-link href="/register" class="item">
+          Registration
+        </base-link>
+        <base-link href="/speaker-sign-up" class="item">
+          Call for Speakers
+        </base-link>
+        <base-link href="/sponsor-sign-up" class="item">
+          Sponsor Snowforce
+        </base-link>
+        <!-- <base-link href="/food" class="item">
+        Lunch Preferences
+      </base-link> -->
+        <base-link href="/volunteer" class="item">
+          Volunteer
+        </base-link>
+      </div>
+      <div class="col about">
+        <base-link href="/about" class="col-header">
+          About
+        </base-link>
+        <base-link href="/organizers" class="item">
+          Organizers
+        </base-link>
+        <base-link href="/past-events" class="item">
+          Past Events
+        </base-link>
+        <base-link href="https://github.com/snowforce" class="item">
+          Github
+        </base-link>
+      </div>
+    </div>
+  </div>
+</template>

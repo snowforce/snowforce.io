@@ -1,0 +1,28 @@
+<template>
+  <div class="container">
+    <div class="speaker-info">
+      <div class="speaker-img">
+        <cmp-speaker-img-card speaker={speaker}></cmp-speaker-img-card>
+      </div>
+      <div class="speaker-name">
+        <h2>
+          {speaker.personalTitle} {speaker.firstName} {speaker.lastName}
+        </h2>
+        <h3>{speaker.title}</h3>
+      </div>
+    </div>
+    <div class="speaker-content">
+      <div>{speaker.bio}</div>
+      <div if:true={haveSessions} class="sessions">
+        <div>
+          <h3>Sessions</h3>
+        </div>
+        <template for:each={sessions} for:item="s">
+          <base-link key={s.link} href={s.link} class="session">
+            {s.year} - {s.title}
+          </base-link>
+        </template>
+      </div>
+    </div>
+  </div>
+</template>

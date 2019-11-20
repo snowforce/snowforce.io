@@ -1,0 +1,7 @@
+a {
+  margin-left: 0.3125rem;
+}
+.icon-row {
+  display: flex;
+  align-items: center;
+}

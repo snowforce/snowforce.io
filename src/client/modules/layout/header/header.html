@@ -1,0 +1,44 @@
+<template>
+  <div class="container">
+    <div class="header">
+      <div class="toolbar">
+        <div class="home-links">
+          <base-link href="/">
+            <img
+              src="https://snowforce.s3-us-west-1.amazonaws.com/event-images/snowforce-2x.png"
+              alt="Snowforce"
+              class="img"
+            />
+          </base-link>
+          <a href="https://lwc.dev" aria-label="Lightning Web Components">
+            <base-icon name="lightning" class="icon"></base-icon>
+          </a>
+        </div>
+        <base-menu-icon
+          onclick={menuToggled}
+          toggle={showMenu}
+          class="menu-icon"
+        ></base-menu-icon>
+      </div>
+    </div>
+    <div class={menuWrapperClass}>
+      <div class="overlay" onclick={toggleMenu}></div>
+      <div class="side-menu">
+        <template for:each={menuItems} for:item="item">
+          <div key={item.link} class="p-left-medium">
+            <base-link onnavigate={toggleMenu} href={item.link}>
+              <h2>{item.title}</h2>
+            </base-link>
+            <template for:each={item.subItems} for:item="sub">
+              <div key={sub.link} class="p-left-medium">
+                <base-link onnavigate={toggleMenu} href={sub.link}>
+                  <h3>{sub.title}</h3>
+                </base-link>
+              </div>
+            </template>
+          </div>
+        </template>
+      </div>
+    </div>
+  </div>
+</template>

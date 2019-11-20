@@ -1,0 +1,31 @@
+.backgroundImg {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.backgroundGradient {
+  /* box-shadow: inset 0 -20vh 10vh -3.125rem rgba(255, 255, 255, 1); */
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) 25%,
+    rgba(255, 255, 255, 1) 100%
+  );
+}
+
+.centerContent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.section {
+  min-height: var(--section-height);
+}
+
+/* Targets IOS Safari */
+@supports (-webkit-overflow-scrolling: touch) {
+  .backgroundImg {
+    background-attachment: scroll;
+  }
+}

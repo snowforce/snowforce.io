@@ -1,0 +1,75 @@
+<template>
+  <div class="small-section">
+    <div class="absolute-box">
+      <base-icon name="new" class="new-icon"></base-icon>
+    </div>
+    <base-tabs tabs={tabs} active-tab="1" onnavigate={onNavigate}></base-tabs>
+    <div class="carousel">
+      <div if:true={displayDinner} class="cell">
+        <h2>Networking Dinner</h2>
+        <div class="time">Wednesday: 5:00 - 9:00pm</div>
+        <div class="description">
+          Come and spend an evening with fellow Salesforce enthusiasts,
+          speakers, sponsors and cool people at Rodizio Grill at Trolley Square.
+          Tickets can be purchased separate from your Snowforce entrance ticket.
+        </div>
+      </div>
+      <div if:true={displayConference} class="cell">
+        <h2>Conference Day</h2>
+        <div class="time">Thursday: 8:00am - 7:00pm</div>
+        <div>
+          <div>
+            <h3>Check-In</h3>
+            <div class="time">
+              8:00 - 9:00am : Light breakfast available for those coming with an
+              empty stomach
+            </div>
+          </div>
+          <div>
+            <h3>Opening Keynote</h3>
+            <div class="time">9:00 - 10:00am</div>
+            <div class="description"></div>
+          </div>
+          <div>
+            <h3>Morning Breakout Sessions</h3>
+            <div class="time">10:10am - 12pm</div>
+          </div>
+          <div>
+            <h3>Lunch Break</h3>
+            <div class="time">
+              12:00 - 1:00pm : Line up for some of Utah's greatest food trucks
+            </div>
+          </div>
+          <div>
+            <h3>Afternoon Breakout Sessions</h3>
+            <div class="time">1:00 - 3:50pm</div>
+          </div>
+          <div>
+            <h3>Closing Keynote</h3>
+            <div class="time">4:00 - 4:50pm</div>
+          </div>
+          <div>
+            <h3>Networking Cocktail Hour</h3>
+            <div class="time">5:00 - 6:00pm</div>
+          </div>
+        </div>
+      </div>
+      <div if:true={displaySki} class="cell">
+        <h2>Ski Day @ Solitude with Hands On Sessions</h2>
+        <div>
+          <h3>Ski Day</h3>
+          <div class="time">
+            7:00am - 4:00pm : Come and spend the day with fellow Salesforce
+            enthusiasts, speakers, sponsors and cool people.
+          </div>
+        </div>
+        <div>
+          <h3>Sessions</h3>
+          <div class="time">
+            TBA : The Sessions Continue At The Lodge
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

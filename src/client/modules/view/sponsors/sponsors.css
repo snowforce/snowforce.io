@@ -1,0 +1,52 @@
+h1 {
+  margin-block-start: 0;
+}
+
+img {
+  width: 100%;
+}
+
+.center {
+  margin: auto;
+  text-align: center;
+}
+
+.sponsors {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.row {
+  width: 100%;
+  max-width: 70rem;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.platinum {
+  width: 100%;
+  max-width: 60rem;
+}
+
+.gold {
+  width: 40%;
+  max-width: 35rem;
+}
+
+.silver {
+  width: 20%;
+  max-width: 15rem;
+}
+
+@media only screen and (min-width: 800px) {
+  h1 {
+    font-size: 3rem;
+  }
+}
