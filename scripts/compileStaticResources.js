@@ -30,15 +30,6 @@ const writeObjects = (obj, name) => {
   }
 };
 
-// const sponsorKeys = Object.keys(allSponsors);
-// for (let i = 0; i < sponsorKeys.length; i++) {
-//   writeJson(
-//     'sponsors',
-//     sponsorKeys[i],
-//     JSON.stringify(allSponsors[sponsorKeys[i]])
-//   );
-// }
-
 const reduceById = res => {
   return res.reduce((acc, a) => {
     acc[a.Id] = a;
@@ -256,22 +247,19 @@ const compileResources = async () => {
     sfAccountsById,
     sfSponsorTypeArray
   );
+  writeObjects(allSponsors, 'sponsors');
 
   const allDemoJams = await demoJamReducer(sfDemoJamArray, sfSponsorArray);
+  writeObjects(allDemoJams, 'demoJams');
 
   const allSpeakers = await speakerReducer(
     sfSpeakerArray,
     sfContactsById,
     sfSessionArray
   );
+  writeObjects(allSpeakers, 'speakers');
 
   const allSessions = await sessionReducer(sfSessionArray, sfSpeakerArray);
-
-  debugger;
-
-  writeObjects(allSponsors, 'sponsors');
-  writeObjects(allDemoJams, 'demoJams');
-  writeObjects(allSpeakers, 'speakers');
   writeObjects(allSessions, 'sessions');
 };
 compileResources();
