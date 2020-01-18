@@ -2,6 +2,8 @@
 
 import { LightningElement, createElement } from 'lwc';
 import Navigo from 'navigo';
+import { store } from 'redux/store';
+import { requestConferences } from 'redux/actions';
 
 export default class AppContainer extends LightningElement {
   releaseVersion = process.env.RELEASE_VERSION;
@@ -15,6 +17,8 @@ export default class AppContainer extends LightningElement {
 
   constructor() {
     super();
+
+    store.dispatch(requestConferences());
 
     this.router.on({
       '': async () => {

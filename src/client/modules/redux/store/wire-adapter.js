@@ -3,12 +3,17 @@
 import { register, ValueChangedEvent } from '@lwc/wire-service';
 
 import {
+  currentConferenceSelector,
   currentSponsorsSelector,
   currentSpeakersSelector,
-  trackSelector
+  currentYearSelector
 } from 'redux/selectors';
 
-import { fetchIfNeeded } from 'redux/actions';
+import {
+  requestSessions,
+  requestSpeakers,
+  requestSponsors
+} from 'redux/actions';
 
 // eslint-disable-next-line no-unused-vars
 export function connectStore(store, ...args) {
@@ -57,10 +62,12 @@ register(wireCurrentSponsors, eventTarget => {
   };
 
   const subscribeRedux = () => {
-    store.dispatch(fetchIfNeeded('sponsors'));
+    let year = currentYearSelector(store.getState());
+    store.dispatch(requestSponsors(year));
 
     subscription = store.subscribe(() => {
-      store.dispatch(fetchIfNeeded('sponsors'));
+      year = currentYearSelector(store.getState());
+      store.dispatch(requestSponsors(year));
       notifyStateChange();
     });
     notifyStateChange();
@@ -95,10 +102,12 @@ register(wireCurrentSpeakers, eventTarget => {
   };
 
   const subscribeRedux = () => {
-    store.dispatch(fetchIfNeeded('speakers'));
+    let year = currentYearSelector(store.getState());
+    store.dispatch(requestSpeakers(year));
 
     subscription = store.subscribe(() => {
-      store.dispatch(fetchIfNeeded('speakers'));
+      year = currentYearSelector(store.getState());
+      store.dispatch(requestSpeakers(year));
       notifyStateChange();
     });
     notifyStateChange();
@@ -133,12 +142,14 @@ register(wireCurrentSessions, eventTarget => {
   };
 
   const subscribeRedux = () => {
-    store.dispatch(fetchIfNeeded('speakers'));
-    store.dispatch(fetchIfNeeded('sessions'));
+    let year = currentYearSelector(store.getState());
+    store.dispatch(requestSpeakers(year));
+    store.dispatch(requestSessions(year));
 
     subscription = store.subscribe(() => {
-      store.dispatch(fetchIfNeeded('speakers'));
-      store.dispatch(fetchIfNeeded('sessions'));
+      year = currentYearSelector(store.getState());
+      store.dispatch(requestSpeakers(year));
+      store.dispatch(requestSessions(year));
       notifyStateChange();
     });
     notifyStateChange();
@@ -158,23 +169,29 @@ register(wireCurrentSessions, eventTarget => {
 });
 
 // eslint-disable-next-line no-unused-vars
-export function wireCurrentTracks(store, ...args) {
-  return trackSelector(store.getState());
+export function wireCurrentConference(store, ...args) {
+  return currentConferenceSelector(store.getState());
 }
 
-register(wireCurrentTracks, eventTarget => {
+register(wireCurrentConference, eventTarget => {
   let store;
   let subscription;
 
   const notifyStateChange = () => {
-    eventTarget.dispatchEvent(new ValueChangedEvent(wireCurrentTracks(store)));
+    eventTarget.dispatchEvent(
+      new ValueChangedEvent(wireCurrentConference(store))
+    );
   };
 
   const subscribeRedux = () => {
-    store.dispatch(fetchIfNeeded('sessions'));
+    let year = currentYearSelector(store.getState());
+    store.dispatch(requestSpeakers(year));
+    store.dispatch(requestSessions(year));
 
     subscription = store.subscribe(() => {
-      store.dispatch(fetchIfNeeded('sessions'));
+      year = currentYearSelector(store.getState());
+      store.dispatch(requestSpeakers(year));
+      store.dispatch(requestSessions(year));
       notifyStateChange();
     });
     notifyStateChange();

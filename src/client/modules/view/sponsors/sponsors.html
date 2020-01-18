@@ -1,5 +1,5 @@
 <template>
-  <div class="sponsors">
+  <div if:true={haveSponsors} class="sponsors">
     <div class="center">
       <h1>Thank You To Our Sponsors</h1>
     </div>
@@ -26,6 +26,11 @@
           <img src={s.logo} alt={s.name} />
         </a>
       </template>
+    </div>
+  </div>
+  <div if:false={haveSponsors} class="sponsors">
+    <div class="center">
+      <h1>Sponsors To Be Announced Soon!</h1>
     </div>
   </div>
 </template>

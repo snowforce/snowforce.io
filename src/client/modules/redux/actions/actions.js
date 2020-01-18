@@ -1,4 +1,6 @@
 import {
+  RECEIVE_CONFERENCES,
+  REQUEST_CONFERENCES,
   RECEIVE_SESSIONS,
   REQUEST_SESSIONS,
   RECEIVE_SPEAKERS,
@@ -10,12 +12,9 @@ import {
   SET_TRACK_INDEX,
   SET_TRACK_NAME,
   SIDE_MENU_OPEN,
-  SIDE_MENU_CLOSE
+  SIDE_MENU_CLOSE,
+  FETCH_ACTION
 } from 'redux/shared';
-
-import { store } from 'redux/store';
-
-import { currentYearSelector } from 'redux/selectors';
 
 /******** Menu ********/
 
@@ -30,6 +29,16 @@ export function openMenu() {
     type: SIDE_MENU_OPEN
   };
 }
+
+/******** Conferences *******/
+
+export const receiveConferences = conferences => {
+  return { type: RECEIVE_CONFERENCES, data: { conferences } };
+};
+
+export const requestConferences = () => {
+  return { type: REQUEST_CONFERENCES, data: {} };
+};
 
 /******** Session Track *******/
 
@@ -47,77 +56,48 @@ export function setSessionsTrackName(name) {
   };
 }
 
-/******** Fetch Data ********/
+/** Sessions */
 
-let requests = {};
-
-const getRequestKey = (requestType, year) => {
-  return `${requestType}|${year}`;
+export const receiveSessions = sessions => {
+  return { type: RECEIVE_SESSIONS, data: { sessions } };
 };
 
-const fetchData = async (
-  table,
-  year = currentYearSelector(store.getState())
-) => {
-  const res = await fetch(`/api/${year}/${table}`);
-  return res.json();
+export const requestSessions = year => {
+  return { type: REQUEST_SESSIONS, data: { year } };
 };
 
-function receiveAction(type, year, res) {
-  return {
-    type,
-    data: {
-      year,
-      val: res
-    }
-  };
-}
+/** Speakers */
 
-function requestAction(type, year) {
-  return {
-    type,
-    data: { year }
-  };
-}
-
-function fetchRequest(table, requestType, receiveType, year) {
-  return async dispatch => {
-    requests[getRequestKey(requestType, year)] = 'new';
-    dispatch(requestAction(requestType, year));
-    fetchData(table, year).then(res => {
-      requests[getRequestKey(requestType, year)] = 'complete';
-      dispatch(receiveAction(receiveType, year, res));
-    });
-  };
-}
-
-function shouldFetch(requestType, year) {
-  return getRequestKey(requestType, year) in requests ? false : true;
-}
-
-const requestTypes = {
-  sessions: REQUEST_SESSIONS,
-  speakers: REQUEST_SPEAKERS,
-  sponsors: REQUEST_SPONSORS,
-  tracks: REQUEST_TRACKS
+export const receiveSpeakers = speakers => {
+  return { type: RECEIVE_SPEAKERS, data: { speakers } };
 };
 
-const receiveTypes = {
-  sessions: RECEIVE_SESSIONS,
-  speakers: RECEIVE_SPEAKERS,
-  sponsors: RECEIVE_SPONSORS,
-  tracks: RECEIVE_TRACKS
+export const requestSpeakers = year => {
+  return { type: REQUEST_SPEAKERS, data: { year } };
 };
 
-export function fetchIfNeeded(
-  table,
-  year = currentYearSelector(store.getState())
-) {
-  const requestType = requestTypes[table];
-  const receiveType = receiveTypes[table];
-  return dispatch => {
-    if (shouldFetch(requestType, year)) {
-      dispatch(fetchRequest(table, requestType, receiveType, year));
-    }
-  };
-}
+/** Sponsors */
+
+export const receiveSponsors = sponsors => {
+  return { type: RECEIVE_SPONSORS, data: { sponsors } };
+};
+
+export const requestSponsors = year => {
+  return { type: REQUEST_SPONSORS, data: { year } };
+};
+
+/** Tracks */
+
+export const receiveTracks = tracks => {
+  return { type: RECEIVE_TRACKS, data: { tracks } };
+};
+
+export const requestTracks = year => {
+  return { type: REQUEST_TRACKS, data: { year } };
+};
+
+/** Requests */
+
+export const setRequest = requestStr => {
+  return { type: FETCH_ACTION, data: { str: requestStr } };
+};

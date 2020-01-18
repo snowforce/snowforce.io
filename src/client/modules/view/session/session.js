@@ -1,12 +1,13 @@
 import { LightningElement, api, track, wire } from 'lwc';
 import { connectStore, store } from 'redux/store';
-import { fetchIfNeeded } from 'redux/actions';
 import {
   sessionByIdSelector,
   speakersByIdFilter,
   speakersByYearSelector,
   currentYearSelector
 } from 'redux/selectors';
+
+import { requestSpeakers, requestSessions } from 'redux/actions';
 
 export default class ViewSession extends LightningElement {
   @api sessionId;
@@ -27,8 +28,8 @@ export default class ViewSession extends LightningElement {
   };
 
   fetchSessionData = year => {
-    store.dispatch(fetchIfNeeded('speakers', year));
-    store.dispatch(fetchIfNeeded('sessions', year));
+    store.dispatch(requestSpeakers(year));
+    store.dispatch(requestSessions(year));
   };
 
   @wire(connectStore, { store, speakerId: '$sessionId' })
@@ -45,7 +46,5 @@ export default class ViewSession extends LightningElement {
         speakersByIdFilter(yearSpeakers, sId)
       );
     }
-
-    // TODO: Go back to previous years for old urls
   }
 }
