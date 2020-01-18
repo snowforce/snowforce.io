@@ -20,7 +20,7 @@ module.exports = {
       to: 'dist/sw.js'
     },
     {
-      from: 'src/client/resources/data',
+      from: 'src/server/data',
       to: 'dist/data'
     }
   ],
