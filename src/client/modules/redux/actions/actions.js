@@ -7,26 +7,28 @@ import {
   REQUEST_SPEAKERS,
   RECEIVE_SPONSORS,
   REQUEST_SPONSORS,
-  RECEIVE_TRACKS,
-  REQUEST_TRACKS,
   SET_TRACK_INDEX,
   SET_TRACK_NAME,
-  SIDE_MENU_OPEN,
-  SIDE_MENU_CLOSE,
-  FETCH_ACTION
+  VIEW_MENU_OPEN,
+  VIEW_MENU_CLOSE,
+  VIEW_TRACK,
+  FETCH_ACTION,
+  REQUEST_SPEAKER,
+  REQUEST_ORGANIZERS
 } from 'redux/shared';
+import { REQUEST_SESSION } from '../shared/shared';
 
 /******** Menu ********/
 
 export function closeMenu() {
   return {
-    type: SIDE_MENU_CLOSE
+    type: VIEW_MENU_CLOSE
   };
 }
 
 export function openMenu() {
   return {
-    type: SIDE_MENU_OPEN
+    type: VIEW_MENU_OPEN
   };
 }
 
@@ -62,8 +64,12 @@ export const receiveSessions = sessions => {
   return { type: RECEIVE_SESSIONS, data: { sessions } };
 };
 
-export const requestSessions = year => {
-  return { type: REQUEST_SESSIONS, data: { year } };
+export const requestSession = id => {
+  return { type: REQUEST_SESSION, data: { id } };
+};
+
+export const requestSessions = () => {
+  return { type: REQUEST_SESSIONS, data: {} };
 };
 
 /** Speakers */
@@ -72,8 +78,12 @@ export const receiveSpeakers = speakers => {
   return { type: RECEIVE_SPEAKERS, data: { speakers } };
 };
 
-export const requestSpeakers = year => {
-  return { type: REQUEST_SPEAKERS, data: { year } };
+export const requestSpeakers = () => {
+  return { type: REQUEST_SPEAKERS, data: {} };
+};
+
+export const requestSpeaker = id => {
+  return { type: REQUEST_SPEAKER, data: { id } };
 };
 
 /** Sponsors */
@@ -82,22 +92,29 @@ export const receiveSponsors = sponsors => {
   return { type: RECEIVE_SPONSORS, data: { sponsors } };
 };
 
-export const requestSponsors = year => {
-  return { type: REQUEST_SPONSORS, data: { year } };
-};
-
-/** Tracks */
-
-export const receiveTracks = tracks => {
-  return { type: RECEIVE_TRACKS, data: { tracks } };
-};
-
-export const requestTracks = year => {
-  return { type: REQUEST_TRACKS, data: { year } };
+export const requestSponsors = () => {
+  return { type: REQUEST_SPONSORS, data: {} };
 };
 
 /** Requests */
 
 export const setRequest = requestStr => {
   return { type: FETCH_ACTION, data: { str: requestStr } };
+};
+
+/** Organizers */
+
+export const requestOrganizers = () => {
+  return { type: REQUEST_ORGANIZERS, data: {} };
+};
+
+/** Views */
+
+export const viewTrack = trackName => {
+  return {
+    type: VIEW_TRACK,
+    data: {
+      trackName
+    }
+  };
 };
