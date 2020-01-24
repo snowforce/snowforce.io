@@ -8,6 +8,10 @@ h1 {
   margin-inline-end: 1rem;
 }
 
+.text-shadow {
+  text-shadow: 1px 1px #698bce;
+}
+
 h2 {
   font-weight: 500;
   font-size: 2rem;
@@ -40,12 +44,32 @@ h2 {
   padding-bottom: 2rem;
 }
 
+.vertical-padding-lg {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.registration-box {
+  margin: auto;
+  max-width: 65rem;
+}
+
 .announcement-block {
   font-weight: 700;
 }
 
 .save-the-date {
   padding-top: 1rem;
+}
+
+.sponsor-grey-box {
+  box-sizing: border-box;
+  background-color: #efeded80;
+  padding: 3rem;
+  max-width: 75rem;
+  width: 95%;
+  min-height: 50rem;
+  border-radius: 5px;
 }
 
 @media screen and (max-width: 480px) {

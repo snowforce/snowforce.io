@@ -1,7 +1,7 @@
 <template>
   <h1>Sessions</h1>
   <template if:true={haveSessions}>
-    <template for:each={sessions} for:item="session">
+    <template for:each={displaySessions} for:item="session">
       <div key={session.id} class="card">
         <base-link href={session.link}>
           <h3>{session.title}</h3>

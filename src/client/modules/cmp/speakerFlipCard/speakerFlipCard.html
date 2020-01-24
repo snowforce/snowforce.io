@@ -15,10 +15,10 @@
         </div>
       </div>
       <div class="flip-card-back">
-        <base-link href={speaker.link} class="content">
+        <base-link href={speaker.link}>
           <h3>{speaker.firstName} {speaker.lastName}</h3>
           <div class="bio">
-            {speaker.bio}
+            <base-rich-text content={speaker.bio}></base-rich-text>
           </div>
         </base-link>
         <div class="links">

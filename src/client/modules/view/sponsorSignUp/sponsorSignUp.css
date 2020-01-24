@@ -1,0 +1,11 @@
+.sponsor-container {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+}
+
+.sponsor-sheet {
+  width: 100%;
+  max-width: 75rem;
+  object-position: top;
+}

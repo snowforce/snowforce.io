@@ -1,23 +1,49 @@
 import {
+  RECEIVE_CONFERENCES,
   RECEIVE_SESSIONS,
   RECEIVE_SPEAKERS,
   RECEIVE_SPONSORS,
-  RECEIVE_SUBMISSIONS,
-  RECEIVE_TRACKS,
-  RECEIVE_AUDIENCES,
-  RECEIVE_SPONSOR_LEVELS,
-  SET_CONFERENCE_YEAR,
-  SIDE_MENU_OPEN,
-  SIDE_MENU_CLOSE
+  SET_CONFERENCE,
+  VIEW_MENU_OPEN,
+  VIEW_MENU_CLOSE,
+  SET_TRACKS,
+  VIEW_TRACK,
+  VIEW_DAY,
+  ADD_REQUEST,
+  CLEAR_REQUEST
 } from 'redux/shared';
 
-export function conference(state = { year: 2019 }, { type, data }) {
+export function conference(state = {}, { type, data }) {
   switch (type) {
-    case SET_CONFERENCE_YEAR:
-      return {
-        ...state,
-        year: data.year
-      };
+    case SET_CONFERENCE:
+      return { ...data.val };
+    case RECEIVE_CONFERENCES:
+      // TODO: the current date can change the output, need to put side effects elsewhere
+      return data.val.reduce(
+        (acc, c) => {
+          if (
+            parseInt(acc.year, 10) < parseInt(c.year, 10) ||
+            c.isRampUp ||
+            c.isRunning
+          ) {
+            acc = c;
+          }
+          return acc;
+        },
+        { year: 0 }
+      );
+    default:
+      return state;
+  }
+}
+
+export function conferences(state = {}, { type, data }) {
+  switch (type) {
+    case RECEIVE_CONFERENCES:
+      return data.val.reduce((acc, c) => {
+        acc[c.year] = c;
+        return acc;
+      }, {});
     default:
       return state;
   }
@@ -28,7 +54,10 @@ export function sessions(state = {}, { type, data }) {
     case RECEIVE_SESSIONS:
       return {
         ...state,
-        [data.year]: data.val
+        ...data.val.reduce((res, r) => {
+          res[r.id] = r;
+          return res;
+        }, {})
       };
     default:
       return state;
@@ -40,7 +69,10 @@ export function speakers(state = {}, { type, data }) {
     case RECEIVE_SPEAKERS:
       return {
         ...state,
-        [data.year]: data.val
+        ...data.val.reduce((res, r) => {
+          res[r.id] = r;
+          return res;
+        }, {})
       };
     default:
       return state;
@@ -52,56 +84,22 @@ export function sponsors(state = {}, { type, data }) {
     case RECEIVE_SPONSORS:
       return {
         ...state,
-        [data.year]: data.val
+        ...data.val.reduce((res, r) => {
+          res[r.id] = r;
+          return res;
+        }, {})
       };
     default:
       return state;
   }
 }
 
-export function tracks(state = {}, { type, data }) {
-  switch (type) {
-    case RECEIVE_TRACKS:
-      return {
-        ...state,
-        [data.year]: data.val
-      };
-    default:
-      return state;
-  }
-}
-
-export function audiences(state = {}, { type, data }) {
-  switch (type) {
-    case RECEIVE_AUDIENCES:
-      return {
-        ...state,
-        [data.year]: data.val
-      };
-    default:
-      return state;
-  }
-}
-
-export function sponsorLevels(state = {}, { type, data }) {
-  switch (type) {
-    case RECEIVE_SPONSOR_LEVELS:
-      return {
-        ...state,
-        [data.year]: data.val
-      };
-    default:
-      return state;
-  }
-}
-
-export function submission(state = {}, { type, data }) {
-  switch (type) {
-    case RECEIVE_SUBMISSIONS:
-      return {
-        ...state,
-        [data.year]: data.val
-      };
+export function requests(state = [], action) {
+  switch (action.type) {
+    case ADD_REQUEST:
+      return [...state, action.data.type];
+    case CLEAR_REQUEST:
+      return state.filter(r => r.type !== action.data.type);
     default:
       return state;
   }
@@ -109,13 +107,57 @@ export function submission(state = {}, { type, data }) {
 
 export function menu(state = { isOpen: false }, { type }) {
   switch (type) {
-    case SIDE_MENU_OPEN:
+    case VIEW_MENU_OPEN:
       return {
         isOpen: true
       };
-    case SIDE_MENU_CLOSE:
+    case VIEW_MENU_CLOSE:
       return {
         isOpen: false
+      };
+    default:
+      return state;
+  }
+}
+
+export function organizers(state = {}, action) {
+  switch (action.type) {
+    default:
+      return state;
+  }
+}
+
+export function tracks(state = [], action) {
+  switch (action.type) {
+    case SET_TRACKS:
+      return [...action.data];
+    default:
+      return state;
+  }
+}
+
+export function view(
+  state = { isMenuOpen: false, day: 0, track: 'all' },
+  action
+) {
+  switch (action.type) {
+    case VIEW_TRACK:
+      return {
+        ...state,
+        track: action.data.trackName
+      };
+    case VIEW_DAY:
+      return {
+        ...state,
+        day: action.data.day
+      };
+    case VIEW_MENU_OPEN:
+      return {
+        isMenuOpen: true
+      };
+    case VIEW_MENU_CLOSE:
+      return {
+        isMenuOpen: false
       };
     default:
       return state;

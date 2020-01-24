@@ -1,33 +1,26 @@
-const fs = require('fs');
-const path = require('path');
+const fs = require('fs-extra');
+const { setToProjectRootDirectory } = require('./updateDirectory.js');
 let jsforce = require('jsforce');
 require('dotenv').config();
 
-let dir;
+const writeYearlyData = (dir, obj, name) => {
+  fs.ensureDirSync(dir);
+  const data = Object.keys(obj).reduce((acc, k) => {
+    acc = [...obj[k], ...acc];
+    return acc;
+  }, []);
+  fs.writeFile(`${dir}/${name}.json`, JSON.stringify(data), err => {
+    if (err) throw err;
+    console.log('Data written ', name);
+  });
+};
 
-function writeJson(fileName, year, data) {
-  // Set the current working directory to the root of the project
-  if (!dir) {
-    dir = path.dirname(__dirname);
-    try {
-      process.chdir(dir);
-    } catch (err) {
-      done(err);
-      return;
-    }
-  }
-
-  fs.writeFile(`${dir}/dist/data/${year}/${fileName}.json`, data, err => {
+const writeConferenceData = (dir, data, fileName) => {
+  fs.ensureDirSync(dir);
+  fs.writeFile(`${dir}/${fileName}.json`, JSON.stringify(data), err => {
     if (err) throw err;
     console.log('Data written ', fileName);
   });
-}
-
-const writeObjects = (obj, name) => {
-  const keys = Object.keys(obj);
-  for (let i = 0; i < keys.length; i++) {
-    writeJson(name, keys[i], JSON.stringify(obj[keys[i]]));
-  }
 };
 
 const reduceById = res => {
@@ -57,17 +50,20 @@ const getSalesforceRecords = async (
   return res.records;
 };
 
+const conferenceQuery =
+  'SELECT Id, Name, Year__c, Start_Date__c, End_Date__c, Ramp_Up_Date__c, Registration_Start_Date__c, Registration_End_Date__c, Call_For_Volunteers_Start_Date__c, Call_For_Volunteers_End_Date__c, Call_For_Sponsors_Start_Date__c, Call_For_Sponsors_End_Date__c, Call_For_Speakers_Start_Date__c, Call_For_Speakers_End_Date__c FROM Conference__c';
+
 const accountsQuery =
-  'SELECT Id, Name, About_Us__c, Website, PhotoUrl, ShippingStreet, ShippingCity, ShippingState, ShippingPostalCode, ShippingCountry, BillingStreet, BillingCity, BillingPostalCode, BillingCountry FROM Account';
+  'SELECT Id, Name, About_Us__c, Website, Logo_URL__c, ShippingStreet, ShippingCity, ShippingState, ShippingPostalCode, ShippingCountry, BillingStreet, BillingCity, BillingPostalCode, BillingCountry FROM Account';
 
 const contactsQuery =
-  'SELECT Id, FirstName, LastName, PhotoUrl, Salutation, Twitter__c, Facebook__c, Linkedin__c, Instagram__c, Trailhead__c, Blog__c, Podcast__c, Personal_Website__c FROM Contact';
+  'SELECT Id, FirstName, LastName, Headshot_URL__c, Salutation, Title, Bio__c, Twitter__c, Facebook__c, LinkedIn__c, Instagram__c, Trailhead__c, Blog__c, Podcast__c, Personal_Website__c FROM Contact';
 
 const acceptedSessionsQuery =
-  "SELECT Id, Year__c, Status__c, Room__c, Date__c, Start_Time__c, End_Time__c, Format__c, Track__c, Level__c, Audience__c FROM Session__c WHERE Status__c = 'Accepted'";
+  "SELECT Id, Year__c, Title__c, Abstract__c, Status__c, Room__c, Date__c, Start_Time__c, End_Time__c, Format__c, Track__c, Level__c, Audience__c FROM Session__c WHERE Status__c = 'Accepted'";
 
 const speakersQuery =
-  'SELECT Id, Title__c, Bio__c, Session__c, Contact__c FROM Speaker__c';
+  'SELECT Id, Title__c, Bio__c, Session__c, Contact__c FROM Speaker__c ORDER BY Contact__r.LastName, Contact__r.FirstName';
 
 const demoJamQuery = 'SELECT Id, Year__c, Winner__c FROM Demo_Jam__c';
 
@@ -76,31 +72,46 @@ const confirmedSponsorsQuery =
 
 const sponsorTypesQuery = 'SELECT Id, Name FROM Sponsor_Type__c';
 
+const conferenceWrapper = conference => {
+  return {
+    id: conference.Id,
+    year: conference.Year__c,
+    startDate: conference.Start_Date__c,
+    endDate: conference.End_Date__c,
+    rampUpDate: conference.Ramp_Up_Date__c,
+    registrationStart: conference.Registration_Start_Date__c,
+    registrationEnd: conference.Registration_End_Date__c,
+    volunteerStart: conference.Call_For_Volunteers_Start_Date__c,
+    volunteerEnd: conference.Call_For_Volunteers_End_Date__c,
+    sponsorStart: conference.Call_For_Sponsors_Start_Date__c,
+    sponsorEnd: conference.Call_For_Sponsors_End_Date__c,
+    speakerStart: conference.Call_For_Speakers_Start_Date__c,
+    speakerEnd: conference.Call_For_Speakers_End_Date__c
+  };
+};
+
 const speakerWrapper = (speaker, contact, currentSession, allSessionIds) => {
   return {
     id: speaker.Id,
-    first_name: contact.FirstName,
-    last_name: contact.LastName,
-    title: speaker.Title__c,
-    link: `'/speaker/${speaker.Id}`,
+    personalTitle: contact.Salutation || '',
+    firstName: contact.FirstName,
+    lastName: contact.LastName,
+    title: speaker.Title__c || contact.Title || '',
+    link: `/speaker/${speaker.Id}`,
     year: currentSession.Year__c,
-    img: contact.PhotoUrl,
-    img_alt: [
-      speaker.Title__c,
-      contact.Salutation,
-      contact.FirstName,
-      contact.LastName
-    ].join(' '),
-    bio: speaker.Bio__c,
+    isKeynote: currentSession.Type__c === 'Keynote',
+    img: contact.Headshot_URL__c,
+    imgAlt: [contact.FirstName, contact.LastName].join(' '),
+    bio: speaker.Bio__c || contact.Bio__c || '',
     social: {
-      twitter: contact.Twitter__c,
-      facebook: contact.Facebook__c,
-      linkedin: contact.Linkedin__c,
-      instagram: contact.Instagram__c,
-      trailhead: contact.Trailhead__c,
-      blog: contact.Blog__c,
-      podcast: contact.Podcast__c,
-      website: contact.Personal_Website__c
+      twitter: contact.Twitter__c || '',
+      facebook: contact.Facebook__c || '',
+      linkedin: contact.LinkedIn__c || '',
+      instagram: contact.Instagram__c || '',
+      trailhead: contact.Trailhead__c || '',
+      blog: contact.Blog__c || '',
+      podcast: contact.Podcast__c || '',
+      website: contact.Personal_Website__c || ''
     },
     sessions: allSessionIds
   };
@@ -110,25 +121,25 @@ const sponsorWrapper = (sponsor, account, sponsorType) => {
   return {
     id: sponsor.Id,
     name: account.Name,
-    about_us: account.About_Us__c,
+    about_us: account.About_Us__c || '',
     year: sponsor.Year__c,
     level: sponsorType.Name,
     link: `/sponsor/${sponsor.Id}`,
-    website: account.Website,
-    logo: account.PhotoUrl,
+    website: account.Website || '',
+    logo: account.Logo_URL__c,
     shipping_address: {
-      street: account.ShippingStreet,
-      city: account.ShippingCity,
-      state: account.ShippingState,
-      postalcode: account.ShippingPostalCode,
-      country: account.ShippingCountry
+      street: account.ShippingStreet || '',
+      city: account.ShippingCity || '',
+      state: account.ShippingState || '',
+      postalcode: account.ShippingPostalCode || '',
+      country: account.ShippingCountry || ''
     },
     billing_address: {
-      street: account.BillingStreet,
-      city: account.BillingCity,
-      state: account.BillingState,
-      postalcode: account.BillingPostalCode,
-      country: account.BillingCountry
+      street: account.BillingStreet || '',
+      city: account.BillingCity || '',
+      state: account.BillingState || '',
+      postalcode: account.BillingPostalCode || '',
+      country: account.BillingCountry || ''
     }
   };
 };
@@ -138,13 +149,16 @@ const sessionWrapper = (session, speakers) => {
     id: session.Id,
     year: session.Year__c,
     link: `/session/${session.Id}`,
-    room: session.Room__c,
-    date: session.Date__c,
-    start_time: session.Start_Time__c,
-    end_time: session.End_Time__c,
-    type: session.Format__c,
-    audience: session.Audience__c,
-    audience_level: session.Level__c,
+    room: session.Room__c || '',
+    date: session.Date__c || '',
+    time: session.Start_Time__c || '',
+    endTime: session.End_Time__c || '',
+    type: session.Format__c || '',
+    title: session.Title__c,
+    abstract: session.Abstract__c,
+    audience: session.Audience__c || '',
+    audienceLevel: session.Level__c || '',
+    track: session.Track__c || '',
     speakers: speakers.map(s => s.Id)
   };
 };
@@ -154,9 +168,18 @@ const demoJamWrapper = (demoJam, sponsorsById) => {
   return {
     id: demoJam.Id,
     year: demoJam.Year__c,
-    winner_name: demoWinner ? demoWinner.Name : null,
+    winner_name: demoWinner ? demoWinner.Name : '',
     participants: Object.keys(sponsorsById)
   };
+};
+
+const conferenceReducer = async conferenceArray => {
+  return conferenceArray.then(res => {
+    return res.reduce((acc, c) => {
+      acc = [...acc, conferenceWrapper(c)];
+      return acc;
+    }, []);
+  });
 };
 
 const sponsorReducer = async (sponsorArray, accountArray, sponsorTypeArray) => {
@@ -229,37 +252,53 @@ const sessionReducer = async (sessionArray, speakerArray) => {
 };
 
 const compileResources = async () => {
+  const dir = setToProjectRootDirectory();
+  if (!dir) {
+    console.error('Unable to set directory');
+    return;
+  }
+
+  const serverDir = `${dir}/src/server/data`;
+  fs.ensureDirSync(serverDir);
+  fs.emptyDirSync(serverDir);
+
   const conn = new jsforce.Connection();
+
   // eslint-disable-next-line no-undef
   await conn.login(process.env.sfUserName, process.env.sfUserPassword);
   const querySalesforce = getSalesforceRecords.bind(this, conn);
 
+  const sfConferences = querySalesforce(conferenceQuery);
   const sfAccountsById = querySalesforce(accountsQuery, true);
   const sfContactsById = querySalesforce(contactsQuery, true);
   const sfSessionArray = querySalesforce(acceptedSessionsQuery);
   const sfSpeakerArray = querySalesforce(speakersQuery);
   const sfDemoJamArray = querySalesforce(demoJamQuery);
   const sfSponsorArray = querySalesforce(confirmedSponsorsQuery);
-  const sfSponsorTypeArray = querySalesforce(sponsorTypesQuery);
+  const sfSponsorTypesById = querySalesforce(sponsorTypesQuery, true);
+
+  const conferences = await conferenceReducer(sfConferences);
+  writeConferenceData(serverDir, conferences, 'conferences');
 
   const allSponsors = await sponsorReducer(
     sfSponsorArray,
     sfAccountsById,
-    sfSponsorTypeArray
+    sfSponsorTypesById
   );
-  writeObjects(allSponsors, 'sponsors');
+  writeYearlyData(serverDir, allSponsors, 'sponsors');
 
   const allDemoJams = await demoJamReducer(sfDemoJamArray, sfSponsorArray);
-  writeObjects(allDemoJams, 'demoJams');
+  writeYearlyData(serverDir, allDemoJams, 'demoJams');
 
   const allSpeakers = await speakerReducer(
     sfSpeakerArray,
     sfContactsById,
     sfSessionArray
   );
-  writeObjects(allSpeakers, 'speakers');
+  writeYearlyData(serverDir, allSpeakers, 'speakers');
 
   const allSessions = await sessionReducer(sfSessionArray, sfSpeakerArray);
-  writeObjects(allSessions, 'sessions');
+  writeYearlyData(serverDir, allSessions, 'sessions');
 };
+
 compileResources();

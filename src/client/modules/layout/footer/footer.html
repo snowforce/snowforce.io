@@ -1,20 +1,9 @@
 <template>
   <div class="container">
     <div class="columns">
-      <div class="col contact">
-        <label for="SlackSignup">
-          <div class="col-header">Join us on Slack</div>
-          <input
-            type="email"
-            name="SlackSignup"
-            onkeyup={enrollSlack}
-            disabled
-          />
-        </label>
-      </div>
       <div class="col conference">
         <base-link href="/" class="col-header">
-          Conference
+          Snowforce
         </base-link>
         <base-link href="/speakers" class="item">
           Speakers
@@ -31,27 +20,43 @@
         </base-link>
       </div>
       <div class="col planning">
-        <base-link href="/planning" class="col-header">
-          Coming Soon
+        <base-link href="/" class="col-header">
+          Conference
         </base-link>
-        <base-link href="/register" class="item">
+        <base-link
+          if:true={conference.isRegistrationOpen}
+          href="/register"
+          class="item"
+        >
           Registration
         </base-link>
-        <base-link href="/speaker-sign-up" class="item">
+        <base-link
+          if:true={conference.isSpeakerOpen}
+          href="/speaker-sign-up"
+          class="item"
+        >
           Call for Speakers
         </base-link>
-        <base-link href="/sponsor-sign-up" class="item">
+        <base-link
+          if:true={conference.isSponsorOpen}
+          href="/sponsor-sign-up"
+          class="item"
+        >
           Sponsor Snowforce
         </base-link>
         <!-- <base-link href="/food" class="item">
         Lunch Preferences
       </base-link> -->
-        <base-link href="/volunteer" class="item">
+        <base-link
+          if:true={conference.isVolunteerOpen}
+          href="/volunteer"
+          class="item"
+        >
           Volunteer
         </base-link>
       </div>
       <div class="col about">
-        <base-link href="/about" class="col-header">
+        <base-link href="/" class="col-header">
           About
         </base-link>
         <base-link href="/organizers" class="item">

@@ -1,35 +1,111 @@
 import {
+  RECEIVE_CONFERENCES,
+  REQUEST_CONFERENCES,
   RECEIVE_SESSIONS,
   REQUEST_SESSIONS,
   RECEIVE_SPEAKERS,
   REQUEST_SPEAKERS,
   RECEIVE_SPONSORS,
   REQUEST_SPONSORS,
-  RECEIVE_TRACKS,
-  REQUEST_TRACKS,
   SET_TRACK_INDEX,
   SET_TRACK_NAME,
-  SIDE_MENU_OPEN,
-  SIDE_MENU_CLOSE
+  VIEW_MENU_OPEN,
+  VIEW_MENU_CLOSE,
+  VIEW_TRACK,
+  FETCH_ACTION,
+  REQUEST_SPEAKER,
+  REQUEST_ORGANIZERS,
+  REQUEST_SESSION,
+  ADD_REQUEST,
+  CLEAR_REQUEST
 } from 'redux/shared';
-
-import { store } from 'redux/store';
-
-import { currentYearSelector } from 'redux/selectors';
 
 /******** Menu ********/
 
 export function closeMenu() {
   return {
-    type: SIDE_MENU_CLOSE
+    type: VIEW_MENU_CLOSE
   };
 }
 
 export function openMenu() {
   return {
-    type: SIDE_MENU_OPEN
+    type: VIEW_MENU_OPEN
   };
 }
+
+/******** Conferences *******/
+
+const getIsRunning = ({ startDate, endDate }, today) => {
+  if (!today || !startDate || !endDate) return false;
+  return today >= new Date(startDate) && today <= new Date(endDate);
+};
+
+const getIsRampUp = ({ startDate, rampUpDate }, today) => {
+  if (!today || !startDate) return false;
+  return today >= new Date(rampUpDate) && today < new Date(startDate);
+};
+
+const getIsOver = ({ endDate }, today) => {
+  if (!today || !endDate) return true;
+  return today > new Date(endDate);
+};
+
+const getIsRegistrationOpen = (
+  { registrationStart, registrationEnd },
+  today
+) => {
+  if (!today || !registrationStart || !registrationEnd) return false;
+  return (
+    today >= new Date(registrationStart) && today <= new Date(registrationEnd)
+  );
+};
+
+const getIsVolunteerOpen = ({ volunteerStart, volunteerEnd }, today) => {
+  if (!today || !volunteerStart || !volunteerEnd) return false;
+  return today >= new Date(volunteerStart) && today <= new Date(volunteerEnd);
+};
+
+const getIsSponsorOpen = ({ sponsorStart, sponsorEnd }, today) => {
+  if (!today || !sponsorStart || !sponsorEnd) return false;
+  return today >= new Date(sponsorStart) && today <= new Date(sponsorEnd);
+};
+
+const getIsSpeakerOpen = ({ speakerStart, speakerEnd }, today) => {
+  if (!today || !speakerStart || !speakerEnd) return false;
+  return today >= new Date(speakerStart) && today <= new Date(speakerEnd);
+};
+
+const checkDateSettings = (conference, today = new Date()) => {
+  return {
+    isRunning: getIsRunning(conference, today),
+    isRampUp: getIsRampUp(conference, today),
+    isOver: getIsOver(conference, today),
+    isRegistrationOpen: getIsRegistrationOpen(conference, today),
+    isVolunteerOpen: getIsVolunteerOpen(conference, today),
+    isSponsorOpen: getIsSponsorOpen(conference, today),
+    isSpeakerOpen: getIsSpeakerOpen(conference, today)
+  };
+};
+
+export const receiveConferences = conferences => {
+  const today = new Date();
+  return {
+    type: RECEIVE_CONFERENCES,
+    data: {
+      val: conferences.map(c => {
+        return {
+          ...c,
+          ...checkDateSettings(c, today)
+        };
+      })
+    }
+  };
+};
+
+export const requestConferences = () => {
+  return { type: REQUEST_CONFERENCES, data: {} };
+};
 
 /******** Session Track *******/
 
@@ -47,77 +123,71 @@ export function setSessionsTrackName(name) {
   };
 }
 
-/******** Fetch Data ********/
+/** Sessions */
 
-let requests = {};
-
-const getRequestKey = (requestType, year) => {
-  return `${requestType}|${year}`;
+export const receiveSessions = sessions => {
+  return { type: RECEIVE_SESSIONS, data: { val: sessions } };
 };
 
-const fetchData = async (
-  table,
-  year = currentYearSelector(store.getState())
-) => {
-  const res = await fetch(`/api/${year}/${table}`);
-  return res.json();
+export const requestSession = id => {
+  return { type: REQUEST_SESSION, data: { id } };
 };
 
-function receiveAction(type, year, res) {
+export const requestSessions = () => {
+  return { type: REQUEST_SESSIONS, data: {} };
+};
+
+/** Speakers */
+
+export const receiveSpeakers = speakers => {
+  return { type: RECEIVE_SPEAKERS, data: { val: speakers } };
+};
+
+export const requestSpeakers = () => {
+  return { type: REQUEST_SPEAKERS, data: {} };
+};
+
+export const requestSpeaker = id => {
+  return { type: REQUEST_SPEAKER, data: { id } };
+};
+
+/** Sponsors */
+
+export const receiveSponsors = sponsors => {
+  return { type: RECEIVE_SPONSORS, data: { val: sponsors } };
+};
+
+export const requestSponsors = () => {
+  return { type: REQUEST_SPONSORS, data: {} };
+};
+
+/** Requests */
+
+export const setRequest = requestStr => {
+  return { type: FETCH_ACTION, data: { str: requestStr } };
+};
+
+/** Organizers */
+
+export const requestOrganizers = () => {
+  return { type: REQUEST_ORGANIZERS, data: {} };
+};
+
+/** Views */
+
+export const viewTrack = trackName => {
   return {
-    type,
+    type: VIEW_TRACK,
     data: {
-      year,
-      val: res
+      trackName
     }
   };
-}
-
-function requestAction(type, year) {
-  return {
-    type,
-    data: { year }
-  };
-}
-
-function fetchRequest(table, requestType, receiveType, year) {
-  return async dispatch => {
-    requests[getRequestKey(requestType, year)] = 'new';
-    dispatch(requestAction(requestType, year));
-    fetchData(table, year).then(res => {
-      requests[getRequestKey(requestType, year)] = 'complete';
-      dispatch(receiveAction(receiveType, year, res));
-    });
-  };
-}
-
-function shouldFetch(requestType, year) {
-  return getRequestKey(requestType, year) in requests ? false : true;
-}
-
-const requestTypes = {
-  sessions: REQUEST_SESSIONS,
-  speakers: REQUEST_SPEAKERS,
-  sponsors: REQUEST_SPONSORS,
-  tracks: REQUEST_TRACKS
 };
 
-const receiveTypes = {
-  sessions: RECEIVE_SESSIONS,
-  speakers: RECEIVE_SPEAKERS,
-  sponsors: RECEIVE_SPONSORS,
-  tracks: RECEIVE_TRACKS
+export const addRequest = requestType => {
+  return { type: ADD_REQUEST, data: { type: requestType } };
 };
 
-export function fetchIfNeeded(
-  table,
-  year = currentYearSelector(store.getState())
-) {
-  const requestType = requestTypes[table];
-  const receiveType = receiveTypes[table];
-  return dispatch => {
-    if (shouldFetch(requestType, year)) {
-      dispatch(fetchRequest(table, requestType, receiveType, year));
-    }
-  };
-}
+export const clearRequest = requestType => {
+  return { type: CLEAR_REQUEST, data: { type: requestType } };
+};

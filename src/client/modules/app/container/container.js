@@ -2,6 +2,8 @@
 
 import { LightningElement, createElement } from 'lwc';
 import Navigo from 'navigo';
+import { store } from 'redux/store';
+import { requestConferences } from 'redux/actions';
 
 export default class AppContainer extends LightningElement {
   releaseVersion = process.env.RELEASE_VERSION;
@@ -15,6 +17,8 @@ export default class AppContainer extends LightningElement {
 
   constructor() {
     super();
+
+    store.dispatch(requestConferences());
 
     this.router.on({
       '': async () => {
@@ -66,6 +70,14 @@ export default class AppContainer extends LightningElement {
           /* webpackChunkName: "view-sponsors" */ 'view/sponsors'
         );
         this.setPage('view-sponsors', ViewSponsors, {});
+      },
+      '/sponsor/:id': async ({ id }) => {
+        const { default: ViewSponsor } = await import(
+          /* webpackChunkName: "view-sponsor" */ 'view/sponsor'
+        );
+        this.setPage('view-sponsor', ViewSponsor, {
+          sponsorId: id
+        });
       },
       '/sponsor-sign-up': async () => {
         const { default: ViewSponsorSignUp } = await import(

@@ -1,18 +1,12 @@
 import { LightningElement, api, track, wire } from 'lwc';
-import { connectStore, store } from 'redux/store';
-import { fetchIfNeeded } from 'redux/actions';
-import {
-  sessionByIdSelector,
-  speakersByIdFilter,
-  speakersByYearSelector,
-  currentYearSelector
-} from 'redux/selectors';
+import { wireSessionById, wireSpeakers, store } from 'redux/store';
 
 export default class ViewSession extends LightningElement {
   @api sessionId;
 
+  @track session = { audience: [], speakers: [] };
   @track speakers = [];
-  @track session = {};
+  speakerIds = [];
 
   manualNav = event => {
     event.currentTarget.dispatchEvent(
@@ -26,26 +20,33 @@ export default class ViewSession extends LightningElement {
     );
   };
 
-  fetchSessionData = year => {
-    store.dispatch(fetchIfNeeded('speakers', year));
-    store.dispatch(fetchIfNeeded('sessions', year));
-  };
-
-  @wire(connectStore, { store, speakerId: '$sessionId' })
-  connectStore(reduxState) {
-    const year = currentYearSelector(reduxState);
-    this.fetchSessionData(year);
-
-    const reduxSession = sessionByIdSelector(reduxState, this.sessionId);
-    let yearSpeakers = speakersByYearSelector(reduxState, year);
-
-    if (reduxSession && yearSpeakers) {
-      this.session = sessionByIdSelector(reduxState, this.sessionId);
-      this.speakers = this.session.speakers.map(sId =>
-        speakersByIdFilter(yearSpeakers, sId)
-      );
+  @wire(wireSessionById, { store, selectorParam: '$sessionId' })
+  wiredSession({ data, error }) {
+    if (error) {
+      throw error;
     }
+    this.session = {
+      ...data,
+      audience: data.audience.split(';')
+    };
 
-    // TODO: Go back to previous years for old urls
+    if (data.speakers && data.speakers[0]) {
+      if (typeof data.speakers[0] === 'string') {
+        this.speakerIds = data.speakers;
+      } else {
+        this.speakers = data.speakers;
+        this.speakerIds = data.speakers.map(s => s.id);
+      }
+    } else {
+      this.speakerIds = [];
+    }
+  }
+
+  @wire(wireSpeakers, { store, selectorParam: '$speakerIds' })
+  wiredSpeakers({ data, error }) {
+    if (error) {
+      throw error;
+    }
+    this.speakers = this.speakerIds.map(s => data[s]);
   }
 }

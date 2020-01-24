@@ -12,8 +12,8 @@
       </div>
     </div>
     <div class="speaker-content">
-      <div>{speaker.bio}</div>
-      <div if:true={haveSessions} class="sessions">
+      <base-rich-text content={speaker.bio}></base-rich-text>
+      <div class="sessions">
         <div>
           <h3>Sessions</h3>
         </div>
