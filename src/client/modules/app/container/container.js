@@ -71,6 +71,14 @@ export default class AppContainer extends LightningElement {
         );
         this.setPage('view-sponsors', ViewSponsors, {});
       },
+      '/sponsor/:id': async ({ id }) => {
+        const { default: ViewSponsor } = await import(
+          /* webpackChunkName: "view-sponsor" */ 'view/sponsor'
+        );
+        this.setPage('view-sponsor', ViewSponsor, {
+          sponsorId: id
+        });
+      },
       '/sponsor-sign-up': async () => {
         const { default: ViewSponsorSignUp } = await import(
           /* webpackChunkName: "view-sponsor-sign-up" */ 'view/sponsorSignUp'
