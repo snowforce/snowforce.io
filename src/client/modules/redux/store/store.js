@@ -19,8 +19,14 @@ export const store = createStore(
 );
 
 export {
-  connectStore,
+  wireCurrentConference,
   wireCurrentSponsors,
   wireCurrentSpeakers,
-  wireCurrentSessions
-} from './wire-adapter';
+  wireCurrentSessions,
+  wireSessions,
+  wireSpeakers,
+  wireSpeakerById,
+  wireSessionById,
+  wireSponsorById,
+  wireView
+} from './wireAdapter';
