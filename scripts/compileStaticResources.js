@@ -1,31 +1,23 @@
-const fs = require('fs');
+const fs = require('fs-extra');
 const { setToProjectRootDirectory } = require('./updateDirectory.js');
 let jsforce = require('jsforce');
 require('dotenv').config();
 
-function writeJson(dir, fileName, year, data) {
-  let folderDir = `${dir}/src/server/data/${year}`;
-
-  if (!fs.existsSync(folderDir)) {
-    fs.mkdirSync(folderDir);
-  }
-
-  fs.writeFile(`${folderDir}/${fileName}.json`, data, err => {
-    if (err) throw err;
-    console.log('Data written ', fileName);
-  });
-}
-
 const writeYearlyData = (dir, obj, name) => {
-  const keys = Object.keys(obj);
-  for (let i = 0; i < keys.length; i++) {
-    writeJson(dir, name, keys[i], JSON.stringify([...obj[keys[i]]]));
-  }
+  fs.ensureDirSync(dir);
+  const data = Object.keys(obj).reduce((acc, k) => {
+    acc = [...obj[k], ...acc];
+    return acc;
+  }, []);
+  fs.writeFile(`${dir}/${name}.json`, JSON.stringify(data), err => {
+    if (err) throw err;
+    console.log('Data written ', name);
+  });
 };
 
 const writeConferenceData = (dir, data, fileName) => {
-  let folderDir = `${dir}/src/server/data`;
-  fs.writeFile(`${folderDir}/${fileName}.json`, JSON.stringify(data), err => {
+  fs.ensureDirSync(dir);
+  fs.writeFile(`${dir}/${fileName}.json`, JSON.stringify(data), err => {
     if (err) throw err;
     console.log('Data written ', fileName);
   });
@@ -62,10 +54,10 @@ const conferenceQuery =
   'SELECT Id, Name, Year__c, Start_Date__c, End_Date__c, Ramp_Up_Date__c FROM Conference__c';
 
 const accountsQuery =
-  'SELECT Id, Name, About_Us__c, Website, PhotoUrl, ShippingStreet, ShippingCity, ShippingState, ShippingPostalCode, ShippingCountry, BillingStreet, BillingCity, BillingPostalCode, BillingCountry FROM Account';
+  'SELECT Id, Name, About_Us__c, Website, Logo_URL__c, ShippingStreet, ShippingCity, ShippingState, ShippingPostalCode, ShippingCountry, BillingStreet, BillingCity, BillingPostalCode, BillingCountry FROM Account';
 
 const contactsQuery =
-  'SELECT Id, FirstName, LastName, PhotoUrl, Salutation, Twitter__c, Facebook__c, Linkedin__c, Instagram__c, Trailhead__c, Blog__c, Podcast__c, Personal_Website__c FROM Contact';
+  'SELECT Id, FirstName, LastName, Headshot_URL__c, Salutation, Title, Bio__c, Twitter__c, Facebook__c, LinkedIn__c, Instagram__c, Trailhead__c, Blog__c, Podcast__c, Personal_Website__c FROM Contact';
 
 const acceptedSessionsQuery =
   "SELECT Id, Year__c, Title__c, Abstract__c, Status__c, Room__c, Date__c, Start_Time__c, End_Time__c, Format__c, Track__c, Level__c, Audience__c FROM Session__c WHERE Status__c = 'Accepted'";
@@ -96,17 +88,17 @@ const speakerWrapper = (speaker, contact, currentSession, allSessionIds) => {
     personalTitle: contact.Salutation || '',
     firstName: contact.FirstName,
     lastName: contact.LastName,
-    title: speaker.Title__c || '',
+    title: speaker.Title__c || contact.Title || '',
     link: `/speaker/${speaker.Id}`,
     year: currentSession.Year__c,
     isKeynote: currentSession.Type__c === 'Keynote',
-    img: contact.PhotoUrl,
+    img: contact.Headshot_URL__c,
     imgAlt: [contact.FirstName, contact.LastName].join(' '),
-    bio: speaker.Bio__c || '',
+    bio: speaker.Bio__c || contact.Bio__c || '',
     social: {
       twitter: contact.Twitter__c || '',
       facebook: contact.Facebook__c || '',
-      linkedin: contact.Linkedin__c || '',
+      linkedin: contact.LinkedIn__c || '',
       instagram: contact.Instagram__c || '',
       trailhead: contact.Trailhead__c || '',
       blog: contact.Blog__c || '',
@@ -126,7 +118,7 @@ const sponsorWrapper = (sponsor, account, sponsorType) => {
     level: sponsorType.Name,
     link: `/sponsor/${sponsor.Id}`,
     website: account.Website || '',
-    logo: account.PhotoUrl,
+    logo: account.Logo_URL__c,
     shipping_address: {
       street: account.ShippingStreet || '',
       city: account.ShippingCity || '',
@@ -215,10 +207,6 @@ const demoJamReducer = async (demoJamArray, sponsorArray) => {
   });
 };
 
-const sortSpeakers = (a, b) => {
-  return `${b.lastName}, ${b.firstName}` - `${a.lastName}, ${a.firstName}`;
-};
-
 const speakerReducer = async (speakerArray, contactsById, sessionArray) => {
   return resolveAll([speakerArray, contactsById, sessionArray]).then(res => {
     return res[0].reduce((speakers, s) => {
@@ -257,13 +245,17 @@ const sessionReducer = async (sessionArray, speakerArray) => {
 
 const compileResources = async () => {
   const dir = setToProjectRootDirectory();
-
   if (!dir) {
     console.error('Unable to set directory');
     return;
   }
 
+  const serverDir = `${dir}/src/server/data`;
+  fs.ensureDirSync(serverDir);
+  fs.emptyDirSync(serverDir);
+
   const conn = new jsforce.Connection();
+
   // eslint-disable-next-line no-undef
   await conn.login(process.env.sfUserName, process.env.sfUserPassword);
   const querySalesforce = getSalesforceRecords.bind(this, conn);
@@ -275,29 +267,30 @@ const compileResources = async () => {
   const sfSpeakerArray = querySalesforce(speakersQuery);
   const sfDemoJamArray = querySalesforce(demoJamQuery);
   const sfSponsorArray = querySalesforce(confirmedSponsorsQuery);
-  const sfSponsorTypeArray = querySalesforce(sponsorTypesQuery);
+  const sfSponsorTypesById = querySalesforce(sponsorTypesQuery, true);
 
   const conferences = await conferenceReducer(sfConferences);
-  writeConferenceData(dir, conferences, 'conferences');
+  writeConferenceData(serverDir, conferences, 'conferences');
 
   const allSponsors = await sponsorReducer(
     sfSponsorArray,
     sfAccountsById,
-    sfSponsorTypeArray
+    sfSponsorTypesById
   );
-  writeYearlyData(dir, allSponsors, 'sponsors');
+  writeYearlyData(serverDir, allSponsors, 'sponsors');
 
   const allDemoJams = await demoJamReducer(sfDemoJamArray, sfSponsorArray);
-  writeYearlyData(dir, allDemoJams, 'demoJams');
+  writeYearlyData(serverDir, allDemoJams, 'demoJams');
 
   const allSpeakers = await speakerReducer(
     sfSpeakerArray,
     sfContactsById,
     sfSessionArray
   );
-  writeYearlyData(dir, allSpeakers, 'speakers', sortSpeakers);
+  writeYearlyData(serverDir, allSpeakers, 'speakers');
 
   const allSessions = await sessionReducer(sfSessionArray, sfSpeakerArray);
-  writeYearlyData(dir, allSessions, 'sessions');
+  writeYearlyData(serverDir, allSessions, 'sessions');
 };
+
 compileResources();
