@@ -18,7 +18,7 @@ function getJsonFile(filePath, apiRes) {
 
 // eslint-disable-next-line no-undef
 module.exports = app => {
-  app.get('/api/:table', (req, apiRes) => {
+  app.get('/api/v1/:table', (req, apiRes) => {
     try {
       const filePath = path.join('dist/data/', req.params.table) + '.json';
       getJsonFile(filePath, apiRes);
@@ -27,10 +27,9 @@ module.exports = app => {
     }
   });
 
-  app.get('/api/:year/:table', (req, apiRes) => {
+  app.get('/api/v1/:year/:table', (req, apiRes) => {
     try {
-      const filePath =
-        path.join('dist/data/', req.params.year, req.params.table) + '.json';
+      const filePath = path.join('dist/data/', req.params.table) + '.json';
       getJsonFile(filePath, apiRes);
     } catch (err) {
       console.error(err);
