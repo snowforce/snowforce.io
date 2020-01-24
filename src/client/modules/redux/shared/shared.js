@@ -48,3 +48,6 @@ export const VIEW_DAY = 'VIEW_DAY';
 export const VIEW_TRACK = 'VIEW_TRACK';
 export const VIEW_MENU_OPEN = 'VIEW_MENU_OPEN';
 export const VIEW_MENU_CLOSE = 'VIEW_MENU_CLOSE';
+
+export const ADD_REQUEST = 'ADD_REQUEST';
+export const CLEAR_REQUEST = 'CLEAR_REQUEST';

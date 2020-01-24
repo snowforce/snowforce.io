@@ -9,7 +9,7 @@ h1 {
 }
 
 .text-shadow {
-  text-shadow: 1px 1px #3659e3;
+  text-shadow: 1px 1px #698bce;
 }
 
 h2 {
@@ -60,6 +60,16 @@ h2 {
 
 .save-the-date {
   padding-top: 1rem;
+}
+
+.sponsor-grey-box {
+  box-sizing: border-box;
+  background-color: #efeded80;
+  padding: 3rem;
+  max-width: 75rem;
+  width: 95%;
+  min-height: 50rem;
+  border-radius: 5px;
 }
 
 @media screen and (max-width: 480px) {

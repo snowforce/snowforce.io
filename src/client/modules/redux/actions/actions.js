@@ -14,9 +14,11 @@ import {
   VIEW_TRACK,
   FETCH_ACTION,
   REQUEST_SPEAKER,
-  REQUEST_ORGANIZERS
+  REQUEST_ORGANIZERS,
+  REQUEST_SESSION,
+  ADD_REQUEST,
+  CLEAR_REQUEST
 } from 'redux/shared';
-import { REQUEST_SESSION } from '../shared/shared';
 
 /******** Menu ********/
 
@@ -34,8 +36,71 @@ export function openMenu() {
 
 /******** Conferences *******/
 
+const getIsRunning = ({ startDate, endDate }, today) => {
+  if (!today || !startDate || !endDate) return false;
+  return today >= new Date(startDate) && today <= new Date(endDate);
+};
+
+const getIsRampUp = ({ startDate, rampUpDate }, today) => {
+  if (!today || !startDate) return false;
+  return today >= new Date(rampUpDate) && today < new Date(startDate);
+};
+
+const getIsOver = ({ endDate }, today) => {
+  if (!today || !endDate) return true;
+  return today > new Date(endDate);
+};
+
+const getIsRegistrationOpen = (
+  { registrationStart, registrationEnd },
+  today
+) => {
+  if (!today || !registrationStart || !registrationEnd) return false;
+  return (
+    today >= new Date(registrationStart) && today <= new Date(registrationEnd)
+  );
+};
+
+const getIsVolunteerOpen = ({ volunteerStart, volunteerEnd }, today) => {
+  if (!today || !volunteerStart || !volunteerEnd) return false;
+  return today >= new Date(volunteerStart) && today <= new Date(volunteerEnd);
+};
+
+const getIsSponsorOpen = ({ sponsorStart, sponsorEnd }, today) => {
+  if (!today || !sponsorStart || !sponsorEnd) return false;
+  return today >= new Date(sponsorStart) && today <= new Date(sponsorEnd);
+};
+
+const getIsSpeakerOpen = ({ speakerStart, speakerEnd }, today) => {
+  if (!today || !speakerStart || !speakerEnd) return false;
+  return today >= new Date(speakerStart) && today <= new Date(speakerEnd);
+};
+
+const checkDateSettings = (conference, today = new Date()) => {
+  return {
+    isRunning: getIsRunning(conference, today),
+    isRampUp: getIsRampUp(conference, today),
+    isOver: getIsOver(conference, today),
+    isRegistrationOpen: getIsRegistrationOpen(conference, today),
+    isVolunteerOpen: getIsVolunteerOpen(conference, today),
+    isSponsorOpen: getIsSponsorOpen(conference, today),
+    isSpeakerOpen: getIsSpeakerOpen(conference, today)
+  };
+};
+
 export const receiveConferences = conferences => {
-  return { type: RECEIVE_CONFERENCES, data: { conferences } };
+  const today = new Date();
+  return {
+    type: RECEIVE_CONFERENCES,
+    data: {
+      val: conferences.map(c => {
+        return {
+          ...c,
+          ...checkDateSettings(c, today)
+        };
+      })
+    }
+  };
 };
 
 export const requestConferences = () => {
@@ -61,7 +126,7 @@ export function setSessionsTrackName(name) {
 /** Sessions */
 
 export const receiveSessions = sessions => {
-  return { type: RECEIVE_SESSIONS, data: { sessions } };
+  return { type: RECEIVE_SESSIONS, data: { val: sessions } };
 };
 
 export const requestSession = id => {
@@ -75,7 +140,7 @@ export const requestSessions = () => {
 /** Speakers */
 
 export const receiveSpeakers = speakers => {
-  return { type: RECEIVE_SPEAKERS, data: { speakers } };
+  return { type: RECEIVE_SPEAKERS, data: { val: speakers } };
 };
 
 export const requestSpeakers = () => {
@@ -89,7 +154,7 @@ export const requestSpeaker = id => {
 /** Sponsors */
 
 export const receiveSponsors = sponsors => {
-  return { type: RECEIVE_SPONSORS, data: { sponsors } };
+  return { type: RECEIVE_SPONSORS, data: { val: sponsors } };
 };
 
 export const requestSponsors = () => {
@@ -117,4 +182,12 @@ export const viewTrack = trackName => {
       trackName
     }
   };
+};
+
+export const addRequest = requestType => {
+  return { type: ADD_REQUEST, data: { type: requestType } };
+};
+
+export const clearRequest = requestType => {
+  return { type: CLEAR_REQUEST, data: { type: requestType } };
 };

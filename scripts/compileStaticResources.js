@@ -51,7 +51,7 @@ const getSalesforceRecords = async (
 };
 
 const conferenceQuery =
-  'SELECT Id, Name, Year__c, Start_Date__c, End_Date__c, Ramp_Up_Date__c FROM Conference__c';
+  'SELECT Id, Name, Year__c, Start_Date__c, End_Date__c, Ramp_Up_Date__c, Registration_Start_Date__c, Registration_End_Date__c, Call_For_Volunteers_Start_Date__c, Call_For_Volunteers_End_Date__c, Call_For_Sponsors_Start_Date__c, Call_For_Sponsors_End_Date__c, Call_For_Speakers_Start_Date__c, Call_For_Speakers_End_Date__c FROM Conference__c';
 
 const accountsQuery =
   'SELECT Id, Name, About_Us__c, Website, Logo_URL__c, ShippingStreet, ShippingCity, ShippingState, ShippingPostalCode, ShippingCountry, BillingStreet, BillingCity, BillingPostalCode, BillingCountry FROM Account';
@@ -78,7 +78,15 @@ const conferenceWrapper = conference => {
     year: conference.Year__c,
     startDate: conference.Start_Date__c,
     endDate: conference.End_Date__c,
-    rampUpDate: conference.Ramp_Up_Date__c
+    rampUpDate: conference.Ramp_Up_Date__c,
+    registrationStart: conference.Registration_Start_Date__c,
+    registrationEnd: conference.Registration_End_Date__c,
+    volunteerStart: conference.Call_For_Volunteers_Start_Date__c,
+    volunteerEnd: conference.Call_For_Volunteers_End_Date__c,
+    sponsorStart: conference.Call_For_Sponsors_Start_Date__c,
+    sponsorEnd: conference.Call_For_Sponsors_End_Date__c,
+    speakerStart: conference.Call_For_Speakers_Start_Date__c,
+    speakerEnd: conference.Call_For_Speakers_End_Date__c
   };
 };
 

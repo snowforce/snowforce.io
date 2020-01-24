@@ -1,10 +1,12 @@
 import { LightningElement, track, wire } from 'lwc';
-import { wireView, store } from 'redux/store';
+import { wireView, wireCurrentConference, store } from 'redux/store';
 import { openMenu, closeMenu } from 'redux/actions';
 
 export default class LayoutHeader extends LightningElement {
   @track showMenu = false;
   @track menuWrapperClass = '';
+
+  @track conference = {};
 
   menuToggled = event => {
     event.preventDefault();
@@ -29,40 +31,19 @@ export default class LayoutHeader extends LightningElement {
     }
   }
 
-  /*
-
-  // In case you would like to use Redux On Platform there are options
-  // Here is an example of how you might do that
-
-  storeChange = ({ menu }) => {
-    this.showMenu = menu.isOpen;
-    this.menuWrapperClass = menu.isOpen ? 'slide-out' : '';
-  };
-
-  reduxSubscription;
-  connectedCallback() {
-      // run the try catch because the error that propagates has been tied to the component that calls the first action rather than the redux subscription that actually causes the error
-    try {
-      this.reduxSubscription = store.subscribe(() => {
-        this.storeChange(store.getState());
-      });
-    } catch (err) {
-      console.log('Header Redux Subscription error : ', err);
+  @wire(wireCurrentConference, { store })
+  wiredStore({ data, error }) {
+    if (error) {
+      throw error;
     }
+    this.conference = data;
   }
 
-  disconnectedCallback() {
-    if (this.reduxSubscription) {
-      this.reduxSubscription();
-    }
-  }
-
-  */
   menuItems = [
     {
-      title: 'Conference',
+      title: 'Snowforce',
       link: '/',
-      iconName: 'conference',
+      iconName: 'snowforce',
       subItems: [
         {
           title: 'Speakers',
@@ -87,8 +68,8 @@ export default class LayoutHeader extends LightningElement {
       ]
     },
     {
-      title: 'Coming Soon',
-      link: '/planning',
+      title: 'Conference',
+      link: '/',
       iconName: 'planning',
       subItems: [
         {
@@ -96,26 +77,26 @@ export default class LayoutHeader extends LightningElement {
           link: '/register',
           iconName: 'register'
         },
-        {
-          title: 'Call for Speakers',
-          link: '/speaker-sign-up',
-          iconName: 'speaker'
-        },
+        // {
+        //   title: 'Call for Speakers',
+        //   link: '/speaker-sign-up',
+        //   iconName: 'speaker'
+        // },
         {
           title: 'Sponsor Snowforce',
           link: '/sponsor-sign-up',
           iconName: 'sponsor'
-        },
-        {
-          title: 'Volunteer',
-          link: '/volunteer',
-          iconName: 'volunteer'
         }
+        // {
+        //   title: 'Volunteer',
+        //   link: '/volunteer',
+        //   iconName: 'volunteer'
+        // }
       ]
     },
     {
       title: 'About',
-      link: '/about',
+      link: '/',
       iconName: 'about',
       subItems: [
         {

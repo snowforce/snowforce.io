@@ -4,17 +4,22 @@ import {
   SPEAKERS,
   SPONSORS,
   REQUEST_CONFERENCES,
-  RECEIVE_CONFERENCES,
-  RECEIVE_SESSIONS,
   REQUEST_SESSIONS,
   REQUEST_SESSION,
-  RECEIVE_SPEAKERS,
   REQUEST_SPEAKERS,
   REQUEST_SPEAKER,
-  RECEIVE_SPONSORS,
   REQUEST_SPONSORS,
   REQUEST_SPONSOR
 } from 'redux/shared';
+
+import {
+  receiveConferences,
+  receiveSessions,
+  receiveSpeakers,
+  receiveSponsors,
+  addRequest,
+  clearRequest
+} from 'redux/actions';
 
 import {
   conferencesSelector,
@@ -30,45 +35,41 @@ const serverRequestsMap = {
   [REQUEST_CONFERENCES]: {
     selector: conferencesSelector,
     table: CONFERENCES,
-    response: RECEIVE_CONFERENCES
+    response: receiveConferences
   },
   [REQUEST_SESSIONS]: {
     selector: sessionsSelector,
     table: SESSIONS,
-    response: RECEIVE_SESSIONS
+    response: receiveSessions
   },
   [REQUEST_SPEAKERS]: {
     selector: speakersSelector,
     table: SPEAKERS,
-    response: RECEIVE_SPEAKERS
+    response: receiveSpeakers
   },
   [REQUEST_SPONSORS]: {
     selector: sponsorsSelector,
     table: SPONSORS,
-    response: RECEIVE_SPONSORS
+    response: receiveSponsors
   },
   [REQUEST_SESSION]: {
     selector: sessionByIdSelector,
     table: SESSIONS,
-    response: RECEIVE_SESSIONS
+    response: receiveSessions
   },
   [REQUEST_SPEAKER]: {
     selector: speakersSelector,
     table: SPEAKERS,
-    response: RECEIVE_SPEAKERS
+    response: receiveSpeakers
   },
   [REQUEST_SPONSOR]: {
     selector: sponsorByIdSelector,
     table: SPONSORS,
-    response: RECEIVE_SPONSORS
+    response: receiveSponsors
   }
 };
 
 const serverRequests = Object.keys(serverRequestsMap);
-
-const responseAction = (type, data) => {
-  return { type, data };
-};
 
 const fetchData = async table => {
   return fetch('/data/' + table + '.json')
@@ -83,8 +84,11 @@ const fetchData = async table => {
 export const fetchRequest = store => next => action => {
   if (serverRequests.includes(action.type)) {
     const r = serverRequestsMap[action.type];
+    store.dispatch(addRequest(action.type));
     return fetchData(r.table).then(val => {
-      return store.dispatch(responseAction(r.response, { val }));
+      store.dispatch(r.response(val));
+      store.dispatch(clearRequest(action.type));
+      return val;
     });
   }
   return next(action);

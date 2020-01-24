@@ -1,18 +1,16 @@
 import {
-  REQUEST_CONFERENCES,
   RECEIVE_CONFERENCES,
-  REQUEST_SESSIONS,
   RECEIVE_SESSIONS,
-  REQUEST_SPEAKERS,
   RECEIVE_SPEAKERS,
-  REQUEST_SPONSORS,
   RECEIVE_SPONSORS,
   SET_CONFERENCE,
   VIEW_MENU_OPEN,
   VIEW_MENU_CLOSE,
   SET_TRACKS,
   VIEW_TRACK,
-  VIEW_DAY
+  VIEW_DAY,
+  ADD_REQUEST,
+  CLEAR_REQUEST
 } from 'redux/shared';
 
 export function conference(state = {}, { type, data }) {
@@ -24,8 +22,9 @@ export function conference(state = {}, { type, data }) {
       return data.val.reduce(
         (acc, c) => {
           if (
-            parseInt(acc.year, 10) < parseInt(c.year, 10) &&
-            new Date() >= new Date(c.rampUpDate)
+            parseInt(acc.year, 10) < parseInt(c.year, 10) ||
+            c.isRampUp ||
+            c.isRunning
           ) {
             acc = c;
           }
@@ -95,21 +94,12 @@ export function sponsors(state = {}, { type, data }) {
   }
 }
 
-export function requests(state = [], { type }) {
-  switch (type) {
-    case REQUEST_SPONSORS:
-    case REQUEST_SPEAKERS:
-    case REQUEST_SESSIONS:
-    case REQUEST_CONFERENCES:
-      return [...state, type];
-    case RECEIVE_SPONSORS:
-      return state.filter(r => r !== REQUEST_SPONSORS);
-    case RECEIVE_SPEAKERS:
-      return state.filter(r => r !== REQUEST_SPEAKERS);
-    case RECEIVE_SESSIONS:
-      return state.filter(r => r !== REQUEST_SESSIONS);
-    case RECEIVE_CONFERENCES:
-      return state.filter(r => r !== REQUEST_CONFERENCES);
+export function requests(state = [], action) {
+  switch (action.type) {
+    case ADD_REQUEST:
+      return [...state, action.data.type];
+    case CLEAR_REQUEST:
+      return state.filter(r => r.type !== action.data.type);
     default:
       return state;
   }
