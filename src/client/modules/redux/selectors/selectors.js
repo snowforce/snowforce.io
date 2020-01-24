@@ -20,13 +20,21 @@ export const requestsSelector = ({ requests }) => {
   return requests;
 };
 
-/************************************************* Sessions *************************************************/
+/************************************************* Conference *************************************************/
 
 export const conferencesSelector = ({ conferences }) => {
   return conferences;
 };
 
+export const currentConferenceSelector = ({ conference }) => {
+  return conference;
+};
+
 /************************************************* Sessions *************************************************/
+
+export const sessionsSelector = ({ sessions }) => {
+  return sessions;
+};
 
 /**
  * Returns Sessions filtered by the current year from the Redux Store.
@@ -44,7 +52,7 @@ export const currentSessionsSelector = ({ conference: { year }, sessions }) => {
  * @param {string} Session Id
  */
 export const sessionByIdSelector = ({ sessions }, id) => {
-  return sessions[id];
+  return { ...sessions[id] };
 };
 
 /**
@@ -94,13 +102,27 @@ export const sessionsByYearSelector = ({ sessions }, year) => {
 
 /************************************************* Speakers *************************************************/
 
+export const speakersSelector = ({ speakers }) => {
+  return speakers;
+};
+
 /**
  * Returns Speaker by Id.
  * @param {object} reduxState reduxStore.getState()
  * @param {string} Speaker Id
  */
-export const speakerByIdSelector = ({ speakers }, id) => {
-  return speakers[id];
+export const speakerByIdSelector = ({ speakers, sessions }, id) => {
+  const speaker = { ...speakers[id] };
+  if (
+    speaker &&
+    speaker.sessions &&
+    Object.entries(sessions).length >= 0 &&
+    sessions.constructor === Object
+  ) {
+    // TODO: come back to this. if there is a session missing from redux it will clear out the id
+    speaker.sessions = speaker.sessions.map(s => sessions[s]);
+  }
+  return speaker;
 };
 
 /**
@@ -144,6 +166,10 @@ export const currentSpeakersByTrackSelector = (reduxState, track) => {
 };
 
 /************************************************* Sponsors *************************************************/
+
+export const sponsorsSelector = ({ sponsors }) => {
+  return sponsors;
+};
 
 /**
  * Returns All Sponsors for the current year.
@@ -218,4 +244,14 @@ export const trackIndexByNameSelector = (reduxState, name) => {
   return trackSelector(reduxState)
     .map(e => e.name)
     .indexOf(name);
+};
+
+export const currentOrganizersSelector = ({ organizers }) => {
+  return organizers;
+};
+
+/** View Selectors */
+
+export const viewSelector = ({ view }) => {
+  return view;
 };

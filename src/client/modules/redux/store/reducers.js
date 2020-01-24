@@ -1,14 +1,18 @@
 import {
+  REQUEST_CONFERENCES,
   RECEIVE_CONFERENCES,
-  RECEIVE_SESSIONS,
-  RECEIVE_SPEAKERS,
-  RECEIVE_SPONSORS,
-  REQUEST_SPONSORS,
-  REQUEST_SPEAKERS,
   REQUEST_SESSIONS,
+  RECEIVE_SESSIONS,
+  REQUEST_SPEAKERS,
+  RECEIVE_SPEAKERS,
+  REQUEST_SPONSORS,
+  RECEIVE_SPONSORS,
   SET_CONFERENCE,
-  SIDE_MENU_OPEN,
-  SIDE_MENU_CLOSE
+  VIEW_MENU_OPEN,
+  VIEW_MENU_CLOSE,
+  SET_TRACKS,
+  VIEW_TRACK,
+  VIEW_DAY
 } from 'redux/shared';
 
 export function conference(state = {}, { type, data }) {
@@ -16,7 +20,7 @@ export function conference(state = {}, { type, data }) {
     case SET_CONFERENCE:
       return { ...data.val };
     case RECEIVE_CONFERENCES:
-      // TODO: put all these side effects somewhere other than the reducer
+      // TODO: the current date can change the output, need to put side effects elsewhere
       return data.val.reduce(
         (acc, c) => {
           if (
@@ -37,7 +41,10 @@ export function conference(state = {}, { type, data }) {
 export function conferences(state = {}, { type, data }) {
   switch (type) {
     case RECEIVE_CONFERENCES:
-      return { ...data.val };
+      return data.val.reduce((acc, c) => {
+        acc[c.year] = c;
+        return acc;
+      }, {});
     default:
       return state;
   }
@@ -93,6 +100,7 @@ export function requests(state = [], { type }) {
     case REQUEST_SPONSORS:
     case REQUEST_SPEAKERS:
     case REQUEST_SESSIONS:
+    case REQUEST_CONFERENCES:
       return [...state, type];
     case RECEIVE_SPONSORS:
       return state.filter(r => r !== REQUEST_SPONSORS);
@@ -100,6 +108,8 @@ export function requests(state = [], { type }) {
       return state.filter(r => r !== REQUEST_SPEAKERS);
     case RECEIVE_SESSIONS:
       return state.filter(r => r !== REQUEST_SESSIONS);
+    case RECEIVE_CONFERENCES:
+      return state.filter(r => r !== REQUEST_CONFERENCES);
     default:
       return state;
   }
@@ -107,13 +117,57 @@ export function requests(state = [], { type }) {
 
 export function menu(state = { isOpen: false }, { type }) {
   switch (type) {
-    case SIDE_MENU_OPEN:
+    case VIEW_MENU_OPEN:
       return {
         isOpen: true
       };
-    case SIDE_MENU_CLOSE:
+    case VIEW_MENU_CLOSE:
       return {
         isOpen: false
+      };
+    default:
+      return state;
+  }
+}
+
+export function organizers(state = {}, action) {
+  switch (action.type) {
+    default:
+      return state;
+  }
+}
+
+export function tracks(state = [], action) {
+  switch (action.type) {
+    case SET_TRACKS:
+      return [...action.data];
+    default:
+      return state;
+  }
+}
+
+export function view(
+  state = { isMenuOpen: false, day: 0, track: 'all' },
+  action
+) {
+  switch (action.type) {
+    case VIEW_TRACK:
+      return {
+        ...state,
+        track: action.data.trackName
+      };
+    case VIEW_DAY:
+      return {
+        ...state,
+        day: action.data.day
+      };
+    case VIEW_MENU_OPEN:
+      return {
+        isMenuOpen: true
+      };
+    case VIEW_MENU_CLOSE:
+      return {
+        isMenuOpen: false
       };
     default:
       return state;
