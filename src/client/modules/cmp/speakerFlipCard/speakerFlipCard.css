@@ -78,9 +78,8 @@ img {
 }
 
 .bio {
-  height: 100%;
-  max-height: 13.5rem;
-  overflow-y: auto;
+  height: calc(100% - 8rem);
+  overflow: auto;
 }
 
 .links {
