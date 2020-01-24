@@ -1,10 +1,10 @@
 <template>
-  <div class="container">
+  <div if:true={session} class="container">
     <div class="title">
       <h1>{session.title}</h1>
     </div>
     <div class="info">
-      <div class="speaker-names">
+      <div if:true={speakers} class="speaker-names">
         <template for:each={speakers} for:item="speaker">
           <base-link href={speaker.link} key={speaker.id}>
             <div class="speaker">
@@ -17,25 +17,21 @@
           </base-link>
         </template>
       </div>
-      <template for:each={session.abstract} for:item="sec">
-        <p key={sec.noId}>
-          {sec}
-        </p>
-      </template>
+      <base-rich-text content={session.abstract}></base-rich-text>
       <table>
-        <tr>
+        <tr if:true={session.type}>
           <th>Session Format</th>
           <td>{session.type}</td>
         </tr>
-        <tr>
+        <tr if:true={session.audienceLevel}>
           <th>Level</th>
           <td>{session.audienceLevel}</td>
         </tr>
-        <tr>
+        <tr if:true={session.audience}>
           <th>Audience</th>
           <td class="audience">
             <template for:each={session.audience} for:item="a">
-              <span key={a.noId} onclick={manualNav} data-audience={a}>
+              <span key={a} onclick={manualNav} data-audience={a}>
                 {a}
               </span>
             </template>

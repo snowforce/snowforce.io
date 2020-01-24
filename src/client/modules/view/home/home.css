@@ -8,6 +8,10 @@ h1 {
   margin-inline-end: 1rem;
 }
 
+.text-shadow {
+  text-shadow: 1px 1px #3659e3;
+}
+
 h2 {
   font-weight: 500;
   font-size: 2rem;
@@ -38,6 +42,16 @@ h2 {
 .vertical-padding {
   padding-top: 2rem;
   padding-bottom: 2rem;
+}
+
+.vertical-padding-lg {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.registration-box {
+  margin: auto;
+  max-width: 65rem;
 }
 
 .announcement-block {

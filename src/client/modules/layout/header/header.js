@@ -1,5 +1,5 @@
 import { LightningElement, track, wire } from 'lwc';
-import { connectStore, store } from 'redux/store';
+import { wireView, store } from 'redux/store';
 import { openMenu, closeMenu } from 'redux/actions';
 
 export default class LayoutHeader extends LightningElement {
@@ -19,10 +19,14 @@ export default class LayoutHeader extends LightningElement {
     }
   };
 
-  @wire(connectStore, { store })
-  storeChange({ menu }) {
-    this.showMenu = menu.isOpen;
-    this.menuWrapperClass = menu.isOpen ? 'slide-out' : '';
+  @wire(wireView, { store })
+  wiredMenu({ data, error }) {
+    if (data) {
+      this.showMenu = data.isMenuOpen;
+      this.menuWrapperClass = data.isMenuOpen ? 'slide-out' : '';
+    } else if (error) {
+      throw error;
+    }
   }
 
   /*
@@ -54,7 +58,6 @@ export default class LayoutHeader extends LightningElement {
   }
 
   */
-
   menuItems = [
     {
       title: 'Conference',

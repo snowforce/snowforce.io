@@ -27,6 +27,16 @@ h1 {
   margin-block-end: 0;
 }
 
+.center {
+  margin: auto;
+  text-align: center;
+}
+
+.vertical-padding {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
 @media only screen and (max-width: 800px) {
   h1 {
     font-size: 1.5em;

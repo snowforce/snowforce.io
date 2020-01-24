@@ -1,37 +1,36 @@
-import { LightningElement, api, track } from 'lwc';
-
-// import { connectStore, store } from 'redux/store';
-// import { requestSpeakers, requestSessions } from 'redux/actions';
-// import {
-//   currentYearSelector,
-//   speakerByIdSelector,
-//   sessionsBySpeakerIdSelector,
-//   sessionsByYearSelector
-// } from 'redux/selectors';
+import { LightningElement, api, track, wire } from 'lwc';
+import { wireSpeakerById, wireSessions, store } from 'redux/store';
 
 export default class ViewSpeaker extends LightningElement {
   @api speakerId;
-
-  @track speaker = { social: {} };
+  @track speaker = { social: {}, sessions: [] };
+  sessionIds = [];
   @track sessions = [];
-  @track haveSessions = true;
 
-  //   fetchSessionData = year => {
-  //     store.dispatch(requestSpeakers(year));
-  //     store.dispatch(requestSessions(year));
-  //   };
+  @wire(wireSpeakerById, { store, selectorParam: '$speakerId' })
+  wiredSpeaker({ data, error }) {
+    if (error) {
+      throw error;
+    }
+    this.speaker = data;
 
-  //   @wire(connectStore, { store, speakerId: '$speakerId' })
-  //   storeChange(reduxState) {
-  // const redSpeaker = speakerByIdSelector(reduxState, this.speakerId);
-  // const yearSessions = sessionsByYearSelector(reduxState, year);
-  // this.fetchSessionData(year);
-  // if ('social' in redSpeaker && yearSessions.length) {
-  //   this.yearsBack = 0;
-  //   this.speaker = redSpeaker;
-  //   this.sessions = sessionsBySpeakerIdSelector(reduxState, this.speakerId);
-  //   this.haveSessions = this.sessions.length > 0;
-  // }
-  // TODO: need to look back x number of years for more sessions...
-  //   }
+    if (data.sessions && data.sessions[0]) {
+      if (typeof data.sessions[0] === 'string') {
+        this.sessionIds = data.sessions;
+      } else {
+        this.sessions = data.sessions;
+        this.sessionIds = data.sessions.map(s => s.id);
+      }
+    } else {
+      this.sessionIds = [];
+    }
+  }
+
+  @wire(wireSessions, { store, selectorParam: '$sessionIds' })
+  wiredSessions({ data, error }) {
+    if (error) {
+      throw error;
+    }
+    this.sessions = this.sessionIds.map(s => data[s]);
+  }
 }
