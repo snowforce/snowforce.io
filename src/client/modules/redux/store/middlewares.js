@@ -71,7 +71,7 @@ const responseAction = (type, data) => {
 };
 
 const fetchData = async table => {
-  return fetch('/api/v1/' + table)
+  return fetch('/data/' + table + '.json')
     .then(async res => {
       return res.json();
     })
