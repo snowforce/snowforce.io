@@ -5,12 +5,12 @@
   "display": "standalone",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "/favicon.ico",
       "type": "image/ico",
       "sizes": "192x192"
     },
     {
-      "src": "favicon.ico",
+      "src": "/favicon.ico",
       "type": "image/png",
       "sizes": "192x192"
     },
