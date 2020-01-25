@@ -1,3 +1,52 @@
 iframe {
-  margin-top: 35px;
+  height: inherit;
+}
+
+h2 {
+  font-weight: 500;
+  font-size: 2rem;
+}
+
+.center {
+  margin: auto;
+  text-align: center;
+}
+
+.vertical-padding-lg {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.registration-box {
+  margin: auto;
+  max-width: 65rem;
+}
+
+.container {
+  height: 21.35rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.powered-by-eb {
+  text-decoration: none;
+  color: #adb0b6;
+}
+
+@media screen and (max-width: 954px) {
+  .container {
+    height: 22rem;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .background-box {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 512px) {
+  .container {
+    height: 26.125rem;
+  }
 }

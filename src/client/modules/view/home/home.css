@@ -76,8 +76,23 @@ h2 {
   margin-top: 5rem;
 }
 
+@media screen and (max-width: 800px) {
+  .background-box {
+    padding: 1rem;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .background-box {
+    width: 100%;
+  }
+}
+
 @media screen and (max-width: 480px) {
   h1 {
     font-size: 2em;
+  }
+  .background-box {
+    padding: 0;
   }
 }
