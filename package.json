@@ -67,7 +67,6 @@
   "scripts": {
     "prebuild": "node scripts/compileStaticResources.js",
     "build": "lwc-services build -m production",
-    "postbuild": "node scripts/buildWorkbox.js",
     "compileResources": "node scripts/compileStaticResources.js",
     "prebuild:development": "node scripts/devBuildStaticResources.js",
     "build:development": "lwc-services build",
