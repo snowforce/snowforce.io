@@ -10,16 +10,16 @@
       "sizes": "192x192"
     },
     {
-      "src": "https://snowforce.s3-us-west-1.amazonaws.com/app/snowforce-badge-192.png",
+      "src": "https://snowforce.s3-us-west-1.amazonaws.com/event-images/2020/SnowforceFavicon192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "https://snowforce.s3-us-west-1.amazonaws.com/app/snowforce-badge-512.png",
+      "src": "https://snowforce.s3-us-west-1.amazonaws.com/event-images/2020/SnowforceFavicon512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
   ],
-  "background_color": "rgb(255, 255, 255)",
-  "theme_color": "rgb(0, 160, 255)"
+  "background_color": "#e6dfc6)",
+  "theme_color": "#2c4049"
 }
