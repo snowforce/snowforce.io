@@ -11,9 +11,9 @@ if (workbox) {
   //   console.log(`Yay! Workbox is loaded 🎉`);
 
   workbox.routing.registerRoute(
-    /\.(?:js|css)$/,
+    /\.(?:js|css|json)$/,
     new workbox.strategies.NetworkFirst({
-      cacheName: 'js-and-css'
+      cacheName: 'site-conf'
     })
   );
 
