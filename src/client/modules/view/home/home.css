@@ -62,14 +62,18 @@ h2 {
   padding-top: 1rem;
 }
 
-.sponsor-grey-box {
+.contrast-background {
+  background-color: var(--contrast-color-light);
+}
+
+.background-box {
   box-sizing: border-box;
-  background-color: #efeded80;
+  background-color: white;
   padding: 3rem;
   max-width: 75rem;
   width: 95%;
-  min-height: 50rem;
   border-radius: 5px;
+  margin-top: 5rem;
 }
 
 @media screen and (max-width: 480px) {

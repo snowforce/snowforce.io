@@ -22,10 +22,11 @@ h3 {
   width: 100%;
   top: 0;
   font-size: 1.5rem;
-  background-color: var(--primary-color);
+  background-color: var(--primary-color-dark);
   color: white;
   z-index: 10000;
   box-shadow: 0 0.625rem 0.625rem 0 rgba(0, 0, 0, 0.4);
+  overflow: hidden;
 }
 
 .toolbar {
@@ -64,7 +65,6 @@ h3 {
   width: 2.5rem;
   height: fit-content;
   margin-right: 1rem;
-  margin-top: 0.5rem;
   cursor: pointer;
 }
 

@@ -1,38 +1,36 @@
 <template>
-  <base-snow></base-snow>
-  <base-section
-    img="https://snowforce.s3-us-west-1.amazonaws.com/background-images/moutaintops-clouds.jpg"
-    background-position="center"
-  >
-    <div class="speaker-cloud">
-      <h1 class="text-shadow">Learn. Ski. Experience.</h1>
-      <h2 class="center announcement-block text-shadow">
-        Feb 26-28, 2020
-      </h2>
+  <div class="contrast-background">
+    <base-snow></base-snow>
+    <base-banner
+      img="https://snowforce.s3-us-west-1.amazonaws.com/event-images/2020/SnowforceLogo_Banner.png"
+    >
+    </base-banner>
+    <div class="background-box center">
+      <div class="vertical-padding-lg">
+        <div class="registration-box">
+          <h2 class="center">Registration Is Open!</h2>
+          <view-register></view-register>
+        </div>
+      </div>
+      <base-section background-position="center">
+        <div>
+          <view-sponsors></view-sponsors>
+        </div>
+      </base-section>
+      <div class="vertical-padding-lg">
+        <view-events class="small-section"></view-events>
+      </div>
+
+      <div class="vertical-padding-lg">
+        <h2 class="center">
+          The Main Event Is At The Utah Cultural Celebration Center
+        </h2>
+        <view-venue></view-venue>
+      </div>
+      <base-section background-position="center">
+        <view-speakers></view-speakers>
+      </base-section>
     </div>
-  </base-section>
-  <div class="vertical-padding-lg">
-    <div class="background-white registration-box">
-      <h2 class="center">Registration Is Open!</h2>
-      <view-register></view-register>
-    </div>
+    <view-past-events></view-past-events>
   </div>
-  <base-section background-position="center">
-    <div class="sponsor-grey-box">
-      <view-sponsors></view-sponsors>
-    </div>
-  </base-section>
-  <div class="vertical-padding-lg">
-    <view-events class="small-section"></view-events>
-  </div>
-  <div class="vertical-padding-lg">
-    <h2 class="center">
-      The Main Event Is At The Utah Cultural Celebration Center
-    </h2>
-    <view-venue></view-venue>
-  </div>
-  <base-section background-position="center">
-    <view-speakers></view-speakers>
-  </base-section>
-  <view-past-events></view-past-events>
 </template>

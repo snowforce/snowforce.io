@@ -1,0 +1,18 @@
+.backgroundImg {
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-attachment: fixed;
+  background-position: right var(--header-height);
+}
+
+.section {
+  width: 100vw;
+  height: 50vw;
+}
+
+/* Targets IOS Safari */
+@supports (-webkit-overflow-scrolling: touch) {
+  .backgroundImg {
+    background-attachment: scroll;
+  }
+}
