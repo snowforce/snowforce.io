@@ -1,3 +1,7 @@
+.container {
+  text-align: left;
+}
+
 .small-section {
   max-width: 70rem;
   margin: auto;

@@ -13,7 +13,7 @@ button {
 .back-arrow {
   display: inline-block;
   fill: white;
-  background: #0393e8b3;
+  background: var(--primary-color-dark);
   border-radius: 50%;
   box-shadow: 0.1875rem 0.125rem 1.3125rem 0.25rem rgba(255, 255, 255, 0.75);
   width: 3rem;
