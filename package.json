@@ -3,7 +3,7 @@
   "description": "Open Source Salesforce Community Conference Website Template Built with Lightning Web Components",
   "version": "0.0.0",
   "author": "Alex Bryner",
-  "bugs": "https://github.com/AlexBryner/snowforce/issues",
+  "bugs": "https://github.com/snowforce/snowforce.io/issues",
   "dependencies": {
     "@lwc/wire-service": "1.1.1",
     "dotenv": "^8.2.0",
@@ -30,7 +30,7 @@
   "engines": {
     "node": ">=10.0.0 <11.0.0"
   },
-  "homepage": "https://github.com/AlexBryner/snowforce",
+  "homepage": "https://github.com/snowforce/snowforce.io",
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
@@ -63,7 +63,7 @@
     ],
     "exec": "node ./scripts/express-dev.js"
   },
-  "repository": "AlexBryner/snowforce",
+  "repository": "snowforce/snowforce.io",
   "scripts": {
     "prebuild": "node scripts/compileStaticResources.js",
     "build": "lwc-services build -m production",
