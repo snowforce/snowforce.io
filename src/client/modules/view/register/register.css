@@ -23,9 +23,8 @@ h2 {
 }
 
 .container {
-  height: 21.35rem;
-  display: flex;
-  flex-direction: column;
+  height: 18.55rem;
+  box-shadow: 0 0.1875rem 1rem 0.25rem hsla(0, 0%, 79%, 0.91);
 }
 
 .powered-by-eb {
@@ -33,9 +32,9 @@ h2 {
   color: #adb0b6;
 }
 
-@media screen and (max-width: 954px) {
+@media screen and (max-width: 841px) {
   .container {
-    height: 22rem;
+    height: 19.25rem;
   }
 }
 
@@ -47,6 +46,6 @@ h2 {
 
 @media screen and (max-width: 512px) {
   .container {
-    height: 26.125rem;
+    height: 23.35rem;
   }
 }
