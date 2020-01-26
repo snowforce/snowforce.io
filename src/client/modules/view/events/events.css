@@ -13,10 +13,16 @@
   box-shadow: 0 0.1875rem 1rem 0.25rem rgba(201, 201, 201, 0.91);
 }
 
+.center {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
 .absolute-box {
   position: absolute;
   right: 5%;
-  top: -0.5em;
+  top: 5.5em;
   z-index: 1;
 }
 
@@ -43,11 +49,6 @@ h2 {
   margin-left: 1rem;
 }
 
-h3 {
-  margin-block-start: 0.5em;
-  margin-block-end: 0.25em;
-}
-
 .carousel {
   box-sizing: border-box;
   display: flex;
@@ -59,7 +60,7 @@ h3 {
 }
 
 .time {
-  padding: 0 1rem;
+  padding: 0 2rem;
   font-style: italic;
 }
 
@@ -68,4 +69,16 @@ h3 {
   margin-block-start: 0.5em;
   margin-block-end: 0.5em;
   line-height: 1.5;
+}
+
+table h3,
+table td,
+table div {
+  margin: 0;
+  padding: 0;
+}
+
+table .description {
+  font-size: 0.95em;
+  margin-block-start: 0;
 }

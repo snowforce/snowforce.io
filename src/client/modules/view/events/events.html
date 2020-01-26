@@ -1,5 +1,6 @@
 <template>
   <div class="container small-section">
+    <h1 class="center">Updated Schedule</h1>
     <div class="absolute-box">
       <base-icon name="new" class="new-icon"></base-icon>
     </div>
@@ -16,43 +17,73 @@
       </div>
       <div if:true={displayConference} class="cell">
         <h2>Conference Day</h2>
-        <div class="time">Thursday: 8:00am - 7:00pm</div>
-        <div>
-          <div>
-            <h3>Check-In</h3>
-            <div class="time">
-              8:00 - 9:00am : Light breakfast available for those coming with an
-              empty stomach
-            </div>
-          </div>
-          <div>
-            <h3>Opening Keynote</h3>
-            <div class="time">9:00 - 10:00am</div>
-            <div class="description"></div>
-          </div>
-          <div>
-            <h3>Morning Breakout Sessions</h3>
-            <div class="time">10:10am - 12pm</div>
-          </div>
-          <div>
-            <h3>Lunch Break</h3>
-            <div class="time">
-              12:00 - 1:00pm : Line up for some of Utah's greatest food trucks
-            </div>
-          </div>
-          <div>
-            <h3>Afternoon Breakout Sessions</h3>
-            <div class="time">1:00 - 3:50pm</div>
-          </div>
-          <div>
-            <h3>Closing Keynote</h3>
-            <div class="time">4:00 - 4:50pm</div>
-          </div>
-          <div>
-            <h3>Networking Cocktail Hour</h3>
-            <div class="time">5:00 - 6:00pm</div>
-          </div>
-        </div>
+
+        <table style="width:100%">
+          <tr>
+            <td width="25%"><h3>Check-In</h3></td>
+            <td><div class="time">8:00 - 9:00am (60 min)</div></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              <div class="description">
+                Light breakfast available for those coming with an empty stomach
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td><h3>Opening Keynote</h3></td>
+            <td><div class="time">9:00 - 9:50am (50 min)</div></td>
+          </tr>
+          <tr>
+            <td><h3>Sessions</h3></td>
+            <td><div class="time">10:00 - 10:40am (40 min)</div></td>
+          </tr>
+          <tr>
+            <td><h3>Sessions</h3></td>
+            <td><div class="time">10:50 - 11:30am (40 min)</div></td>
+          </tr>
+          <tr>
+            <td><h3>Sessions</h3></td>
+            <td><div class="time">11:40am - 12:10pm (30 min)</div></td>
+          </tr>
+          <tr>
+            <td><h3>Lunch Break</h3></td>
+            <td><div class="time">12:10 - 1:10pm (60 min)</div></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              <div class="description">
+                Line up for some of Utah's greatest food trucks
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td><h3>Sessions</h3></td>
+            <td><div class="time">1:10 - 1:50pa (40 min)</div></td>
+          </tr>
+          <tr>
+            <td><h3>Demo Jam</h3></td>
+            <td><div class="time">2:00 - 2:20pm (20 min)</div></td>
+          </tr>
+          <tr>
+            <td><h3>Sessions</h3></td>
+            <td><div class="time">2:30 - 3:10pm (40 min)</div></td>
+          </tr>
+          <tr>
+            <td><h3>Sessions</h3></td>
+            <td><div class="time">3:20 - 4:00pm (40 min)</div></td>
+          </tr>
+          <tr>
+            <td><h3>Closing Keynote</h3></td>
+            <td><div class="time">4:10 - 5:00pm (50 min)</div></td>
+          </tr>
+          <tr>
+            <td><h3>Networking Cocktail Hour</h3></td>
+            <td><div class="time">5:00 - 6:00pm</div></td>
+          </tr>
+        </table>
       </div>
       <div if:true={displaySki} class="cell">
         <h2>Ski Day @ Solitude with Hands On Sessions</h2>
