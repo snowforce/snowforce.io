@@ -5,6 +5,8 @@
 
 .cmp-image-grid {
   padding: 1rem;
+  max-width: 81rem;
+  margin: auto;
 }
 
 .row {

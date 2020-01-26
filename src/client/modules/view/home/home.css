@@ -27,24 +27,15 @@ h2 {
   flex-direction: column;
 }
 
-.speaker-cloud {
-  border-radius: 1rem;
-  width: fit-content;
-  margin: auto;
-  background: rgba(255, 255, 255, 0.7);
-  box-shadow: 0 0.5rem 10rem 9rem rgba(255, 255, 255, 0.7);
-}
-
 .background-white {
   background-color: white;
 }
 
 .vertical-padding {
-  padding-top: 2rem;
   padding-bottom: 2rem;
 }
 
-.vertical-padding-lg {
+.padding-vertical-lg {
   padding-top: 4rem;
   padding-bottom: 4rem;
 }
@@ -66,14 +57,33 @@ h2 {
   background-color: var(--contrast-color-light);
 }
 
+.margin-bottom-l {
+  margin-bottom: 5rem;
+}
+
+.margin-bottom-m {
+  margin-bottom: 3rem;
+}
+
+.padding-bottom-l {
+  padding-bottom: 5rem;
+}
+
+.padding-bottom-m {
+  padding-bottom: 3rem;
+}
+
+.padding-bottom-s {
+  padding-bottom: 1rem;
+}
+
 .background-box {
   box-sizing: border-box;
   background-color: white;
-  padding: 3rem;
-  max-width: 75rem;
+  max-width: 81rem;
   width: 95%;
   border-radius: 5px;
-  margin-top: 5rem;
+  margin: 3rem auto;
 }
 
 @media screen and (max-width: 800px) {

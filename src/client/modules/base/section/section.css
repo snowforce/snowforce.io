@@ -13,6 +13,12 @@
   );
 }
 
+.brand-overlay {
+  /* dark branded color with 75% opacity */
+  background-color: rgba(44, 63, 73, 0.75);
+  color: var(--contrast-color-light);
+}
+
 .centerContent {
   display: flex;
   justify-content: center;
