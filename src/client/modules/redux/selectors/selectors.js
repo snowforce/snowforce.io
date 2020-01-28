@@ -100,7 +100,7 @@ const sessionFilterMap = {
   level: lvl => {
     return sessions => {
       if (!lvl || lvl === 'All' || !sessions) return sessions;
-      return sessions.filter(s => s.level === lvl);
+      return sessions.filter(s => s.audienceLevel === lvl);
     };
   },
   format: frm => {
