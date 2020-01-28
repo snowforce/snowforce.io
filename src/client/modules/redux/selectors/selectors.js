@@ -1,5 +1,7 @@
 import { createSelector } from 'reselect';
 
+import { pipeWith } from 'app/utils';
+
 /**
  * Checks for value and returns true if lowercase strings are equal.
  * @param {String} String 1
@@ -56,28 +58,6 @@ export const sessionByIdSelector = ({ sessions }, id) => {
 };
 
 /**
- * Returns Current Year Sessions filtered by Audience.
- * @param {object} reduxState reduxStore.getState()
- * @param {string} Audience - Customer, Admin/Dev, Stakeholder...
- */
-export const currentSessionsByAudienceSelector = (reduxState, audience) => {
-  return currentSessionsSelector(reduxState).filter(s => {
-    return s.audience.reduce((acc, a) => acc || compareStr(a, audience), false);
-  });
-};
-
-/**
- * Returns Current Year Sessions filtered by Audience Level.
- * @param {object} reduxState reduxStore.getState()
- * @param {string} Audience Level - Beginner, Intermediate, Advanced...
- */
-export const currentSessionsByLevelSelector = (reduxState, level) => {
-  return currentSessionsSelector(reduxState).filter(s =>
-    compareStr(s.audienceLevel, level)
-  );
-};
-
-/**
  * Returns All Sessions with the Speaker Listed.
  * @param {object} reduxState reduxStore.getState()
  * @param {string} Speaker Id
@@ -99,6 +79,130 @@ export const sessionsByYearSelector = ({ sessions }, year) => {
     s => parseInt(s.year, 10) === parseInt(year, 10)
   );
 };
+
+export const sessionFiltersSelector = ({ sessionFilters }) => {
+  return sessionFilters;
+};
+
+const sessionFilterMap = {
+  track: trk => {
+    return sessions => {
+      if (!trk || trk === 'All' || !sessions) return sessions;
+      return sessions.filter(s => s.track === trk);
+    };
+  },
+  audience: aud => {
+    return sessions => {
+      if (!aud || aud === 'All' || !sessions) return sessions;
+      return sessions.filter(s => s.audience.indexOf(aud) !== -1);
+    };
+  },
+  level: lvl => {
+    return sessions => {
+      if (!lvl || lvl === 'All' || !sessions) return sessions;
+      return sessions.filter(s => s.level === lvl);
+    };
+  },
+  format: frm => {
+    return sessions => {
+      if (!frm || frm === 'All' || !sessions) return sessions;
+      return sessions.filter(s => s.type === frm);
+    };
+  },
+  searchTerm: searchStr => {
+    return sessions => {
+      if (!searchStr || !sessions) return sessions;
+      return sessions.filter(s => JSON.stringify(s).indexOf(searchStr));
+    };
+  },
+  startTime: startTime => {
+    return sessions => {
+      if (!startTime || startTime === 'All' || !sessions) return sessions;
+      return sessions.filter(s => s.startTime === startTime);
+    };
+  }
+};
+
+export const currentSessionsFilteredSelector = createSelector(
+  currentSessionsSelector,
+  sessionFiltersSelector,
+  (sessions, filters) => {
+    return pipeWith(
+      sessions,
+      ...Object.keys(filters).map(f => sessionFilterMap[f](filters[f]))
+    );
+  }
+);
+
+export const currentSessionsTracksSelector = createSelector(
+  currentSessionsSelector,
+  sessions => {
+    return sessions.reduce(
+      (acc, s) => {
+        if (!s.track || acc.includes(s.track)) return acc;
+        acc = [...acc, s.track];
+        return acc;
+      },
+      ['All']
+    );
+  }
+);
+
+export const currentSessionsAudiencesSelector = createSelector(
+  currentSessionsSelector,
+  sessions => {
+    return sessions.reduce(
+      (acc, s) => {
+        if (!s.audience) return acc;
+        acc = [...acc, ...s.audience.split(';').filter(a => !acc.includes(a))];
+        return acc;
+      },
+      ['All']
+    );
+  }
+);
+
+export const currentSessionsLevelsSelector = createSelector(
+  currentSessionsSelector,
+  sessions => {
+    return sessions.reduce(
+      (acc, s) => {
+        if (!s.audienceLevel || acc.includes(s.audienceLevel)) return acc;
+        acc = [...acc, s.audienceLevel];
+        return acc;
+      },
+      ['All']
+    );
+  }
+);
+
+export const currentSessionsFormatsSelector = createSelector(
+  currentSessionsSelector,
+  sessions => {
+    return sessions.reduce(
+      (acc, s) => {
+        if (!s.type || acc.includes(s.type)) return acc;
+        acc = [...acc, s.type];
+        return acc;
+      },
+      ['All']
+    );
+  }
+);
+
+export const currentSessionsStartTimesSelector = createSelector(
+  currentSessionsSelector,
+  sessions => {
+    return sessions.reduce(
+      (acc, s) => {
+        if (!s.time || acc.includes(s.time)) return acc;
+        acc = [...acc, s.time];
+        return acc;
+      },
+      ['All']
+    );
+  }
+);
 
 /************************************************* Speakers *************************************************/
 

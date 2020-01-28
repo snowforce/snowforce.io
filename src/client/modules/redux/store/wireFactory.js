@@ -97,9 +97,11 @@ export const wireArrayFactory = (reduxSelector, reduxFetchAction) => {
     eventTarget.addEventListener('config', ({ store, selectorParam }) => {
       reduxStore = store;
       param = selectorParam;
-      subscribeRedux();
+      if (!subscription) {
+        subscribeRedux();
+      }
       if (reduxFetchAction) {
-        reduxStore.dispatch(reduxFetchAction());
+        reduxStore.dispatch(reduxFetchAction(selectorParam));
       }
       debounceNotifications();
     });

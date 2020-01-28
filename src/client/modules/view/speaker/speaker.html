@@ -18,9 +18,11 @@
           <h3>Sessions</h3>
         </div>
         <template for:each={sessions} for:item="s">
-          <base-link key={s.link} href={s.link} class="session">
-            {s.year} - {s.title}
-          </base-link>
+          <div key={s.link}>
+            <base-link href={s.link} class="session">
+              {s.year} - {s.title}
+            </base-link>
+          </div>
         </template>
       </div>
     </div>

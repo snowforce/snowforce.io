@@ -1,14 +1,8 @@
 <template>
   <div class="container">
-    <!-- <base-carousel
-      flkty-setup={flktySetup}
-      cells={cellNodes}
-      oncarouselchange={carouselChange}
-      active-index={activeIndex}
-    >
-    </base-carousel>
--->
-    <cmp-sessions session-track={displayTrack}></cmp-sessions>
+    <cmp-search-sessions></cmp-search-sessions>
+    <h1>2020 Sessions</h1>
+    <cmp-sessions sessions={sessions}></cmp-sessions>
     <cmp-pluralsight></cmp-pluralsight>
   </div>
 </template>

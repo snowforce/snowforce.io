@@ -93,13 +93,14 @@ const conferenceWrapper = conference => {
 const speakerWrapper = (speaker, contact, currentSession, allSessionIds) => {
   return {
     id: speaker.Id,
+    contactId: contact.Id,
     personalTitle: contact.Salutation || '',
     firstName: contact.FirstName,
     lastName: contact.LastName,
     title: speaker.Title__c || contact.Title || '',
     link: `/speaker/${speaker.Id}`,
     year: currentSession.Year__c,
-    isKeynote: currentSession.Type__c === 'Keynote',
+    isKeynote: currentSession.Format__c === 'Keynote',
     img: contact.Headshot_URL__c,
     imgAlt: [contact.FirstName, contact.LastName].join(' '),
     bio: speaker.Bio__c || contact.Bio__c || '',
@@ -120,21 +121,22 @@ const speakerWrapper = (speaker, contact, currentSession, allSessionIds) => {
 const sponsorWrapper = (sponsor, account, sponsorType) => {
   return {
     id: sponsor.Id,
+    accountId: account.Id,
     name: account.Name,
-    about_us: account.About_Us__c || '',
+    aboutUs: account.About_Us__c || '',
     year: sponsor.Year__c,
     level: sponsorType.Name,
     link: `/sponsor/${sponsor.Id}`,
     website: account.Website || '',
     logo: account.Logo_URL__c,
-    shipping_address: {
+    shippingAddress: {
       street: account.ShippingStreet || '',
       city: account.ShippingCity || '',
       state: account.ShippingState || '',
       postalcode: account.ShippingPostalCode || '',
       country: account.ShippingCountry || ''
     },
-    billing_address: {
+    billingAddress: {
       street: account.BillingStreet || '',
       city: account.BillingCity || '',
       state: account.BillingState || '',

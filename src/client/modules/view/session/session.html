@@ -18,20 +18,32 @@
         </template>
       </div>
       <base-rich-text content={session.abstract}></base-rich-text>
-      <table>
+      <table onclick={manualNav}>
         <tr if:true={session.type}>
           <th>Session Format</th>
-          <td>{session.type}</td>
+          <td data-filter="format" data-val={session.type}>{session.type}</td>
+        </tr>
+        <tr if:true={session.track}>
+          <th>Track</th>
+          <td data-filter="track" data-val={session.track}>{session.track}</td>
+        </tr>
+        <tr if:true={session.startTime}>
+          <th>Start Time</th>
+          <td data-filter="startTime" data-val={session.time}>
+            {session.time}
+          </td>
         </tr>
         <tr if:true={session.audienceLevel}>
           <th>Level</th>
-          <td>{session.audienceLevel}</td>
+          <td data-filter="level" data-val={session.audienceLevel}>
+            {session.audienceLevel}
+          </td>
         </tr>
         <tr if:true={session.audience}>
           <th>Audience</th>
           <td class="audience">
             <template for:each={session.audience} for:item="a">
-              <span key={a} onclick={manualNav} data-audience={a}>
+              <span key={a} data-filter="audience" data-val={a}>
                 {a}
               </span>
             </template>

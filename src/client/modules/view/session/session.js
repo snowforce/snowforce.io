@@ -9,12 +9,13 @@ export default class ViewSession extends LightningElement {
   speakerIds = [];
 
   manualNav = event => {
-    event.currentTarget.dispatchEvent(
+    const { filter, val } = event.target.dataset;
+    this.dispatchEvent(
       new CustomEvent('navigate', {
         bubbles: true,
         composed: true,
         detail: {
-          link: '/sessions/' + event.currentTarget.dataset.audience
+          link: `/sessions?${filter}=${val}`
         }
       })
     );

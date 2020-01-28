@@ -1,0 +1,6 @@
+.container > .content span {
+  color: inherit !important;
+  font-family: inherit !important;
+  size: inherit !important;
+  font-weight: inherit !important;
+}

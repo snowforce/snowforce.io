@@ -6,7 +6,7 @@
   flex-direction: column;
   position: relative;
   max-width: 50rem;
-  margin: auto;
+  margin: 2rem auto;
 }
 
 .sessions {
@@ -26,11 +26,12 @@
 
 .speaker-img {
   max-width: 20.5rem;
+  width: 100%;
 }
 
 .speaker-content {
   max-width: 75%;
-  padding: 1rem 0;
+  padding: 0 2rem;
 }
 
 @media only screen and (max-width: 600px) {
@@ -39,8 +40,8 @@
   }
 
   .speaker-content {
-    max-width: 80%;
-    margin: auto;
+    max-width: 100%;
+    padding: 0 1.5rem;
   }
 }
 
@@ -50,5 +51,8 @@
   }
   .speaker-name {
     margin: 1em;
+  }
+  .speaker-content {
+    padding: 0 1rem;
   }
 }

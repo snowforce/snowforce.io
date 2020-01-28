@@ -55,6 +55,11 @@ th {
   text-align: right;
 }
 
+td {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 img {
   box-sizing: border-box;
   width: 5rem;
@@ -66,17 +71,21 @@ img {
 }
 
 .info {
+  box-sizing: border-box;
   margin: auto;
   padding: 0 2rem;
+  max-width: 100vw;
 }
 
 .audience > span {
-  text-decoration: underline;
   padding-right: 0.5rem;
-  cursor: pointer;
 }
 
-@media only screen and (max-width: 350px) {
+.audience > span:not(:last-child)::after {
+  content: ',';
+}
+
+@media only screen and (max-width: 400px) {
   img {
     box-sizing: border-box;
     width: 4rem;
@@ -85,6 +94,10 @@ img {
     border-radius: 5px;
     border: white 1px solid;
     margin: 0 0.25rem;
+  }
+
+  .info {
+    padding: 0 0.5rem;
   }
 
   .speaker-names {
