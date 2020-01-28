@@ -2,13 +2,5 @@
   <div class="center vertical-padding">
     <h1>{conference.year} Speaker Lineup</h1>
   </div>
-  <div class="container">
-    <div if:true={speakers} class="cards">
-      <template for:each={speakers} for:item="speaker">
-        <div key={speaker.id} class="card">
-          <cmp-speaker-flip-card speaker={speaker}></cmp-speaker-flip-card>
-        </div>
-      </template>
-    </div>
-  </div>
+  <cmp-speakers speakers={speakers}></cmp-speakers>
 </template>

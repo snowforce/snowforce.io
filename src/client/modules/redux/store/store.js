@@ -28,5 +28,11 @@ export {
   wireSpeakerById,
   wireSessionById,
   wireSponsorById,
-  wireView
+  wireView,
+  wireFilteredSessions,
+  wireSessionTracks,
+  wireSessionAudiences,
+  wireSessionLevels,
+  wireSessionFormats,
+  wireSessionStartTimes
 } from './wireAdapter';

@@ -1,0 +1,12 @@
+.selectors {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+select {
+  box-sizing: border-box;
+  width: 9rem;
+  border: solid 1px var(--primary-color-dark);
+  padding: 0.25em;
+}

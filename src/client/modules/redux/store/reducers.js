@@ -6,7 +6,8 @@ import {
   SET_CONFERENCE,
   VIEW_MENU_OPEN,
   VIEW_MENU_CLOSE,
-  SET_TRACKS,
+  SET_SESSION_FILTER,
+  CLEAR_SESSION_FILTERS,
   VIEW_TRACK,
   VIEW_DAY,
   ADD_REQUEST,
@@ -127,10 +128,32 @@ export function organizers(state = {}, action) {
   }
 }
 
-export function tracks(state = [], action) {
+export function sessionFilters(
+  state = {
+    track: 'All',
+    audience: 'All',
+    level: 'All',
+    format: 'All',
+    startTime: 'All',
+    searchTerm: ''
+  },
+  action
+) {
   switch (action.type) {
-    case SET_TRACKS:
-      return [...action.data];
+    case SET_SESSION_FILTER:
+      return {
+        ...state,
+        [action.data.filter]: action.data.val
+      };
+    case CLEAR_SESSION_FILTERS:
+      return {
+        track: 'All',
+        audience: 'All',
+        level: 'All',
+        format: 'All',
+        startTime: 'All',
+        searchTerm: ''
+      };
     default:
       return state;
   }

@@ -9,6 +9,10 @@
       <div class="margin-bottom-l">
         <view-register></view-register>
       </div>
+      <div class="keynotes">
+        <h2 class="center">Opening and Closing Keynote Speakers</h2>
+        <cmp-speakers speakers={keynotes}></cmp-speakers>
+      </div>
       <div class="margin-bottom-l">
         <view-sponsors></view-sponsors>
       </div>
@@ -29,7 +33,7 @@
     </base-section>
     <div class="padding-bottom-s">
       <div class="background-box center">
-        <view-speakers></view-speakers>
+        <cmp-speakers speakers={speakers}></cmp-speakers>
       </div>
     </div>
     <view-past-events></view-past-events>

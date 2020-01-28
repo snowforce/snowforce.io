@@ -20,7 +20,13 @@ import {
   speakerByIdSelector,
   sessionByIdSelector,
   sponsorByIdSelector,
-  viewSelector
+  viewSelector,
+  currentSessionsFilteredSelector,
+  currentSessionsTracksSelector,
+  currentSessionsAudiencesSelector,
+  currentSessionsLevelsSelector,
+  currentSessionsFormatsSelector,
+  currentSessionsStartTimesSelector
 } from 'redux/selectors';
 
 import {
@@ -28,7 +34,12 @@ import {
   requestSessions,
   requestSpeakers,
   requestSponsors,
-  requestOrganizers
+  requestOrganizers,
+  sessionsFilterAudience,
+  sessionsFilterTrack,
+  sessionsFilterLevel,
+  sessionsFilterFormat,
+  sessionsFilterStartTime
 } from 'redux/actions';
 
 /***********  Imperative Wire Adapters ***********/
@@ -117,6 +128,59 @@ export function wireView({ store }) {
   return imperativeObjectFactory(store, viewSelector);
 }
 
+export function wireFilteredSessions({ store }) {
+  return imperativeArrayFactory(
+    store,
+    currentSessionsFilteredSelector,
+    requestSessions
+  );
+}
+
+export function wireSessionTracks({ store, selectorParam }) {
+  return imperativeArrayFactory(
+    store,
+    currentSessionsTracksSelector,
+    sessionsFilterTrack,
+    selectorParam
+  );
+}
+
+export function wireSessionAudiences({ store, selectorParam }) {
+  return imperativeArrayFactory(
+    store,
+    currentSessionsAudiencesSelector,
+    sessionsFilterAudience,
+    selectorParam
+  );
+}
+
+export function wireSessionLevels({ store, selectorParam }) {
+  return imperativeArrayFactory(
+    store,
+    currentSessionsLevelsSelector,
+    sessionsFilterLevel,
+    selectorParam
+  );
+}
+
+export function wireSessionFormats({ store, selectorParam }) {
+  return imperativeArrayFactory(
+    store,
+    currentSessionsFormatsSelector,
+    sessionsFilterFormat,
+    selectorParam
+  );
+}
+
+export function wireSessionStartTimes({ store, selectorParam }) {
+  return imperativeArrayFactory(
+    store,
+    currentSessionsStartTimesSelector,
+    sessionsFilterStartTime,
+    selectorParam
+  );
+}
+
 /********* Register Wire Adapters */
 
 const registrations = [
@@ -184,6 +248,42 @@ const registrations = [
     adapter: wireView,
     factory: wireObjectFactory,
     selector: viewSelector
+  },
+  {
+    adapter: wireFilteredSessions,
+    factory: wireArrayFactory,
+    action: requestSessions,
+    selector: currentSessionsFilteredSelector
+  },
+  {
+    adapter: wireSessionTracks,
+    factory: wireArrayFactory,
+    action: sessionsFilterTrack,
+    selector: currentSessionsTracksSelector
+  },
+  {
+    adapter: wireSessionAudiences,
+    factory: wireArrayFactory,
+    action: sessionsFilterAudience,
+    selector: currentSessionsAudiencesSelector
+  },
+  {
+    adapter: wireSessionLevels,
+    factory: wireArrayFactory,
+    action: sessionsFilterLevel,
+    selector: currentSessionsLevelsSelector
+  },
+  {
+    adapter: wireSessionFormats,
+    factory: wireArrayFactory,
+    action: sessionsFilterFormat,
+    selector: currentSessionsFormatsSelector
+  },
+  {
+    adapter: wireSessionStartTimes,
+    factory: wireArrayFactory,
+    action: sessionsFilterStartTime,
+    selector: currentSessionsStartTimesSelector
   }
 ];
 

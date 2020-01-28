@@ -1,0 +1,11 @@
+<template>
+  <div class="container">
+    <div if:true={speakers} class="cards">
+      <template for:each={speakers} for:item="speaker">
+        <div key={speaker.id} class="card">
+          <cmp-speaker-flip-card speaker={speaker}></cmp-speaker-flip-card>
+        </div>
+      </template>
+    </div>
+  </div>
+</template>

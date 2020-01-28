@@ -1,2 +1,25 @@
-:host {
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 4rem;
+}
+
+.logo {
+  width: 75vw;
+  max-width: 60rem;
+}
+
+.about-us {
+  max-width: 50rem;
+  padding-top: 2rem;
+}
+
+@media only screen and (max-width: 500px) {
+  .container {
+    margin: 1rem;
+  }
+  .about-us {
+    padding-top: 0.5rem;
+  }
 }

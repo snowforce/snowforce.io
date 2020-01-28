@@ -19,6 +19,7 @@ import {
   ADD_REQUEST,
   CLEAR_REQUEST
 } from 'redux/shared';
+import { SET_SESSION_FILTER } from '../shared/shared';
 
 /******** Menu ********/
 
@@ -135,6 +136,32 @@ export const requestSession = id => {
 
 export const requestSessions = () => {
   return { type: REQUEST_SESSIONS, data: {} };
+};
+
+export const sessionsFilterTrack = track => {
+  return { type: SET_SESSION_FILTER, data: { filter: 'track', val: track } };
+};
+
+export const sessionsFilterAudience = audience => {
+  return {
+    type: SET_SESSION_FILTER,
+    data: { filter: 'audience', val: audience }
+  };
+};
+
+export const sessionsFilterLevel = level => {
+  return { type: SET_SESSION_FILTER, data: { filter: 'level', val: level } };
+};
+
+export const sessionsFilterFormat = format => {
+  return { type: SET_SESSION_FILTER, data: { filter: 'format', val: format } };
+};
+
+export const sessionsFilterStartTime = startTime => {
+  return {
+    type: SET_SESSION_FILTER,
+    data: { filter: 'startTime', val: startTime }
+  };
 };
 
 /** Speakers */

@@ -46,6 +46,10 @@ h2 {
   max-width: 65rem;
 }
 
+.keynotes {
+  margin-bottom: 2rem;
+}
+
 .announcement-block {
   font-weight: 700;
 }
@@ -85,6 +89,7 @@ h2 {
   width: 95%;
   border-radius: 5px;
   margin: 3rem auto;
+  box-shadow: 0 0.1875rem 1rem 0.25rem hsla(0, 0%, 79%, 0.91);
 }
 
 @media screen and (max-width: 800px) {

@@ -1,5 +1,6 @@
 import { LightningElement, track, wire } from 'lwc';
 import { store, wireCurrentSpeakers, wireCurrentConference } from 'redux/store';
+import { uniqueObjArrayByKey } from 'app/utils';
 
 export default class ViewSpeakers extends LightningElement {
   @track speakers = [];
@@ -8,7 +9,7 @@ export default class ViewSpeakers extends LightningElement {
   @wire(wireCurrentSpeakers, { store })
   wiredSpeakers({ data, error }) {
     if (data) {
-      this.speakers = data;
+      this.speakers = uniqueObjArrayByKey(data, 'contactId');
     } else if (error) {
       throw error;
     }

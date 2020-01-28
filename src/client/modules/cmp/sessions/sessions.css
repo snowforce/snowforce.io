@@ -32,3 +32,11 @@ h4 {
 .room:before {
   content: '\00a0';
 }
+
+.detail {
+  padding-left: 1rem;
+}
+
+.val {
+  padding-left: 0.75rem;
+}
