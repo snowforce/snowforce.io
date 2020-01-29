@@ -5,6 +5,6 @@ select {
   appearance: none;
   -ms-appearance: none; /* get rid of default appearance for IE8, 9 and 10*/
 
-  padding: 0.25rem 1rem;
-  margin: 0 0.5rem;
+  padding: 0.25em 1em;
+  margin: 0 0.5em;
 }

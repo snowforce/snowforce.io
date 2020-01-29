@@ -1,10 +1,10 @@
 input {
   box-sizing: border-box;
   width: 100%;
-  border-radius: 0.5rem;
-  padding: 0.5rem;
+  border-radius: 0.5em;
+  padding: 0.5em;
   border: none;
-  box-shadow: 1px 1px 0.625rem 0 #005588;
+  box-shadow: 1px 1px 0.625em 0 #005588;
 }
 
 a {
@@ -16,8 +16,8 @@ a {
   background-color: var(--primary-color-dark);
   color: white;
   width: 100%;
-  padding-top: 2rem;
-  padding-bottom: 7rem;
+  padding-top: 2em;
+  padding-bottom: 7em;
 }
 
 .columns {
@@ -33,23 +33,23 @@ a {
 .col {
   display: flex;
   flex-direction: column;
-  min-width: 11rem;
+  min-width: 11em;
 }
 
 .col-header {
   text-shadow: 1px 1px #005588;
-  font-size: 1.5rem;
+  font-size: 1.5em;
   font-weight: 700;
-  line-height: 2.5rem;
-  padding-top: 0.5rem;
+  line-height: 2.5em;
+  padding-top: 0.5em;
 }
 
 .item {
   text-shadow: 1px 1px #005588;
-  font-size: 1.25rem;
+  font-size: 1.25em;
   font-weight: 300;
-  line-height: 1.5625rem;
-  margin: 0.25rem 0;
+  line-height: 1.5625em;
+  margin: 0.25em 0;
 }
 
 .contact {

@@ -45,7 +45,7 @@ https://flickity.metafizzy.co
 }
 .flickity-button:focus {
   outline: 0;
-  box-shadow: 0 0 0 0.3125rem #19f;
+  box-shadow: 0 0 0 0.3125em #19f;
 }
 .flickity-button:active {
   opacity: 0.6;
@@ -60,24 +60,24 @@ https://flickity.metafizzy.co
 }
 .flickity-prev-next-button {
   top: 50%;
-  width: 2.75rem;
-  height: 2.75rem;
+  width: 2.75em;
+  height: 2.75em;
   border-radius: 50%;
   transform: translateY(-50%);
 }
 .flickity-prev-next-button.previous {
-  left: 0.625rem;
+  left: 0.625em;
 }
 .flickity-prev-next-button.next {
-  right: 0.625rem;
+  right: 0.625em;
 }
 .flickity-rtl .flickity-prev-next-button.previous {
   left: auto;
-  right: 0.625rem;
+  right: 0.625em;
 }
 .flickity-rtl .flickity-prev-next-button.next {
   right: auto;
-  left: 0.625rem;
+  left: 0.625em;
 }
 .flickity-prev-next-button .flickity-button-icon {
   position: absolute;
@@ -89,7 +89,7 @@ https://flickity.metafizzy.co
 .flickity-page-dots {
   position: absolute;
   width: 100%;
-  bottom: -1.5625rem;
+  bottom: -1.5625em;
   padding: 0;
   margin: 0;
   list-style: none;
@@ -101,9 +101,9 @@ https://flickity.metafizzy.co
 }
 .flickity-page-dots .dot {
   display: inline-block;
-  width: 0.625rem;
-  height: 0.625rem;
-  margin: 0 0.5rem;
+  width: 0.625em;
+  height: 0.625em;
+  margin: 0 0.5em;
   background: #333;
   border-radius: 50%;
   opacity: 0.25;
@@ -120,28 +120,28 @@ https://flickity.metafizzy.co
 
 .carousel-cell {
   min-width: 40%;
-  height: 4rem;
-  margin: 0 1rem;
+  height: 4em;
+  margin: 0 1em;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 0.3125rem;
-  font-size: 1.5rem;
+  border-radius: 0.3125em;
+  font-size: 1.5em;
   transition: font-size 0.5s;
 }
 
 .carousel-cell.is-selected {
   text-decoration: underline;
   color: #0062ff;
-  font-size: 1.75rem;
+  font-size: 1.75em;
 }
 
 /* position outside */
 .flickity-prev-next-button.previous {
-  left: -2.5rem;
+  left: -2.5em;
 }
 .flickity-prev-next-button.next {
-  right: -2.5rem;
+  right: -2.5em;
 }
 
 @media screen and (min-width: 480px) {
@@ -156,10 +156,10 @@ https://flickity.metafizzy.co
   }
 
   .carousel-cell.is-selected {
-    font-size: 1.25rem;
+    font-size: 1.25em;
   }
   .carousel-cell {
     min-width: 25%;
-    font-size: 1rem;
+    font-size: 1em;
   }
 }

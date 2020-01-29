@@ -1,11 +1,11 @@
 .header {
-  margin-top: 1rem;
+  margin-top: 1em;
   text-align: center;
 }
 
 .cmp-image-grid {
-  padding: 1rem;
-  max-width: 81rem;
+  padding: 1em;
+  max-width: 81em;
   margin: auto;
 }
 

@@ -39,7 +39,7 @@
 .medium {
   width: 3px;
   height: 3px;
-  margin-right: 1rem;
+  margin-right: 1em;
 
   animation: gravity 5s 3 cubic-bezier(0.42, 0, 1, 1);
 }
@@ -47,7 +47,7 @@
 .large {
   width: 4px;
   height: 4px;
-  margin-right: 1rem;
+  margin-right: 1em;
 
   animation: gravity-left 5.5s 3 cubic-bezier(0.42, 0, 1, 1);
 }

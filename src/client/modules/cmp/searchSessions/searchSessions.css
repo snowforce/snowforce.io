@@ -6,7 +6,7 @@
 
 select {
   box-sizing: border-box;
-  width: 9rem;
+  width: 9em;
   border: solid 1px var(--primary-color-dark);
   padding: 0.25em;
 }

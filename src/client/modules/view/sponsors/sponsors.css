@@ -1,5 +1,5 @@
 .container {
-  margin: 1rem;
+  margin: 1em;
 }
 
 h1 {
@@ -19,13 +19,13 @@ img {
   width: 100%;
   display: flex;
   flex-direction: column;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding-top: 1em;
+  padding-bottom: 1em;
 }
 
 .row {
   width: 100%;
-  max-width: 70rem;
+  max-width: 70em;
   margin: auto;
   display: flex;
   flex-direction: row;
@@ -36,24 +36,37 @@ img {
 
 .platinum {
   width: 100%;
-  max-width: 60rem;
-  margin: 2rem;
+  max-width: 60em;
+  margin: 2em;
 }
 
 .gold {
   width: 40%;
-  max-width: 35rem;
-  margin: 1rem;
+  max-width: 35em;
+  margin: 1em;
 }
 
 .silver {
   width: 25%;
-  max-width: 15rem;
-  margin: 0.5rem;
+  max-width: 15em;
+  margin: 0.5em;
 }
 
 @media only screen and (min-width: 800px) {
   h1 {
-    font-size: 3rem;
+    font-size: 3em;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .platinum {
+    margin: 2em 0;
+  }
+  .gold {
+    margin: 1em 0.5em;
+  }
+
+  .silver {
+    margin: 0.5em 0.25em;
   }
 }

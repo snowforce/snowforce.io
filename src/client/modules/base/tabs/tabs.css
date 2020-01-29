@@ -8,11 +8,11 @@
 
 button {
   box-sizing: border-box;
-  padding: 1rem;
-  font-size: 1.25rem;
+  padding: 1em;
+  font-size: 1.25em;
   outline: none;
   width: 100%;
-  border-radius: 0.3125rem;
+  border-radius: 0.3125em;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.5);
 }
 

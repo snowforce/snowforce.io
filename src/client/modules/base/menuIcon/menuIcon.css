@@ -16,7 +16,7 @@
   height: 11%;
   background-color: white;
   transition: 250ms;
-  border-radius: 0.125rem;
+  border-radius: 0.125em;
   bottom: 0;
   left: 5%;
 }

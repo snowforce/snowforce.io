@@ -4,15 +4,15 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  max-width: 50rem;
+  max-width: 50em;
   margin: auto;
   position: relative;
-  font-size: 1rem;
+  font-size: 1em;
 }
 
 .title {
   max-width: 80%;
-  margin-top: 2rem;
+  margin-top: 2em;
 }
 
 .speakers {
@@ -26,32 +26,32 @@
 
 .speaker-names {
   font-weight: 400;
-  font-size: 1.5rem;
+  font-size: 1.5em;
   font-style: italic;
   display: flex;
   justify-content: space-evenly;
   background: #2c40491a;
-  padding: 0.5rem;
-  border-radius: 0.5rem;
+  padding: 0.5em;
+  border-radius: 0.5em;
   box-shadow: 3px 3px 16px 1px rgba(0, 0, 0, 0.5);
-  margin-bottom: 2rem;
+  margin-bottom: 2em;
   text-shadow: 1px 1px #e8e8e8bd;
 }
 
 cmp-speaker-img-card {
-  width: 13rem;
+  width: 13em;
 }
 
 h1 {
-  text-shadow: 1px 0.125rem #00000026;
+  text-shadow: 1px 0.125em #00000026;
 }
 
 table {
-  padding: 2rem 0;
+  padding: 2em 0;
 }
 
 th {
-  padding-right: 2rem;
+  padding-right: 2em;
   text-align: right;
 }
 
@@ -62,23 +62,23 @@ td {
 
 img {
   box-sizing: border-box;
-  width: 5rem;
-  height: 7rem;
+  width: 5em;
+  height: 7em;
   object-fit: cover;
   border-radius: 5px;
-  margin-right: 1rem;
+  margin-right: 1em;
   border: white 1px solid;
 }
 
 .info {
   box-sizing: border-box;
   margin: auto;
-  padding: 0 2rem;
+  padding: 0 2em;
   max-width: 100vw;
 }
 
 .audience > span {
-  padding-right: 0.5rem;
+  padding-right: 0.5em;
 }
 
 .audience > span:not(:last-child)::after {
@@ -88,19 +88,19 @@ img {
 @media only screen and (max-width: 400px) {
   img {
     box-sizing: border-box;
-    width: 4rem;
-    height: 5rem;
+    width: 4em;
+    height: 5em;
     object-fit: cover;
     border-radius: 5px;
     border: white 1px solid;
-    margin: 0 0.25rem;
+    margin: 0 0.25em;
   }
 
   .info {
-    padding: 0 0.5rem;
+    padding: 0 0.5em;
   }
 
   .speaker-names {
-    font-size: 1.25rem;
+    font-size: 1.25em;
   }
 }

@@ -1,8 +1,8 @@
 .base {
-  min-height: 2.5rem;
-  min-width: 6rem;
+  min-height: 2.5em;
+  min-width: 6em;
   outline: none;
-  border-radius: 0.1875rem;
+  border-radius: 0.1875em;
   border-style: solid;
   border-width: 1px;
 
@@ -10,23 +10,23 @@
   background-color: var(--primary-color);
   border-color: white;
 
-  padding: 0 1.5rem;
-  font-size: 1rem;
+  padding: 0 1.5em;
+  font-size: 1em;
 }
 .base:hover {
   background-color: var(--primary-color-dark);
 }
 
 .large {
-  min-height: 3rem;
-  min-width: 10rem;
-  font-size: 1.25rem;
+  min-height: 3em;
+  min-width: 10em;
+  font-size: 1.25em;
 }
 
 .small {
-  min-height: 2rem;
-  min-width: 4rem;
-  font-size: 0.75rem;
+  min-height: 2em;
+  min-width: 4em;
+  font-size: 0.75em;
 }
 
 .background-white {
@@ -44,11 +44,11 @@
 }
 
 .shadow {
-  box-shadow: 0 0.3125rem 0.625rem 0 rgba(51, 51, 51, 0.1);
+  box-shadow: 0 0.3125em 0.625em 0 rgba(51, 51, 51, 0.1);
 }
 .shadow:hover {
-  box-shadow: 0 0.1875rem 0.375rem 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0.1875em 0.375em 0 rgba(0, 0, 0, 0.2);
 }
 .shadow:active {
-  box-shadow: 0 1px 0.1875rem 0 rgba(0, 0, 0, 0.4);
+  box-shadow: 0 1px 0.1875em 0 rgba(0, 0, 0, 0.4);
 }

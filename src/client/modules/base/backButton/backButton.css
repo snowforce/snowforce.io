@@ -1,7 +1,7 @@
 button {
   cursor: pointer;
   position: fixed;
-  left: 2rem;
+  left: 2em;
   background: none;
   border: none;
   border-radius: 50%;
@@ -15,23 +15,23 @@ button {
   fill: white;
   background: var(--primary-color-dark);
   border-radius: 50%;
-  box-shadow: 0.1875rem 0.125rem 1.3125rem 0.25rem rgba(255, 255, 255, 0.75);
-  width: 3rem;
+  box-shadow: 0.1875em 0.125em 1.3125em 0.25em rgba(255, 255, 255, 0.75);
+  width: 3em;
 }
 
 .hide {
   pointer-events: none;
-  bottom: -10rem;
+  bottom: -10em;
   opacity: 0;
 }
 
 .display {
-  bottom: 2rem;
+  bottom: 2em;
   opacity: 1;
 }
 
 @media only screen and (max-width: 500px) {
   .back-arrow {
-    width: 4rem;
+    width: 4em;
   }
 }

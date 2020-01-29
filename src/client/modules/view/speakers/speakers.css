@@ -17,13 +17,13 @@
 }
 
 .card {
-  margin: 0.75rem;
+  margin: 0.75em;
 }
 
 h1 {
   text-align: center;
-  margin-left: 1rem;
-  margin-right: 1rem;
+  margin-left: 1em;
+  margin-right: 1em;
   margin-block-end: 0;
 }
 
@@ -33,8 +33,8 @@ h1 {
 }
 
 .vertical-padding {
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+  padding-top: 2em;
+  padding-bottom: 2em;
 }
 
 @media only screen and (max-width: 800px) {
@@ -48,6 +48,6 @@ h1 {
     width: 100%;
   }
   .card {
-    margin: 0.5rem;
+    margin: 0.5em;
   }
 }

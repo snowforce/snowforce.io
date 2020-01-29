@@ -5,18 +5,18 @@
   align-items: center;
   flex-direction: column;
   position: relative;
-  max-width: 50rem;
-  margin: 2rem auto;
+  max-width: 50em;
+  margin: 2em auto;
 }
 
 .sessions {
-  padding-top: 1rem;
+  padding-top: 1em;
 }
 
 .session {
   text-decoration: underline;
   font-weight: 300;
-  font-size: 1.1rem;
+  font-size: 1.1em;
 }
 
 .speaker-info {
@@ -25,13 +25,13 @@
 }
 
 .speaker-img {
-  max-width: 20.5rem;
+  max-width: 20.5em;
   width: 100%;
 }
 
 .speaker-content {
   max-width: 75%;
-  padding: 0 2rem;
+  padding: 0 2em;
 }
 
 @media only screen and (max-width: 600px) {
@@ -41,7 +41,7 @@
 
   .speaker-content {
     max-width: 100%;
-    padding: 0 1.5rem;
+    padding: 0 1.5em;
   }
 }
 
@@ -53,6 +53,6 @@
     margin: 1em;
   }
   .speaker-content {
-    padding: 0 1rem;
+    padding: 0 1em;
   }
 }
