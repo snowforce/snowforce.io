@@ -22,6 +22,7 @@
 .speaker {
   display: flex;
   align-items: center;
+  margin: 0.1em;
 }
 
 .speaker-names {
@@ -29,6 +30,7 @@
   font-size: 1.5em;
   font-style: italic;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-evenly;
   background: #2c40491a;
   padding: 0.5em;
@@ -85,7 +87,7 @@ img {
   content: ',';
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 500px) {
   img {
     box-sizing: border-box;
     width: 4em;
