@@ -1,46 +1,57 @@
 import { LightningElement, track } from 'lwc';
 
-import VCard from 'vcard-creator';
 import jsQR from 'jsqr';
 
 export default class ViewScanner extends LightningElement {
-  @track haveQrCode = true;
+  @track haveQrCode = false;
   @track qrCodeResult = '';
   @track haveCameraAccess = false;
-  @track haveCard = false;
 
   video;
   canvasElement;
   canvas;
 
-  captureNewLead = () => {
-    this.haveQrCode = false;
-    this.qrCodeResult = '';
-    this.video = undefined;
-    this.canvasElement = undefined;
-    this.canvasElement = undefined;
-    this.haveCard = false;
-  };
-
   saveContactInfo = () => {
-    let vCard = new VCard();
-    const firstName = this.template.querySelector('.user-name');
+    const firstName = this.template.querySelector('.first-name').value;
+    const lastName = this.template.querySelector('.last-name').value;
+    const organization = this.template.querySelector('.organization-input')
+      .value;
+    const role = this.template.querySelector('.role-input').value;
+    const title = this.template.querySelector('.title-input').value;
+    const phone = this.template.querySelector('.phone-input').value;
+    const email = this.template.querySelector('.email-input').value;
+    const notes = this.template.querySelector('.notes-input').value;
 
-    //   vcard.addName(lastname, firstname, additional, prefix, suffix);
-    vCard.addName('', firstName, '', '', '');
+    const vCard = `BEGIN:VCARD
+VERSION:3.0
+FN;CHARSET=UTF-8:${firstName} ${lastName}
+N;CHARSET=UTF-8:${lastName};${firstName};;;
+EMAIL;CHARSET=UTF-8;type=HOME,INTERNET:${email}
+TEL;TYPE=HOME,VOICE:${phone}
+TITLE;CHARSET=UTF-8:${title}
+ROLE;CHARSET=UTF-8:${role}
+ORG;CHARSET=UTF-8:${organization}
+NOTE;CHARSET=UTF-8:${notes}
+REV:${new Date()}
+END:VCARD`;
 
-    vCard.addEmail = this.template.querySelector('.user-email');
-    vCard.addNote = this.template.querySelector('.user-notes');
-
-    this.download(vCard.toString(), `${firstName}.vcf`);
+    this.download(vCard, `${firstName}.vcf`);
   };
 
-  download = (text, name, type = 'text/x-vcard') => {
-    var a = this.template.querySelector('.download-vcard');
-    var file = new Blob([text], { type: type });
-    a.href = URL.createObjectURL(file);
-    a.download = name;
-    this.haveCard = true;
+  download = (text, filename) => {
+    var element = document.createElement('a');
+    element.setAttribute(
+      'href',
+      'data:text/x-vcard;charset=utf-8,' + encodeURIComponent(text)
+    );
+    element.setAttribute('download', filename);
+
+    element.style.display = 'none';
+    document.body.appendChild(element);
+
+    element.click();
+
+    document.body.removeChild(element);
   };
 
   renderedCallback() {
