@@ -56,7 +56,7 @@ END:VCALENDAR`;
 
     this.download(
       vCard,
-      `Snowforce-${firstName}-${lastName}-${organization}.vcf`
+      `Snowforce-${firstName}-${lastName}-${organization}.ics`
     );
   };
 
