@@ -1,11 +1,12 @@
 <template>
   <div class="container">
+    <button onclick={captureNewLead}>Scan New Badge</button>
     <div class="loading-container" if:false={haveCameraAccess}>
       <p>
         ⌛ Loading video...
       </p>
     </div>
-    <div>
+    <div if:false={haveQrCode}>
       <canvas height="480" width="640"></canvas>
       <div>
         <div if:false={haveQrCode}>
@@ -15,6 +16,13 @@
           {qrCodeResult}
         </div>
       </div>
+    </div>
+    <div if:true={haveQrCode}>
+      <form action="">
+        <input type="text" name="Name" id="userName" />
+        <input type="email" name="Email" id="userEmail" />
+        <textarea name="Notes" cols="40" rows="5"></textarea>
+      </form>
     </div>
   </div>
 </template>

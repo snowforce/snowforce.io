@@ -3,7 +3,7 @@ import { LightningElement, track } from 'lwc';
 import jsQR from 'jsqr';
 
 export default class ViewScanner extends LightningElement {
-  @track haveQrCode = false;
+  @track haveQrCode = true;
   @track qrCodeResult = '';
   @track haveCameraAccess = false;
 
@@ -11,13 +11,22 @@ export default class ViewScanner extends LightningElement {
   canvasElement;
   canvas;
 
+  captureNewLead = () => {
+    this.haveQrCode = false;
+    this.qrCodeResult = '';
+    this.video = undefined;
+    this.canvasElement = undefined;
+    this.canvasElement = undefined;
+  };
+
   renderedCallback() {
-    if (!this.canvas) {
+    if (!this.canvas && !this.haveQrCode) {
       this.video = document.createElement('video');
       this.canvasElement = this.template.querySelector('canvas');
       this.canvas = this.canvasElement.getContext('2d');
 
       if (!navigator.mediaDevices) {
+        // TODO: show an error toast
         console.warn('No Access to Navigator Media Devices');
         return;
       }
@@ -46,7 +55,10 @@ export default class ViewScanner extends LightningElement {
   };
 
   tick = () => {
-    if (this.video.readyState === this.video.HAVE_ENOUGH_DATA) {
+    if (
+      !this.haveQrCode &&
+      this.video.readyState === this.video.HAVE_ENOUGH_DATA
+    ) {
       this.haveCameraAccess = true;
 
       this.canvasElement.height = this.video.videoHeight;
@@ -67,6 +79,7 @@ export default class ViewScanner extends LightningElement {
       let code = jsQR(imageData.data, imageData.width, imageData.height, {
         inversionAttempts: 'dontInvert'
       });
+
       if (code) {
         this.drawLine(
           code.location.topLeftCorner,
@@ -88,8 +101,10 @@ export default class ViewScanner extends LightningElement {
           code.location.topLeftCorner,
           '#FF3B58'
         );
-        this.haveQrCode = true;
-        this.qrCodeResult = code.data;
+        if (code.data) {
+          this.haveQrCode = true;
+          this.qrCodeResult = code.data;
+        }
       }
     }
     // eslint-disable-next-line @lwc/lwc/no-async-operation
