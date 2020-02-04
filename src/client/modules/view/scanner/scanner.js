@@ -2,7 +2,7 @@ import { LightningElement, track } from 'lwc';
 
 import jsQR from 'jsqr';
 
-export default class ViewSchedule extends LightningElement {
+export default class ViewScanner extends LightningElement {
   @track haveQrCode = false;
   @track qrCodeResult = '';
   @track haveCameraAccess = false;
