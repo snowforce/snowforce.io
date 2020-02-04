@@ -7,6 +7,7 @@ export default class ViewScanner extends LightningElement {
   @track haveQrCode = true;
   @track qrCodeResult = '';
   @track haveCameraAccess = false;
+  @track haveCard = false;
 
   video;
   canvasElement;
@@ -18,6 +19,7 @@ export default class ViewScanner extends LightningElement {
     this.video = undefined;
     this.canvasElement = undefined;
     this.canvasElement = undefined;
+    this.haveCard = false;
   };
 
   saveContactInfo = () => {
@@ -30,7 +32,15 @@ export default class ViewScanner extends LightningElement {
     vCard.addEmail = this.template.querySelector('.user-email');
     vCard.addNote = this.template.querySelector('.user-notes');
 
-    vCard.saveToFile(`./snowforce-${firstName}.vcf`);
+    this.download(vCard.toString(), `${firstName}.vcf`);
+  };
+
+  download = (text, name, type = 'text/x-vcard') => {
+    var a = this.template.querySelector('.download-vcard');
+    var file = new Blob([text], { type: type });
+    a.href = URL.createObjectURL(file);
+    a.download = name;
+    this.haveCard = true;
   };
 
   renderedCallback() {

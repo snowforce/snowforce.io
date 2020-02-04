@@ -55,7 +55,12 @@
             </textarea>
           </div>
         </div>
-        <button onclick={saveContactInfo}>Save</button>
+        <div>
+          <button onclick={saveContactInfo}>Save</button>
+        </div>
+        <div if:true={haveCard}>
+          <a class="download-vcard">Download</a>
+        </div>
       </form>
     </div>
   </div>
