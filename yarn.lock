@@ -9751,6 +9751,10 @@ vary@~1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
 
+vcards-js@^2.10.0:
+  version "2.10.0"
+  resolved "https://registry.yarnpkg.com/vcards-js/-/vcards-js-2.10.0.tgz#70871c3c6f1f154ae0b4925d761bfe7ac2c8502a"
+
 vendors@^1.0.0:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/vendors/-/vendors-1.0.3.tgz#a6467781abd366217c050f8202e7e50cc9eef8c0"

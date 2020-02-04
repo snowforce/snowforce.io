@@ -22,22 +22,40 @@
         <div class="input-container">
           <div>
             <label for="userName">Scan</label>
-            <input type="text" name="Scan" id="userScan" value={qrCodeResult} />
+            <input
+              type="text"
+              name="Scan"
+              id="userScan"
+              value={qrCodeResult}
+              class="user-scan"
+            />
           </div>
           <div>
             <label for="userName">Name</label>
-            <input type="text" name="Name" id="userName" />
+            <input type="text" name="Name" id="userName" class="user-name" />
           </div>
           <div>
             <label for="userEmail">Email</label>
-            <input type="email" name="Email" id="userEmail" />
+            <input
+              type="email"
+              name="Email"
+              id="userEmail"
+              class="user-email"
+            />
           </div>
           <div>
             <label for="userNotes">Notes</label>
-            <textarea name="Notes" cols="40" rows="5" id="userNotes">
+            <textarea
+              name="Notes"
+              cols="40"
+              rows="5"
+              id="userNotes"
+              class="user-notes"
+            >
             </textarea>
           </div>
         </div>
+        <button onclick={saveContactInfo}>Save</button>
       </form>
     </div>
   </div>

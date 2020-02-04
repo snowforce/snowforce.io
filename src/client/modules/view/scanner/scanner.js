@@ -1,6 +1,7 @@
 import { LightningElement, track } from 'lwc';
 
 import jsQR from 'jsqr';
+import vCardJS from 'vcards-js';
 
 export default class ViewScanner extends LightningElement {
   @track haveQrCode = true;
@@ -17,6 +18,16 @@ export default class ViewScanner extends LightningElement {
     this.video = undefined;
     this.canvasElement = undefined;
     this.canvasElement = undefined;
+  };
+
+  saveContactInfo = () => {
+    let vCard = vCardJS();
+
+    vCard.firstName = this.template.querySelector('.user-name');
+    vCard.email = this.template.querySelector('.user-email');
+    vCard.note = 'Notes on Eric';
+
+    vCard.saveToFile(`./snowforce-${vCard.firstName}.vcf`);
   };
 
   renderedCallback() {
