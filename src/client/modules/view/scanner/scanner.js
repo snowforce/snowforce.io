@@ -13,7 +13,7 @@ export default class ViewScanner extends LightningElement {
 
   renderedCallback() {
     if (!this.canvas) {
-      this.video = this.template.querySelector('video');
+      this.video = document.createElement('video');
       this.canvasElement = this.template.querySelector('canvas');
       this.canvas = this.canvasElement.getContext('2d');
 

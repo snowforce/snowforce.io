@@ -1,21 +1,20 @@
 <template>
-  <div class="container">
-    <div class="loading-container" if:false={haveCameraAccess}>
-      <p>
-        ⌛ Loading video...
-      </p>
-    </div>
-    <div>
-      <video></video>
-      <canvas height="480" width="640"></canvas>
-      <div>
-        <div if:false={haveQrCode}>
-          No QR Code Detected
+    <div class="container">
+        <div class="loading-container" if:false={haveCameraAccess}>
+            <p>
+                ⌛ Loading video...
+            </p>
         </div>
-        <div if:true={haveQrCode}>
-          {qrCodeResult}
+        <div>
+            <canvas height="480" width="640"></canvas>
+            <div>
+                <div if:false={haveQrCode}>
+                    No QR Code Detected
+                </div>
+                <div if:true={haveQrCode}>
+                    {qrCodeResult}
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </template>
