@@ -22,7 +22,11 @@ export default class ViewScanner extends LightningElement {
     const email = this.template.querySelector('.email-input').value;
     const notes = this.template.querySelector('.notes-input').value;
 
-    const vCard = `BEGIN:VCARD
+    const vCard = `BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+SUMMARY:SNOWFORCE
+BEGIN:VCARD
 VERSION:3.0
 FN;CHARSET=UTF-8:${firstName} ${lastName}
 N;CHARSET=UTF-8:${lastName};${firstName};;;
@@ -33,7 +37,22 @@ ROLE;CHARSET=UTF-8:${role}
 ORG;CHARSET=UTF-8:${organization}
 NOTE;CHARSET=UTF-8:${notes}
 REV:${new Date()}
-END:VCARD`;
+END:VCARD
+END:VEVENT
+END:VCALENDAR`;
+
+    //     const vCard = `BEGIN:VCARD
+    // VERSION:3.0
+    // FN;CHARSET=UTF-8:${firstName} ${lastName}
+    // N;CHARSET=UTF-8:${lastName};${firstName};;;
+    // EMAIL;CHARSET=UTF-8;type=HOME,INTERNET:${email}
+    // TEL;TYPE=HOME,VOICE:${phone}
+    // TITLE;CHARSET=UTF-8:${title}
+    // ROLE;CHARSET=UTF-8:${role}
+    // ORG;CHARSET=UTF-8:${organization}
+    // NOTE;CHARSET=UTF-8:${notes}
+    // REV:${new Date()}
+    // END:VCARD`;
 
     this.download(
       vCard,
