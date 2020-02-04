@@ -19,9 +19,25 @@
     </div>
     <div if:true={haveQrCode}>
       <form action="">
-        <input type="text" name="Name" id="userName" />
-        <input type="email" name="Email" id="userEmail" />
-        <textarea name="Notes" cols="40" rows="5"></textarea>
+        <div class="input-container">
+          <div>
+            <label for="userName">Scan</label>
+            <input type="text" name="Scan" id="userScan" value={qrCodeResult} />
+          </div>
+          <div>
+            <label for="userName">Name</label>
+            <input type="text" name="Name" id="userName" />
+          </div>
+          <div>
+            <label for="userEmail">Email</label>
+            <input type="email" name="Email" id="userEmail" />
+          </div>
+          <div>
+            <label for="userNotes">Notes</label>
+            <textarea name="Notes" cols="40" rows="5" id="userNotes">
+            </textarea>
+          </div>
+        </div>
       </form>
     </div>
   </div>
