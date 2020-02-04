@@ -1,7 +1,7 @@
 import { LightningElement, track } from 'lwc';
 
+import VCard from 'vcard-creator';
 import jsQR from 'jsqr';
-import vCardJS from 'vcards-js';
 
 export default class ViewScanner extends LightningElement {
   @track haveQrCode = true;
@@ -21,13 +21,16 @@ export default class ViewScanner extends LightningElement {
   };
 
   saveContactInfo = () => {
-    let vCard = vCardJS();
+    let vCard = new VCard();
+    const firstName = this.template.querySelector('.user-name');
 
-    vCard.firstName = this.template.querySelector('.user-name');
-    vCard.email = this.template.querySelector('.user-email');
-    vCard.note = 'Notes on Eric';
+    //   vcard.addName(lastname, firstname, additional, prefix, suffix);
+    vCard.addName('', firstName, '', '', '');
 
-    vCard.saveToFile(`./snowforce-${vCard.firstName}.vcf`);
+    vCard.addEmail = this.template.querySelector('.user-email');
+    vCard.addNote = this.template.querySelector('.user-notes');
+
+    vCard.saveToFile(`./snowforce-${firstName}.vcf`);
   };
 
   renderedCallback() {
