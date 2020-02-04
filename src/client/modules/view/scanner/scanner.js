@@ -22,10 +22,15 @@ export default class ViewScanner extends LightningElement {
     const email = this.template.querySelector('.email-input').value;
     const notes = this.template.querySelector('.notes-input').value;
 
+    const dateStr = new Date().toISOString();
+
     const vCard = `BEGIN:VCALENDAR
 VERSION:2.0
 BEGIN:VEVENT
 SUMMARY:SNOWFORCE
+DTSTAMP:${dateStr}
+DTSTART:${dateStr}
+DTEND:${dateStr}
 BEGIN:VCARD
 VERSION:3.0
 FN;CHARSET=UTF-8:${firstName} ${lastName}
@@ -36,7 +41,7 @@ TITLE;CHARSET=UTF-8:${title}
 ROLE;CHARSET=UTF-8:${role}
 ORG;CHARSET=UTF-8:${organization}
 NOTE;CHARSET=UTF-8:${notes}
-REV:${new Date()}
+REV:${dateStr}
 END:VCARD
 END:VEVENT
 END:VCALENDAR`;
