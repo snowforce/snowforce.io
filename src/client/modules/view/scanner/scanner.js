@@ -8,7 +8,7 @@ export default class ViewScanner extends LightningElement {
   @track haveCameraAccess = false;
 
   renderedCallback() {
-    let video = document.createElement('video');
+    let video = this.template.querySelector('video');
     let canvasElement = this.template.querySelector('canvas');
     let canvas = canvasElement.getContext('2d');
 
