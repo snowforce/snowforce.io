@@ -69,7 +69,7 @@ END:VCALENDAR`;
     var element = document.createElement('a');
     element.setAttribute(
       'href',
-      'data:text/x-vcard;charset=utf-8,' + encodeURIComponent(text)
+      'data:text/calendar;charset=utf-8,' + encodeURIComponent(text)
     );
     element.setAttribute('download', filename);
 
