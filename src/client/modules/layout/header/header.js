@@ -65,6 +65,11 @@ export default class LayoutHeader extends LightningElement {
           link: '/venue',
           iconName: 'venue'
         }
+        // {
+        //   title: 'Scanner',
+        //   link: '/scanner',
+        //   iconName: 'scanner'
+        // }
       ]
     },
     {

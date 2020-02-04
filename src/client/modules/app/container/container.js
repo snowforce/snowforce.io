@@ -130,6 +130,12 @@ export default class AppContainer extends LightningElement {
           /* webpackChunkName: "view-volunteer" */ 'view/volunteer'
         );
         this.setPage('view-volunteer', ViewVolunteer);
+      },
+      '/scanner': async () => {
+        const { default: ViewScanner } = await import(
+          /* webpackChunkName: "view-scanner" */ 'view/scanner'
+        );
+        this.setPage('view-scanner', ViewScanner);
       }
     });
 
