@@ -35,7 +35,10 @@ NOTE;CHARSET=UTF-8:${notes}
 REV:${new Date()}
 END:VCARD`;
 
-    this.download(vCard, `${firstName}.vcf`);
+    this.download(
+      vCard,
+      `Snowforce-${firstName}-${lastName}-${organization}.vcf`
+    );
   };
 
   download = (text, filename) => {
