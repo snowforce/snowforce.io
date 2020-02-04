@@ -17,18 +17,24 @@ export default class ViewScanner extends LightningElement {
       this.canvasElement = this.template.querySelector('canvas');
       this.canvas = this.canvasElement.getContext('2d');
 
-      // Use facingMode: environment to attemt to get the front camera on phones
+      if (!navigator.mediaDevices) {
+        console.warn('No Access to Navigator Media Devices');
+        return;
+      }
+      // Use facingMode: environment to attempt to get the front camera on phones
       navigator.mediaDevices
         .getUserMedia({ video: { facingMode: 'environment' } })
-        .then(function(stream) {
-          this.video.srcObject = stream;
-          this.video.setAttribute('playsinline', true); // required to tell iOS safari we don't want fullscreen
-          this.video.play();
-          // eslint-disable-next-line @lwc/lwc/no-async-operation
-          requestAnimationFrame(this.tick);
-        });
+        .then(this.streamVideo);
     }
   }
+
+  streamVideo = stream => {
+    this.video.srcObject = stream;
+    this.video.setAttribute('playsinline', true); // required to tell iOS safari we don't want fullscreen
+    this.video.play();
+    // eslint-disable-next-line @lwc/lwc/no-async-operation
+    requestAnimationFrame(this.tick);
+  };
 
   drawLine = (begin, end, color) => {
     this.canvas.beginPath();
