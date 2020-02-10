@@ -7,7 +7,7 @@
 
 import { LightningElement, api } from 'lwc';
 
-export default class cMenuSubheader extends LightningElement {
+export default class sfMenuSubheader extends LightningElement {
   @api label;
 
   connectedCallback() {

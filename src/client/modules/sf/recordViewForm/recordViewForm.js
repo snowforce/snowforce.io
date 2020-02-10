@@ -5,8 +5,6 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
  */
 
-import labelApiNameMismatch from '@salesforce/label/c.lightning_LightningRecordEditForm_apiNameMismatch';
-import labelInvalidId from '@salesforce/label/c.lightning_LightningRecordEditForm_invalidID';
 import { LightningElement, api, track, wire } from 'lwc';
 import { getRecordUi } from 'lightning/uiRecordApi';
 
@@ -23,7 +21,7 @@ import {
   setLabelAlignment
 } from 'c/formDensityUtilsPrivate';
 
-export default class cRecordView extends LightningElement {
+export default class sfRecordView extends LightningElement {
   optionalFields = [];
   fieldSet;
 
@@ -91,7 +89,7 @@ export default class cRecordView extends LightningElement {
 
     this._recordId = normalizeRecordId(value);
     if (!this._recordId) {
-      const error = { message: labelInvalidId };
+      const error = { message: 'InvalidId' };
       this.handleError(error);
 
       return;
@@ -156,7 +154,7 @@ export default class cRecordView extends LightningElement {
 
     const record = data.records[this.recordId];
     if (record.apiName !== this.objectApiName) {
-      const message = labelApiNameMismatch
+      const message = 'ApiNameMismatch'
         .replace('{0}', this.objectApiName)
         .replace('{1}', record.apiName);
       this.handleError({ message });

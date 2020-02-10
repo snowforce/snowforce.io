@@ -5,8 +5,8 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
  */
 
-import labelRequired from '@salesforce/label/c.lightning_LightningControl_required';
 import { LightningElement, api, track } from 'lwc';
+
 import {
   normalizeBoolean,
   synchronizeAttrs,
@@ -22,12 +22,12 @@ import {
 import { classSet } from 'c/utils';
 
 const i18n = {
-  required: labelRequired
+  required: 'Required'
 };
 
 const DEBOUNCE_PERIOD = 200;
 
-export default class cCheckboxGroup extends LightningElement {
+export default class sfCheckboxGroup extends LightningElement {
   static delegatesFocus = true;
 
   @api label;

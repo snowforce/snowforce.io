@@ -5,15 +5,6 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
  */
 
-import labelBadInput from '@salesforce/label/c.lightning_LightningErrorMessage_validityBadInput';
-import labelPatternMismatch from '@salesforce/label/c.lightning_LightningErrorMessage_validityPatternMismatch';
-import labelRangeOverflow from '@salesforce/label/c.lightning_LightningErrorMessage_validityRangeOverflow';
-import labelRangeUnderflow from '@salesforce/label/c.lightning_LightningErrorMessage_validityRangeUnderflow';
-import labelStepMismatch from '@salesforce/label/c.lightning_LightningErrorMessage_validityStepMismatch';
-import labelTooLong from '@salesforce/label/c.lightning_LightningErrorMessage_validityTooLong';
-import labelTooShort from '@salesforce/label/c.lightning_LightningErrorMessage_validityTooShort';
-import labelTypeMismatch from '@salesforce/label/c.lightning_LightningErrorMessage_validityTypeMismatch';
-import labelValueMissing from '@salesforce/label/c.lightning_LightningErrorMessage_validityValueMissing';
 import { assert } from 'c/utilsPrivate';
 
 const constraintsSortedByPriority = [
@@ -30,16 +21,16 @@ const constraintsSortedByPriority = [
 ];
 
 const defaultLabels = {
-  badInput: labelBadInput,
-  customError: labelBadInput,
-  patternMismatch: labelPatternMismatch,
-  rangeOverflow: labelRangeOverflow,
-  rangeUnderflow: labelRangeUnderflow,
-  stepMismatch: labelStepMismatch,
-  tooLong: labelTooLong,
-  tooShort: labelTooShort,
-  typeMismatch: labelTypeMismatch,
-  valueMissing: labelValueMissing
+  badInput: 'BadInput',
+  customError: 'BadInput',
+  patternMismatch: 'PatternMismatch',
+  rangeOverflow: 'RangeOverflow',
+  rangeUnderflow: 'RangeUnderflow',
+  stepMismatch: 'StepMismatch',
+  tooLong: 'TooLong',
+  tooShort: 'TooShort',
+  typeMismatch: 'TypeMismatch',
+  valueMissing: 'ValueMissing'
 };
 
 function resolveBestMatch(validity) {

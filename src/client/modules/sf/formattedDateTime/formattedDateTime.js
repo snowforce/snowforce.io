@@ -10,7 +10,7 @@ import { dateTimeFormat } from 'c/internationalizationLibrary';
 import { isValidISODateTimeString } from 'c/iso8601Utils';
 import { normalizeBoolean } from 'c/utilsPrivate';
 
-export default class cFormattedDateTime extends LightningElement {
+export default class sfFormattedDateTime extends LightningElement {
   @api value;
 
   @api weekday;
@@ -76,7 +76,7 @@ export default class cFormattedDateTime extends LightningElement {
 
   printError(value) {
     const errorMsg =
-      `<c-formatted-date-time> The value attribute accepts either a Date object, a timestamp, or a valid ISO8601 formatted string ` +
+      `<sf-formatted-date-time> The value attribute accepts either a Date object, a timestamp, or a valid ISO8601 formatted string ` +
       `with timezone offset. but we are getting the ${typeof value} value "${value}" instead.`;
     console.warn(errorMsg); // eslint-disable-line no-console
   }

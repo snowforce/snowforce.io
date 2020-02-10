@@ -21,7 +21,7 @@ const STATE_CODE_FIELD = 'StateCode';
 const COUNTRY_CODE_FIELD = 'CountryCode';
 const SLDS_FIELD_CLASS = 'slds-form-element__static';
 
-export default class cOutputField extends LightningElement {
+export default class sfOutputField extends LightningElement {
   @track computedFieldClass = SLDS_FIELD_CLASS;
   @track _fieldName;
 
@@ -93,7 +93,6 @@ export default class cOutputField extends LightningElement {
   renderedCallback() {
     if (!this.uiField.type) {
       this.dispatchEvent(
-        // eslint-disable-next-line lightning-global/no-custom-event-bubbling
         new CustomEvent('registeroutputfield', {
           bubbles: true,
           composed: true,

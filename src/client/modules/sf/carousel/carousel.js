@@ -5,8 +5,6 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
  */
 
-import labelAutoPlay from '@salesforce/label/c.lightning_LightningCarousel_autoPlay';
-import labelTabString from '@salesforce/label/c.lightning_LightningCarousel_tabString';
 import { LightningElement, api, track } from 'lwc';
 import { keyCodes, normalizeBoolean } from 'c/utilsPrivate';
 
@@ -21,11 +19,11 @@ const DIRECTION_LEFT = 'left';
 const DIRECTION_RIGHT = 'right';
 
 const i18n = {
-  autoPlay: labelAutoPlay,
-  tabString: labelTabString
+  autoPlay: 'Auto Play',
+  tabString: 'Tab'
 };
 
-export default class cCarousel extends LightningElement {
+export default class sfCarousel extends LightningElement {
   get i18n() {
     return i18n;
   }

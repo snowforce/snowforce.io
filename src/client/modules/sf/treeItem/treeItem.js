@@ -5,18 +5,16 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
  */
 
-import labelCollapseBranch from '@salesforce/label/c.lightning_LightningTree_collapseBranch';
-import labelExpandBranch from '@salesforce/label/c.lightning_LightningTree_expandBranch';
 import { LightningElement, api, track } from 'lwc';
 import { classSet } from 'c/utils';
 import { keyCodes } from 'c/utilsPrivate';
 
 const i18n = {
-  collapseBranch: labelCollapseBranch,
-  expandBranch: labelExpandBranch
+  collapseBranch: 'CollapseBranch',
+  expandBranch: 'ExpandBranch'
 };
 
-export default class cTreeItem extends LightningElement {
+export default class sfTreeItem extends LightningElement {
   @track _children = [];
   @track _tabindexes = {};
   @track _selected = {};
@@ -198,7 +196,6 @@ export default class cTreeItem extends LightningElement {
     if (item !== undefined) {
       eventObject.detail = { key: item };
     }
-    // eslint-disable-next-line lightning-global/no-custom-event-identifier-arguments
     this.dispatchEvent(new CustomEvent(eventName, eventObject));
   }
 

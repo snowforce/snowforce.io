@@ -9,7 +9,7 @@ import { LightningElement, api, track } from 'lwc';
 import { isAbsoluteUrl } from 'c/utilsPrivate';
 import { updateRawLinkInfo } from 'c/routingService';
 
-export default class cFormattedUrl extends LightningElement {
+export default class sfFormattedUrl extends LightningElement {
   @api target;
 
   @api tooltip;

@@ -8,7 +8,7 @@
 import { LightningElement, api, track } from 'lwc';
 import { guid } from 'c/utilsPrivate';
 
-export default class cVerticalNavigationSection extends LightningElement {
+export default class sfVerticalNavigationSection extends LightningElement {
   headingId = guid();
 
   @track _label;

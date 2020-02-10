@@ -9,7 +9,7 @@
   <template if:true={isRoot}>
     <template for:each={children} for:item="item" for:index="index">
       <template if:true={item.node.isLeaf}>
-        <c-tree-item
+        <sf-tree-item
           role="treeitem"
           data-key={item.node.key}
           key={item.node.key}
@@ -27,10 +27,10 @@
           is-leaf={item.node.isLeaf}
           child-items={item.node.children}
         >
-        </c-tree-item>
+        </sf-tree-item>
       </template>
       <template if:false={item.node.isLeaf}>
-        <c-tree-item
+        <sf-tree-item
           role="treeitem"
           data-key={item.node.key}
           key={item.node.key}
@@ -50,7 +50,7 @@
           aria-label={item.node.label}
           aria-expanded={item.node.strexpanded}
         >
-        </c-tree-item>
+        </sf-tree-item>
       </template>
     </template>
   </template>
@@ -63,12 +63,12 @@
         aria-hidden="true"
         title={buttonLabel}
       >
-        <c-primitive-icon
+        <sf-primitive-icon
           icon-name={computedIconName}
           variant="bare"
           svg-class="slds-button__icon slds-button__icon_small"
         >
-        </c-primitive-icon>
+        </sf-primitive-icon>
         <span class="slds-assistive-text">
           {buttonLabel}
         </span>
@@ -90,7 +90,7 @@
       <div role="group">
         <template for:each={children} for:item="item">
           <template if:true={item.node.isLeaf}>
-            <c-tree-item
+            <sf-tree-item
               role="treeitem"
               data-key={item.node.key}
               key={item.node.key}
@@ -108,10 +108,10 @@
               is-leaf={item.node.isLeaf}
               child-items={item.node.children}
             >
-            </c-tree-item>
+            </sf-tree-item>
           </template>
           <template if:false={item.node.isLeaf}>
-            <c-tree-item
+            <sf-tree-item
               role="treeitem"
               data-key={item.node.key}
               key={item.node.key}
@@ -131,7 +131,7 @@
               aria-label={item.node.label}
               aria-expanded={item.node.strexpanded}
             >
-            </c-tree-item>
+            </sf-tree-item>
           </template>
         </template>
       </div>

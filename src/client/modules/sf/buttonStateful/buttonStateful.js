@@ -11,7 +11,7 @@ import { normalizeBoolean, normalizeString as normalize } from 'c/utilsPrivate';
 
 const DEFAULT_VARIANT = 'neutral';
 
-export default class cButtonStateful extends LightningElement {
+export default class sfButtonStateful extends LightningElement {
   static delegatesFocus = true;
 
   @api iconNameWhenOn;
@@ -93,7 +93,7 @@ export default class cButtonStateful extends LightningElement {
     outputVal = '';
     // eslint-disable-next-line no-console
     console.warn(
-      `<c-button-stateful> The "labelWhenOn" attribute value is required to show the label when selected has a value of true`
+      `<sf-button-stateful> The "labelWhenOn" attribute value is required to show the label when selected has a value of true`
     );
 
     return outputVal;
@@ -109,7 +109,7 @@ export default class cButtonStateful extends LightningElement {
     outputVal = '';
     // eslint-disable-next-line no-console
     console.warn(
-      `<c-button-stateful> The "labelWhenOff" attribute value is required to show the label when selected has a value of false`
+      `<sf-button-stateful> The "labelWhenOff" attribute value is required to show the label when selected has a value of false`
     );
 
     return outputVal;
@@ -182,7 +182,7 @@ export default class cButtonStateful extends LightningElement {
   }
 }
 
-cButtonStateful.interopMap = {
+sfButtonStateful.interopMap = {
   props: {
     selected: 'state'
   }

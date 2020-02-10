@@ -15,31 +15,31 @@
   >
     <span class="slds-text-not-selected">
       <template if:true={iconNameWhenOff}>
-        <c-primitive-icon
+        <sf-primitive-icon
           icon-name={iconNameWhenOff}
           svg-class="slds-button__icon_stateful slds-button__icon_left"
           variant="bare"
-        ></c-primitive-icon>
+        ></sf-primitive-icon>
       </template>
       {privateLabelWhenOff}
     </span>
     <span class="slds-text-selected">
       <template if:true={iconNameWhenOn}>
-        <c-primitive-icon
+        <sf-primitive-icon
           icon-name={iconNameWhenOn}
           svg-class="slds-button__icon_stateful slds-button__icon_left"
           variant="bare"
-        ></c-primitive-icon>
+        ></sf-primitive-icon>
       </template>
       {privateLabelWhenOn}
     </span>
     <span class="slds-text-selected-focus">
       <template if:true={privateIconNameWhenHover}>
-        <c-primitive-icon
+        <sf-primitive-icon
           icon-name={privateIconNameWhenHover}
           svg-class="slds-button__icon_stateful slds-button__icon_left"
           variant="bare"
-        ></c-primitive-icon>
+        ></sf-primitive-icon>
       </template>
       {privateLabelWhenHover}
     </span>

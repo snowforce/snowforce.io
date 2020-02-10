@@ -17,9 +17,6 @@ import {
 } from 'c/fieldUtils';
 import { normalizeString, deepCopy } from 'c/utilsPrivate';
 import { classSet } from 'c/utils';
-import labelSave from '@salesforce/label/c.lightning_LightningRecordForm_save';
-import labelCancel from '@salesforce/label/c.lightning_LightningRecordForm_cancel';
-import labelLoading from '@salesforce/label/c.lightning_LightningRecordForm_loading';
 
 const EDIT_MODE = 'edit';
 const VIEW_MODE = 'view';
@@ -43,7 +40,7 @@ function extractLayoutFromLayouts(layouts, apiName, layout) {
   return null;
 }
 
-export default class cRecordForm extends LightningElement {
+export default class sfRecordForm extends LightningElement {
   @track readOnly = false;
   @track _recordId;
   @track _objectApiName;
@@ -60,9 +57,9 @@ export default class cRecordForm extends LightningElement {
   _layout;
   _dupMapper = {};
   _mode;
-  _labelSave = labelSave;
-  _labelCancel = labelCancel;
-  _labelLoading = labelLoading;
+  _labelSave = 'Save';
+  _labelCancel = 'Cancel';
+  _labelLoading = 'Loading';
   _loadedPending = false;
   _fieldsHandled = false;
   _rawFields;

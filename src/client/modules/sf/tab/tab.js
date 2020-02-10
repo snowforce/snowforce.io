@@ -8,7 +8,7 @@
 import { LightningElement, api, track } from 'lwc';
 import { normalizeBoolean } from 'c/utilsPrivate';
 
-export default class cTab extends LightningElement {
+export default class sfTab extends LightningElement {
   @track _loadContent = false;
 
   connectedCallback() {

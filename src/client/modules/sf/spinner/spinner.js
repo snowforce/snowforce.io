@@ -9,7 +9,7 @@ import { LightningElement, api } from 'lwc';
 import { classSet } from 'c/utils';
 import { normalizeString as normalize } from 'c/utilsPrivate';
 
-export default class cSpinner extends LightningElement {
+export default class sfSpinner extends LightningElement {
   @api alternativeText;
 
   @api size = 'medium';
@@ -55,7 +55,7 @@ export default class cSpinner extends LightningElement {
     if (!hasAlternativeText) {
       // eslint-disable-next-line no-console
       console.warn(
-        `<c-spinner> The alternativeText attribute should not be empty. Please add a description of what is causing the wait.`
+        `<sf-spinner> The alternativeText attribute should not be empty. Please add a description of what is causing the wait.`
       );
     }
 

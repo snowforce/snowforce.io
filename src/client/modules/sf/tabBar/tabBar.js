@@ -5,11 +5,6 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
  */
 
-import labelOverflowMore from '@salesforce/label/c.lightning_LightningTabs_overflowMore';
-import labelOverflowMoreAlternativeText from '@salesforce/label/c.lightning_LightningTabs_overflowMoreAlternativeText';
-import labelOverflowMoreTitle from '@salesforce/label/c.lightning_LightningTabs_overflowMoreTitle';
-import labelErrorStateAlternativeText from '@salesforce/label/c.lightning_LightningTabs_errorStateAlternativeText';
-
 import { LightningElement, api, track } from 'lwc';
 import { classSet } from 'c/utils';
 import { calculateOverflow } from 'c/overflowLibrary';
@@ -17,15 +12,15 @@ import { LightningResizeObserver } from 'c/resizeObserver';
 import { handleKeyDownOnTabList } from './keyboard';
 
 const i18n = {
-  more: labelOverflowMore,
-  moreAlternativeText: labelOverflowMoreAlternativeText,
-  moreTitle: labelOverflowMoreTitle,
-  errorStateAlternativeText: labelErrorStateAlternativeText
+  more: 'OverflowMore',
+  moreAlternativeText: 'OverflowMoreAlternativeText',
+  moreTitle: 'OverflowMoreTitle',
+  errorStateAlternativeText: 'ErrorStateAlternativeText'
 };
 
 const RECOMPUTE_OVERFLOW_THRESHOLD_PX = 30;
 
-export default class cTabBar extends LightningElement {
+export default class sfTabBar extends LightningElement {
   @api disableOverflow = false;
 
   @track _allTabs = [];
@@ -382,7 +377,6 @@ export default class cTabBar extends LightningElement {
 
       const tab = this._findTabByValue(tabValue);
       let tabWidth = tabHeaderElement.getBoundingClientRect().width;
-      // eslint-disable-next-line lightning-global/check-return-value-for-nullable-call
       const computedStyle = getComputedStyle(tabHeaderElement);
       if (computedStyle) {
         tabWidth +=

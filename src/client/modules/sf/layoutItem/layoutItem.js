@@ -15,7 +15,7 @@ import {
   normalizeDirection
 } from './styleUtils';
 
-export default class cLayoutItem extends LightningElement {
+export default class sfLayoutItem extends LightningElement {
   @api get flexibility() {
     return this._flexibility;
   }

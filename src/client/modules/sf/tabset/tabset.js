@@ -15,7 +15,7 @@ const tabClassPrefixByVariant = {
   standard: 'slds-tabs_default'
 };
 
-export default class cTabset extends LightningElement {
+export default class sfTabset extends LightningElement {
   @api title;
 
   @track _variant = 'standard';

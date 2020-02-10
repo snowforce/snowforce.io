@@ -13,7 +13,7 @@ import { computeSldsClass } from 'c/iconUtils';
 const DEFAULT_SIZE = 'medium';
 const DEFAULT_VARIANT = 'square';
 
-export default class cAvatar extends LightningElement {
+export default class sfAvatar extends LightningElement {
   @api alternativeText = '';
 
   @api fallbackIconName;
@@ -93,7 +93,7 @@ export default class cAvatar extends LightningElement {
   handleImageError(event) {
     // eslint-disable-next-line no-console
     console.warn(
-      `<c-avatar> Image with src="${event.target.src}" failed to load.`
+      `<sf-avatar> Image with src="${event.target.src}" failed to load.`
     );
 
     this._src = '';

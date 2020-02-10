@@ -9,7 +9,7 @@ import { LightningElement, api, track } from 'lwc';
 import { normalizeBoolean } from 'c/utilsPrivate';
 import { getLinkInfo } from 'c/routingService';
 
-export default class cFormattedLookup extends LightningElement {
+export default class sfFormattedLookup extends LightningElement {
   @api displayValue;
 
   set recordId(value) {

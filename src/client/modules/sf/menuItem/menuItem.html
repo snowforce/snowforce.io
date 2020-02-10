@@ -21,13 +21,13 @@
   >
     <span class="slds-truncate">
       <template if:true={isMenuItemCheckbox}>
-        <c-primitive-icon
+        <sf-primitive-icon
           icon-name="utility:check"
           size="x-small"
           svg-class={computedCheckedIconClass}
           variant="bare"
         >
-        </c-primitive-icon>
+        </sf-primitive-icon>
       </template>
 
       <!-- draft marker -->
@@ -40,13 +40,13 @@
 
       <!-- Prefix icon -->
       <template if:true={prefixIconName}>
-        <c-primitive-icon
+        <sf-primitive-icon
           icon-name={prefixIconName}
           size="x-small"
           svg-class="slds-icon slds-icon_x-small slds-icon-text-default slds-m-right_x-small"
           variant="bare"
         >
-        </c-primitive-icon>
+        </sf-primitive-icon>
       </template>
 
       {label}
@@ -54,13 +54,13 @@
 
     <!-- Suffix icon -->
     <template if:true={iconName}>
-      <c-primitive-icon
+      <sf-primitive-icon
         icon-name={iconName}
         size="x-small"
         svg-class="slds-icon-text-default slds-m-left_small slds-shrink-none"
         variant="bare"
       >
-      </c-primitive-icon>
+      </sf-primitive-icon>
     </template>
   </a>
 </template>

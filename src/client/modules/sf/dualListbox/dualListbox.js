@@ -5,22 +5,6 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
  */
 
-import labelComponentAssistiveText from '@salesforce/label/c.lightning_LightningDualListbox_componentAssistiveText';
-import labelDownButtonAssistiveText from '@salesforce/label/c.lightning_LightningDualListbox_downButtonAssistiveText';
-import labelMaxError from '@salesforce/label/c.lightning_LightningDualListbox_maxError';
-import labelMaxHelp from '@salesforce/label/c.lightning_LightningDualListbox_maxHelp';
-import labelMinErrorPlural from '@salesforce/label/c.lightning_LightningDualListbox_minErrorPlural';
-import labelMinErrorSingular from '@salesforce/label/c.lightning_LightningDualListbox_minErrorSingular';
-import labelMinHelp from '@salesforce/label/c.lightning_LightningDualListbox_minHelp';
-import labelMinRequiredErrorPlural from '@salesforce/label/c.lightning_LightningDualListbox_minRequiredErrorPlural';
-import labelMinRequiredErrorSingular from '@salesforce/label/c.lightning_LightningDualListbox_minRequiredErrorSingular';
-import labelOptionLockAssistiveText from '@salesforce/label/c.lightning_LightningDualListbox_optionLockAssistiveText';
-import labelRequired from '@salesforce/label/c.lightning_LightningControl_required';
-import labelRequiredError from '@salesforce/label/c.lightning_LightningDualListbox_requiredError';
-import labelRequiredOptionError from '@salesforce/label/c.lightning_LightningDualListbox_requiredOptionError';
-import labelUpButtonAssistiveText from '@salesforce/label/c.lightning_LightningDualListbox_upButtonAssistiveText';
-import labelMoveSelectionToAssistiveText from '@salesforce/label/c.lightning_LightningDualListbox_moveSelectionToAssistiveText';
-import labelLoadingText from '@salesforce/label/c.lightning_LightningCombobox_loadingText';
 import { LightningElement, api, track } from 'lwc';
 import { handleKeyDownOnOption } from './keyboard';
 import { classSet } from 'c/utils';
@@ -39,25 +23,25 @@ import {
 } from 'c/inputUtils';
 
 const i18n = {
-  componentAssistiveText: labelComponentAssistiveText,
-  downButtonAssistiveText: labelDownButtonAssistiveText,
-  maxError: labelMaxError,
-  maxHelp: labelMaxHelp,
-  minErrorPlural: labelMinErrorPlural,
-  minErrorSingular: labelMinErrorSingular,
-  minHelp: labelMinHelp,
-  minRequiredErrorPlural: labelMinRequiredErrorPlural,
-  minRequiredErrorSingular: labelMinRequiredErrorSingular,
-  optionLockAssistiveText: labelOptionLockAssistiveText,
-  required: labelRequired,
-  requiredError: labelRequiredError,
-  requiredOptionError: labelRequiredOptionError,
-  upButtonAssistiveText: labelUpButtonAssistiveText,
-  moveSelectionToAssistiveText: labelMoveSelectionToAssistiveText,
-  loadingText: labelLoadingText
+  componentAssistiveText: 'ComponentAssistiveText',
+  downButtonAssistiveText: 'DownButtonAssistiveText',
+  maxError: 'MaxError',
+  maxHelp: 'MaxHelp',
+  minErrorPlural: 'MinErrorPlural',
+  minErrorSingular: 'MinErrorSingular',
+  minHelp: 'MinHelp',
+  minRequiredErrorPlural: 'MinRequiredErrorPlural',
+  minRequiredErrorSingular: 'MinRequiredErrorSingular',
+  optionLockAssistiveText: 'OptionLockAssistiveText',
+  required: 'Required',
+  requiredError: 'RequiredError',
+  requiredOptionError: 'RequiredOptionError',
+  upButtonAssistiveText: 'UpButtonAssistiveText',
+  moveSelectionToAssistiveText: 'MoveSelectionToAssistiveText',
+  loadingText: 'LoadingText'
 };
 
-export default class cDualListbox extends LightningElement {
+export default class sfDualListbox extends LightningElement {
   @api sourceLabel;
 
   @api selectedLabel;
@@ -742,22 +726,22 @@ export default class cDualListbox extends LightningElement {
   assertRequiredAttributes() {
     assert(
       !!this.label,
-      `<c-dual-listbox> Missing required "label" attribute.`
+      `<sf-dual-listbox> Missing required "label" attribute.`
     );
 
     assert(
       !!this.sourceLabel,
-      `<c-dual-listbox> Missing required "sourceLabel" attribute.`
+      `<sf-dual-listbox> Missing required "sourceLabel" attribute.`
     );
 
     assert(
       !!this.selectedLabel,
-      `<c-dual-listbox> Missing required "selectedLabel" attribute.`
+      `<sf-dual-listbox> Missing required "selectedLabel" attribute.`
     );
 
     assert(
       !!this.options,
-      `<c-dual-listbox> Missing required "options" attribute.`
+      `<sf-dual-listbox> Missing required "options" attribute.`
     );
   }
 

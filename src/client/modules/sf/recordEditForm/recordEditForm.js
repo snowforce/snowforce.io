@@ -5,8 +5,6 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
  */
 
-import labelApiNameMismatch from '@salesforce/label/c.lightning_LightningRecordEditForm_apiNameMismatch';
-import labelInvalidId from '@salesforce/label/c.lightning_LightningRecordEditForm_invalidID';
 import { LightningElement, api, track, wire } from 'lwc';
 import { getRecordUi, getRecordCreateDefaults } from 'lightning/uiRecordApi';
 import { getPicklistValuesByRecordType } from 'lightning/uiObjectInfoApi';
@@ -32,7 +30,7 @@ import { DependencyManager } from 'c/fieldDependencyManager';
 
 const MASTER_RECORD_TYPE_ID = '012000000000000AAA';
 
-export default class cRecordEditForm extends LightningElement {
+export default class sfRecordEditForm extends LightningElement {
   @api fieldNames;
 
   @api recordTypeId;
@@ -151,7 +149,7 @@ export default class cRecordEditForm extends LightningElement {
     }
     this._recordId = normalizeRecordId(id);
     if (!this._recordId && !this._createMode) {
-      const error = { message: labelInvalidId };
+      const error = { message: 'InvalidId' };
       this.handleErrors(error);
       this._recordIdError = true;
       return;
@@ -243,7 +241,7 @@ export default class cRecordEditForm extends LightningElement {
     const record = data.records ? data.records[this._recordId] : data.record;
 
     if (record.apiName !== this.objectApiName) {
-      const message = labelApiNameMismatch
+      const message = 'ApiNameMismatch'
         .replace('{0}', this.objectApiName)
         .replace('{1}', record.apiName);
       this.handleErrors({ message });
@@ -356,7 +354,6 @@ export default class cRecordEditForm extends LightningElement {
           }
 
           this.dispatchEvent(
-            // eslint-disable-next-line lightning-global/no-custom-event-bubbling
             new CustomEvent('success', {
               composed: true,
               bubbles: true,
@@ -469,7 +466,6 @@ export default class cRecordEditForm extends LightningElement {
 
     const fields = JSON.parse(JSON.stringify(this.getFormValues()));
 
-    // eslint-disable-next-line lightning-global/no-custom-event-bubbling
     const evt = new CustomEvent('submit', {
       composed: true,
       bubbles: true,

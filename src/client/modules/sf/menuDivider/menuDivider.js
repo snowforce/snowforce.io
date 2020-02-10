@@ -11,7 +11,7 @@ import {
   classListMutation
 } from 'c/utilsPrivate';
 
-export default class cMenuDivider extends LightningElement {
+export default class sfMenuDivider extends LightningElement {
   @track _variant = 'standard';
 
   connectedCallback() {

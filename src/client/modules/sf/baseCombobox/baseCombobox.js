@@ -5,10 +5,6 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
  */
 
-import labelAriaSelectedOptions from '@salesforce/label/c.lightning_LightningCombobox_ariaSelectedOptions';
-import labelDeselectOptionKeyboard from '@salesforce/label/c.lightning_LightningCombobox_deselectOptionKeyboard';
-import labelLoadingText from '@salesforce/label/c.lightning_LightningCombobox_loadingText';
-import labelPillCloseButtonAlternativeText from '@salesforce/label/c.lightning_LightningCombobox_pillCloseButtonAlternativeText';
 import { api, LightningElement, track } from 'lwc';
 import { handleKeyDownOnInput } from './keyboard';
 import { BaseComboboxEvents } from './baseComboboxEvents';
@@ -25,13 +21,15 @@ import {
 import { VARIANT } from 'c/inputUtils';
 
 const i18n = {
-  ariaSelectedOptions: labelAriaSelectedOptions,
-  deselectOptionKeyboard: labelDeselectOptionKeyboard,
-  pillCloseButtonAlternativeText: labelPillCloseButtonAlternativeText,
-  loadingText: labelLoadingText
+  ariaSelectedOptions: 'Selected Options',
+  deselectOptionKeyboard: 'Deselect',
+  pillCloseButtonAlternativeText: 'Close',
+  loadingText: 'Loading'
 };
 
+// eslint-disable-next-line no-unused-vars
 const SMALL_MIN_HEIGHT = '2.25rem';
+// eslint-disable-next-line no-unused-vars
 const MEDIUM_MIN_HEIGHT = '6.75rem';
 
 const ARIA_CONTROLS = 'aria-controls';
@@ -40,7 +38,7 @@ const ARIA_DESCRIBEDBY = 'aria-describedby';
 const ARIA_LABEL = 'aria-label';
 const ARIA_ACTIVEDESCENDANT = 'aria-activedescendant';
 
-export default class cBaseCombobox extends LightningElement {
+export default class sfBaseCombobox extends LightningElement {
   static delegatesFocus = true;
 
   @api inputText = '';

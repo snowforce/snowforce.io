@@ -15,12 +15,12 @@
   >
     <div class={computedFormElementClass} role="none">
       <template if:true={hasInputPill}>
-        <c-icon
+        <sf-icon
           icon-name={inputPill.iconName}
           alternative-text={inputPill.iconAlternativeText}
           size="x-small"
           class="slds-icon_container slds-combobox__input-entity-icon"
-        ></c-icon>
+        ></sf-icon>
       </template>
       <input
         id="input"
@@ -51,11 +51,11 @@
             class="slds-button slds-button_icon slds-input__icon slds-input__icon_right"
             title={i18n.pillCloseButtonAlternativeText}
           >
-            <c-primitive-icon
+            <sf-primitive-icon
               icon-name="utility:close"
               variant="bare"
               svg-class="slds-button__icon"
-            ></c-primitive-icon>
+            ></sf-primitive-icon>
             <span class="slds-assistive-text"
               >{i18n.pillCloseButtonAlternativeText}</span
             >
@@ -75,12 +75,12 @@
             </div>
           </template>
           <template if:true={inputIconName}>
-            <c-icon
+            <sf-icon
               alternative-text={inputIconAlternativeText}
               icon-name={inputIconName}
               size={inputIconSize}
               class="slds-input__icon slds-input__icon_right"
-            ></c-icon>
+            ></sf-icon>
           </template>
         </div>
       </template>
@@ -100,7 +100,7 @@
       <template if:true={_hasDropdownOpened}>
         <template for:each={_items} for:item="item">
           <template if:false={item.items}>
-            <c-base-combobox-item
+            <sf-base-combobox-item
               role="option"
               item={item}
               id={item.id}
@@ -110,7 +110,7 @@
               onmouseenter={handleOptionMouseEnter}
               class="slds-media slds-listbox__option slds-media_center"
             >
-            </c-base-combobox-item>
+            </sf-base-combobox-item>
           </template>
           <template if:true={item.items}>
             <ul role="group" aria-label={item.label} key={item.label}>
@@ -132,7 +132,7 @@
                   class="slds-listbox__item"
                   key={groupItem.value}
                 >
-                  <c-base-combobox-item
+                  <sf-base-combobox-item
                     role="option"
                     item={groupItem}
                     id={groupItem.id}
@@ -141,7 +141,7 @@
                     class="slds-media slds-listbox__option slds-media_center"
                     onmouseenter={handleOptionMouseEnter}
                   >
-                  </c-base-combobox-item>
+                  </sf-base-combobox-item>
                 </li>
               </template>
             </ul>

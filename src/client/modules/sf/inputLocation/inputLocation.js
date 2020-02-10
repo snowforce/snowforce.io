@@ -5,11 +5,6 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
  */
 
-import labelCoordinateIsRequired from '@salesforce/label/c.lightning_LightningInputLocation_coordinateIsRequired';
-import labelInvalidLatitude from '@salesforce/label/c.lightning_LightningInputLocation_invalidLatitude';
-import labelInvalidLongitude from '@salesforce/label/c.lightning_LightningInputLocation_invalidLongitude';
-import labelLatitude from '@salesforce/label/c.lightning_LightningInputLocation_latitude';
-import labelLongitude from '@salesforce/label/c.lightning_LightningInputLocation_longitude';
 import { LightningElement, api, track } from 'lwc';
 import { classSet } from 'c/utils';
 import {
@@ -28,14 +23,14 @@ import {
 } from 'c/inputUtils';
 
 const i18n = {
-  coordinateIsRequired: labelCoordinateIsRequired,
-  invalidLatitude: labelInvalidLatitude,
-  invalidLongitude: labelInvalidLongitude,
-  latitude: labelLatitude,
-  longitude: labelLongitude
+  coordinateIsRequired: 'CoordinateIsRequired',
+  invalidLatitude: 'InvalidLatitude',
+  invalidLongitude: 'InvalidLongitude',
+  latitude: 'Latitude',
+  longitude: 'Longitude'
 };
 
-export default class cInputLocation extends LightningElement {
+export default class sfInputLocation extends LightningElement {
   static delegatesFocus = true;
 
   @api label;

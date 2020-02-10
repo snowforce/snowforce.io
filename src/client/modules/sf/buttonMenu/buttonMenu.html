@@ -29,18 +29,18 @@
     >
     {label}
 
-    <c-primitive-icon
+    <sf-primitive-icon
       icon-name={iconName}
       svg-class="slds-button__icon"
       variant="bare"
-    ></c-primitive-icon>
+    ></sf-primitive-icon>
 
     <template if:true={computedShowDownIcon}>
-      <c-primitive-icon
+      <sf-primitive-icon
         icon-name="utility:down"
         svg-class="slds-button__icon slds-button__icon_x-small slds-m-left_xx-small"
         variant="bare"
-      ></c-primitive-icon>
+      ></sf-primitive-icon>
     </template>
 
     <span class="slds-assistive-text">{computedAlternativeText}</span>
@@ -54,10 +54,10 @@
       onscroll={handleDropdownScroll}
     >
       <template if:true={isLoading}>
-        <c-spinner
+        <sf-spinner
           size="small"
           alternative-text={computedLoadingStateAlternativeText}
-        ></c-spinner>
+        ></sf-spinner>
       </template>
       <template if:false={isLoading}>
         <div

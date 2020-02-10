@@ -9,7 +9,7 @@ import { LightningElement, api, track } from 'lwc';
 import { classSet } from 'c/utils';
 import { isNarrow, isBase } from './utils';
 
-export default class cCard extends LightningElement {
+export default class sfCard extends LightningElement {
   @api title;
 
   @api iconName;

@@ -13,7 +13,7 @@ import * as iconUtils from 'c/iconUtils';
 import standardTemplate from './primitiveIcon.html';
 import { getIconSvgTemplates } from 'lightning/configProvider';
 
-export default class cPrimitiveIcon extends LightningElement {
+export default class sfPrimitiveIcon extends LightningElement {
   @api iconName;
   @api src;
   @api svgClass;

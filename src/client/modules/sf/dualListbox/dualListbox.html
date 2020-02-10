@@ -80,15 +80,15 @@
             </ul>
           </div>
           <div if:true={showActivityIndicator}>
-            <c-spinner
+            <sf-spinner
               size="small"
               variant="brand"
               alternative-text={i18n.loadingText}
-            ></c-spinner>
+            ></sf-spinner>
           </div>
         </div>
         <div class="slds-dueling-list__column">
-          <c-button-icon
+          <sf-button-icon
             icon-name="utility:right"
             variant="container"
             onclick={handleRightButtonClick}
@@ -96,8 +96,8 @@
             title={addButtonLabel}
             alternative-text={addButtonLabel}
           >
-          </c-button-icon>
-          <c-button-icon
+          </sf-button-icon>
+          <sf-button-icon
             icon-name="utility:left"
             variant="container"
             onclick={handleLeftButtonClick}
@@ -105,7 +105,7 @@
             title={removeButtonLabel}
             alternative-text={removeButtonLabel}
           >
-          </c-button-icon>
+          </sf-button-icon>
         </div>
         <div
           class="slds-dueling-list__column slds-dueling-list__column_responsive"
@@ -157,11 +157,11 @@
                       <span
                         class="slds-media__figure slds-media__figure_reverse"
                       >
-                        <c-icon
+                        <sf-icon
                           icon-name="utility:lock"
                           size="x-small"
                           alternative-text={computedLockAssistiveText}
-                        ></c-icon>
+                        ></sf-icon>
                       </span>
                     </template>
                   </div>
@@ -173,7 +173,7 @@
 
         <template if:false={disableReordering}>
           <div class="slds-dueling-list__column">
-            <c-button-icon
+            <sf-button-icon
               icon-name="utility:up"
               variant="container"
               onclick={handleUpButtonClick}
@@ -181,8 +181,8 @@
               title={upButtonLabel}
               alternative-text={upButtonLabel}
             >
-            </c-button-icon>
-            <c-button-icon
+            </sf-button-icon>
+            <sf-button-icon
               icon-name="utility:down"
               variant="container"
               onclick={handleDownButtonClick}
@@ -190,7 +190,7 @@
               title={downButtonLabel}
               alternative-text={downButtonLabel}
             >
-            </c-button-icon>
+            </sf-button-icon>
           </div>
         </template>
       </div>

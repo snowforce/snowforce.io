@@ -8,7 +8,6 @@
 import { LightningElement, api, track } from 'lwc';
 import { classSet } from 'c/utils';
 import { assert, normalizeBoolean, normalizeString } from 'c/utilsPrivate';
-import subPage from '@salesforce/label/c.lightning_LightningVerticalNavigation_subPage';
 
 const ALLOWED_CHILDREN = [
   'C-VERTICAL-NAVIGATION-ITEM',
@@ -16,7 +15,7 @@ const ALLOWED_CHILDREN = [
   'C-VERTICAL-NAVIGATION-ITEM-ICON'
 ];
 
-export default class cVerticalNavigation extends LightningElement {
+export default class sfVerticalNavigation extends LightningElement {
   @track _compact;
   @track _shaded;
   @track _selectedItem;
@@ -48,7 +47,7 @@ export default class cVerticalNavigation extends LightningElement {
   }
 
   get ariaLabel() {
-    return this.privateAriaLabel || subPage;
+    return this.privateAriaLabel || 'SubPage';
   }
 
   set ariaLabel(ariaLabel) {

@@ -16,22 +16,22 @@
           <a href={href}>{label}</a>
         </h3>
         <div class="slds-shrink-none">
-          <c-button-menu
+          <sf-button-menu
             icon-size="x-small"
             alternative-text={buttonAlternateText}
             onselect={handleActionSelect}
             menu-alignment="right"
           >
             <template for:each={actions} for:item="action">
-              <c-menu-item
+              <sf-menu-item
                 key={action.label}
                 value={action}
                 label={action.label}
                 icon-name={action.iconName}
                 disabled={action.disabled}
-              ></c-menu-item>
+              ></sf-menu-item>
             </template>
-          </c-button-menu>
+          </sf-button-menu>
         </div>
       </div>
     </template>

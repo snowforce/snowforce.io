@@ -5,7 +5,6 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
  */
 
-import labelShowActions from '@salesforce/label/c.lightning_LightningPrimitiveCellActions_showActions';
 import { assert, classListMutation, normalizeString } from 'c/utilsPrivate';
 import { LightningElement, api, track } from 'lwc';
 import mediaTile from './mediaTile.html';
@@ -14,10 +13,10 @@ import standardTile from './standardTile.html';
 const VALID_TYPE_VALUES = ['standard', 'media'];
 
 const i18n = {
-  showActions: labelShowActions
+  showActions: 'ShowActions'
 };
 
-export default class cTile extends LightningElement {
+export default class sfTile extends LightningElement {
   @api label;
 
   @api href = '';

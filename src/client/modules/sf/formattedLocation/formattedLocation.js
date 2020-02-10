@@ -22,7 +22,7 @@ function isLatitude(latitude) {
   return isNumber(latitude) && Math.abs(latitude) <= MAX_LATITUDE;
 }
 
-export default class cFormattedLocation extends LightningElement {
+export default class sfFormattedLocation extends LightningElement {
   @api latitude;
 
   @api longitude;
@@ -33,7 +33,7 @@ export default class cFormattedLocation extends LightningElement {
     if (!valid) {
       // eslint-disable-next-line no-console
       console.warn(
-        `<c-formatted-location> expects latitude in range [-90.0, 90.0], longitude in range [-180.0, 180.0].`
+        `<sf-formatted-location> expects latitude in range [-90.0, 90.0], longitude in range [-180.0, 180.0].`
       );
     }
     return valid;

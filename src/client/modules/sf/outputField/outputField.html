@@ -16,12 +16,12 @@
 
   <div class="slds-form-element__control">
     <!-- Reference -->
-    <c-formatted-lookup
+    <sf-formatted-lookup
       if:true={isTypeReference}
       class={computedFieldClass}
       record-id={value}
       display-value={displayValue}
-    ></c-formatted-lookup>
+    ></sf-formatted-lookup>
 
     <!-- Boolean -->
     <lightning-input
@@ -36,26 +36,26 @@
     ></lightning-input>
 
     <!-- Currency -->
-    <c-formatted-text
+    <sf-formatted-text
       if:true={isTypeCurrency}
       class={computedFieldClass}
       value={displayValue}
-    ></c-formatted-text>
+    ></sf-formatted-text>
 
     <!-- TODO: Move to DateTime component -->
     <!-- Date -->
-    <c-formatted-text
+    <sf-formatted-text
       if:true={isTypeDate}
       class={computedFieldClass}
       value={displayValue}
-    ></c-formatted-text>
+    ></sf-formatted-text>
 
     <!-- DateTime -->
-    <c-formatted-text
+    <sf-formatted-text
       if:true={isTypeDateTime}
       class={computedFieldClass}
       value={displayValue}
-    ></c-formatted-text>
+    ></sf-formatted-text>
 
     <!-- Email -->
     <lightning-formatted-email
@@ -66,77 +66,77 @@
     ></lightning-formatted-email>
 
     <!-- Location -->
-    <c-formatted-location
+    <sf-formatted-location
       if:true={isTypeLocation}
       class={computedFieldClass}
       latitude={latitude}
       longitude={longitude}
-    ></c-formatted-location>
+    ></sf-formatted-location>
 
     <!-- Int -->
-    <c-formatted-number
+    <sf-formatted-number
       if:true={isTypeInt}
       class={computedFieldClass}
       format-style="decimal"
       value={value}
-    ></c-formatted-number>
+    ></sf-formatted-number>
 
     <!-- Double -->
-    <c-formatted-number
+    <sf-formatted-number
       if:true={isTypeDouble}
       class={computedFieldClass}
       format-style="decimal"
       value={value}
       minimum-fraction-digits={scale}
       maximum-fraction-digits={scale}
-    ></c-formatted-number>
+    ></sf-formatted-number>
 
     <!-- Percent -->
-    <c-formatted-number
+    <sf-formatted-number
       if:true={isTypePercent}
       class={fieldClass}
       format-style="percent-fixed"
       value={value}
       minimum-fraction-digits={scale}
       maximum-fraction-digits={scale}
-    ></c-formatted-number>
+    ></sf-formatted-number>
 
     <!-- Phone -->
     <!-- Verify formatting properties -->
-    <c-formatted-phone
+    <sf-formatted-phone
       if:true={isTypePhone}
       class={computedFieldClass}
       value={value}
-    ></c-formatted-phone>
+    ></sf-formatted-phone>
 
     <!-- Picklist -->
-    <c-formatted-text
+    <sf-formatted-text
       if:true={isTypePicklist}
       class={computedFieldClass}
       value={displayValue}
-    ></c-formatted-text>
+    ></sf-formatted-text>
 
     <!-- Multi-select Picklist -->
-    <c-formatted-text
+    <sf-formatted-text
       if:true={isTypeMultiPicklist}
       class={computedFieldClass}
       value={displayValue}
-    ></c-formatted-text>
+    ></sf-formatted-text>
 
     <!-- Auto Number, Text -->
-    <c-formatted-text
+    <sf-formatted-text
       if:true={isTypeString}
       class={computedFieldClass}
       value={value}
-    ></c-formatted-text>
+    ></sf-formatted-text>
 
     <!-- Text Area, Text Area Long -->
-    <c-formatted-text
+    <sf-formatted-text
       if:true={isTypeTextArea}
       class={computedFieldClass}
       linkify="true"
       value={value}
-    ></c-formatted-text>
+    ></sf-formatted-text>
 
     <!-- Rich Text Area -->
     <lightning-formatted-rich-text
@@ -146,22 +146,22 @@
     ></lightning-formatted-rich-text>
 
     <!-- Encrypted String -->
-    <c-formatted-text
+    <sf-formatted-text
       if:true={isTypeEncryptedString}
       class={computedFieldClass}
       value={value}
-    ></c-formatted-text>
+    ></sf-formatted-text>
 
     <!-- URL -->
-    <c-formatted-url
+    <sf-formatted-url
       if:true={isTypeUrl}
       class={computedFieldClass}
       label={displayValue}
       value={value}
-    ></c-formatted-url>
+    ></sf-formatted-url>
 
     <!-- Name -->
-    <c-formatted-name
+    <sf-formatted-name
       if:true={isTypeName}
       class={computedFieldClass}
       salutation={value.Salutation}
@@ -171,7 +171,7 @@
       suffix={value.Suffix}
       informal-name={value.InformalName}
     >
-    </c-formatted-name>
+    </sf-formatted-name>
 
     <!-- Address -->
     <lightning-formatted-address

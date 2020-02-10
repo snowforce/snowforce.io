@@ -9,7 +9,7 @@ import { LightningElement, api, track } from 'lwc';
 import { classSet } from 'c/utils';
 import { normalizeBoolean, normalizeString, keyCodes } from 'c/utilsPrivate';
 
-export default class cMenuItem extends LightningElement {
+export default class sfMenuItem extends LightningElement {
   @api value;
 
   @api label;
@@ -164,8 +164,7 @@ export default class cMenuItem extends LightningElement {
       return;
     }
 
-    if (this.href) {
-    } else {
+    if (!this.href) {
       event.preventDefault();
       this.dispatchSelect();
     }

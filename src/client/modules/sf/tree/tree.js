@@ -9,7 +9,7 @@ import { LightningElement, api, track } from 'lwc';
 import { TreeData } from './treeData';
 import { keyCodes, deepCopy } from 'c/utilsPrivate';
 
-export default class cTree extends LightningElement {
+export default class sfTree extends LightningElement {
   @api header;
 
   @track _currentFocusedItem = null;

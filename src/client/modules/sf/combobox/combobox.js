@@ -5,8 +5,6 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
  */
 
-import labelRequired from '@salesforce/label/c.lightning_LightningControl_required';
-import labelPlaceholder from '@salesforce/label/c.lightning_LightningCombobox_placeholder';
 import { LightningElement, api, track } from 'lwc';
 import { classSet } from 'c/utils';
 import {
@@ -24,11 +22,11 @@ import {
 } from 'c/inputUtils';
 
 const i18n = {
-  required: labelRequired,
-  placeholder: labelPlaceholder
+  required: 'Required',
+  placeholder: 'Placeholder'
 };
 
-export default class cCombobox extends LightningElement {
+export default class sfCombobox extends LightningElement {
   static delegatesFocus = true;
 
   @track _ariaLabelledBy = '';

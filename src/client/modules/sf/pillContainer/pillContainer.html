@@ -31,7 +31,7 @@
         class="slds-listbox-item"
         role="presentation"
       >
-        <c-pill
+        <sf-pill
           label={pillViewModel.pill.item.label}
           onclick={handlePillClick}
           name={index}
@@ -45,15 +45,15 @@
           aria-selected="true"
         >
           <template if:true={pillViewModel.pill.isIcon}>
-            <c-icon
+            <sf-icon
               class="slds-pill__icon_container"
               icon-name={pillViewModel.pill.item.iconName}
               alternative-text={pillViewModel.pill.item.alternativeText}
             >
-            </c-icon>
+            </sf-icon>
           </template>
           <template if:true={pillViewModel.pill.isAvatar}>
-            <c-avatar
+            <sf-avatar
               src={pillViewModel.pill.item.src}
               fallback-icon-name={pillViewModel.pill.item.fallbackIconName}
               variant={pillViewModel.pill.item.variant}
@@ -61,9 +61,9 @@
               class="slds-pill__icon_container"
               alternative-text={pillViewModel.pill.item.alternativeText}
             >
-            </c-avatar>
+            </sf-avatar>
           </template>
-        </c-pill>
+        </sf-pill>
       </li>
     </template>
   </ul>

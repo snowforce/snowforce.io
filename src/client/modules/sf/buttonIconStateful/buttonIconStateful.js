@@ -14,7 +14,7 @@ import template from './buttonIconStateful.html';
 const DEFAULT_SIZE = 'medium';
 const DEFAULT_VARIANT = 'border';
 
-export default class cButtonIconStateful extends cPrimitiveButton {
+export default class sfButtonIconStateful extends cPrimitiveButton {
   static delegatesFocus = true;
 
   @api name;

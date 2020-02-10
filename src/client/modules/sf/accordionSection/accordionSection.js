@@ -10,7 +10,7 @@ import { classSet } from 'c/utils';
 import { generateUniqueId } from 'c/inputUtils';
 import { keyCodes } from 'c/utilsPrivate';
 
-export default class cAccordionSection extends LightningElement {
+export default class sfAccordionSection extends LightningElement {
   @api name;
 
   @api label;

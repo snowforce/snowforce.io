@@ -5,8 +5,6 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
  */
 
-import labelLoading from '@salesforce/label/c.lightning_LightningButtonMenu_loading';
-import labelShowMenu from '@salesforce/label/c.lightning_LightningButtonMenu_showMenu';
 import { api, LightningElement, track } from 'lwc';
 import { classSet } from 'c/utils';
 import {
@@ -20,8 +18,8 @@ import {
 } from './keyboard';
 
 const i18n = {
-  loading: labelLoading,
-  showMenu: labelShowMenu
+  loading: 'Loading',
+  showMenu: 'Show Menu'
 };
 
 const menuItemCSSClassName = 'slds-dropdown__item';
@@ -36,7 +34,7 @@ const validMenuAlignments = [
   'bottom-right'
 ];
 
-export default class cButtonMenu extends LightningElement {
+export default class sfButtonMenu extends LightningElement {
   static delegatesFocus = true;
 
   @api iconSize = 'medium';
@@ -180,9 +178,6 @@ export default class cButtonMenu extends LightningElement {
     const normalizedValue = normalizeBoolean(value);
     if (this.isAutoAlignment()) {
       this.stopPositioning();
-
-      if (this._isLoading && !normalizedValue) {
-      }
     }
 
     this._isLoading = normalizedValue;
@@ -418,7 +413,6 @@ export default class cButtonMenu extends LightningElement {
         this._boundingRect = this.getBoundingClientRect();
 
         this.pollBoundingRect();
-      } else {
       }
 
       this.classList.toggle('slds-is-open');

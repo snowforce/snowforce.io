@@ -16,7 +16,7 @@ import trendHtml from './trend.html';
 import waffleHtml from './waffle.html';
 import defaultHtml from './default.html';
 
-export default class cDynamicIcon extends LightningElement {
+export default class sfDynamicIcon extends LightningElement {
   @api alternativeText;
 
   @api type;

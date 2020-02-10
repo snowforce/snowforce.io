@@ -6,19 +6,17 @@
  */
 
 import { LightningElement, track } from 'lwc';
-import showMoreLabel from '@salesforce/label/c.lightning_LightningVerticalNavigation_showMore';
-import showLessLabel from '@salesforce/label/c.lightning_LightningVerticalNavigation_showLess';
 
 const SLDS_SHOW = 'slds-show';
 const SLDS_HIDE = 'slds-hide';
 const COLLAPSED_ICON = 'utility:chevronright';
 const EXPANDED_ICON = 'utility:chevrondown';
 
-export default class cVerticalNavigationSection extends LightningElement {
+export default class sfVerticalNavigationSection extends LightningElement {
   @track _isExpanded = false;
 
   get computedActionText() {
-    return this._isExpanded ? showLessLabel : showMoreLabel;
+    return this._isExpanded ? 'showLess' : 'showMore';
   }
 
   get computedItemListClass() {

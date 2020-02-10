@@ -18,7 +18,7 @@
   ></lightning-helptext>
 
   <div class="slds-form-element__control">
-    <c-base-combobox
+    <sf-base-combobox
       name={name}
       disabled={disabled}
       placeholder={placeholder}
@@ -33,7 +33,7 @@
       onblur={handleBlur}
       onready={handleComboboxReady}
       onselect={handleSelect}
-    ></c-base-combobox>
+    ></sf-base-combobox>
   </div>
   <template if:true={_helpMessage}>
     <div

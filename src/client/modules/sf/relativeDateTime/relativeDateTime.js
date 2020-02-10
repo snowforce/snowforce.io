@@ -9,7 +9,7 @@ import { LightningElement, track, api } from 'lwc';
 import { assert } from 'c/utilsPrivate';
 import { getFormattedRelativeDate, getTimeoutUnitsTillInvalid } from './utils';
 
-export default class cRelativeDateTime extends LightningElement {
+export default class sfRelativeDateTime extends LightningElement {
   @track formattedValue = '';
   set value(next) {
     this.privateValue = next;
@@ -42,7 +42,7 @@ export default class cRelativeDateTime extends LightningElement {
       this.formattedValue = getFormattedRelativeDate(this.value);
     } catch (e) {
       const errorMessage =
-        `<c-relative-date-time>: Error while formatting ` +
+        `<sf-relative-date-time>: Error while formatting ` +
         `"${this.value}": ${e.message}`;
 
       assert(false, errorMessage);

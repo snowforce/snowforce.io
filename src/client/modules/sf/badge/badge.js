@@ -7,7 +7,7 @@
 
 import { LightningElement, api } from 'lwc';
 
-export default class cBadge extends LightningElement {
+export default class sfBadge extends LightningElement {
   @api label;
 
   connectedCallback() {

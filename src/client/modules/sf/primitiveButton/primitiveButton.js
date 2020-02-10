@@ -8,7 +8,7 @@
 import { LightningElement, api, track } from 'lwc';
 import { isIE11, normalizeBoolean, normalizeString } from 'c/utilsPrivate';
 
-export default class cPrimitiveButton extends LightningElement {
+export default class sfPrimitiveButton extends LightningElement {
   @track
   state = {
     accesskey: null,

@@ -10,7 +10,7 @@ import { LightningElement, api } from 'lwc';
 import card from './card.html';
 import inline from './inline.html';
 
-export default class cBaseComboboxItem extends LightningElement {
+export default class sfBaseComboboxItem extends LightningElement {
   @api item = {};
 
   connectedCallback() {

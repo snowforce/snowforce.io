@@ -5,16 +5,15 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
  */
 
-import labelNewItems from '@salesforce/label/c.lightning_LightningVerticalNavigation_newItems';
 import { LightningElement, api, track } from 'lwc';
 
 const i18n = {
-  newItems: labelNewItems
+  newItems: 'NewItems'
 };
 
 const DEFAULT_HREF = 'javascript:void(0);'; // eslint-disable-line no-script-url
 
-export default class cVerticalNavigationItemBadge extends LightningElement {
+export default class sfVerticalNavigationItemBadge extends LightningElement {
   @api label;
 
   @api name;

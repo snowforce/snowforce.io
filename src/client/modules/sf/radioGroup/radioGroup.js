@@ -5,7 +5,6 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
  */
 
-import labelRequired from '@salesforce/label/c.lightning_LightningControl_required';
 import { LightningElement, api, track } from 'lwc';
 import {
   normalizeBoolean,
@@ -25,10 +24,10 @@ import {
 import { classSet } from 'c/utils';
 
 const i18n = {
-  required: labelRequired
+  required: 'Required'
 };
 
-export default class cRadioGroup extends LightningElement {
+export default class sfRadioGroup extends LightningElement {
   static delegatesFocus = true;
 
   @api type = 'radio';

@@ -7,7 +7,7 @@
 
 import { LightningElement } from 'lwc';
 
-export default class cButtonGroup extends LightningElement {
+export default class sfButtonGroup extends LightningElement {
   privateButtons = [];
 
   constructor() {

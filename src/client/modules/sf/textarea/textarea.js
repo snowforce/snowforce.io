@@ -5,7 +5,6 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
  */
 
-import labelRequired from '@salesforce/label/c.lightning_LightningControl_required';
 import { LightningElement, api, track } from 'lwc';
 import { classSet } from 'c/utils';
 import {
@@ -24,10 +23,10 @@ import {
 import { TouchScroller } from 'c/touchScrollLibrary';
 
 const i18n = {
-  required: labelRequired
+  required: 'Required'
 };
 
-export default class cTextarea extends LightningElement {
+export default class sfTextarea extends LightningElement {
   static delegatesFocus = true;
 
   @api label;
@@ -311,7 +310,7 @@ export default class cTextarea extends LightningElement {
   }
 }
 
-cTextarea.interopMap = {
+sfTextarea.interopMap = {
   exposeNativeEvent: {
     change: true,
     focus: true,

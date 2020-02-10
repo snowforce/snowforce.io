@@ -8,7 +8,7 @@
 import { api, track, LightningElement } from 'lwc';
 import { assert, guid } from 'c/utilsPrivate';
 
-export default class cCarouselImage extends LightningElement {
+export default class sfCarouselImage extends LightningElement {
   @api get src() {
     return this._src;
   }
@@ -103,13 +103,13 @@ export default class cCarouselImage extends LightningElement {
   validateAlternativeText() {
     assert(
       typeof this._alternativeText === 'string' && this._alternativeText.length,
-      `<c-carousel-image> The "alternative-text" attribute value is required.`
+      `<sf-carousel-image> The "alternative-text" attribute value is required.`
     );
   }
   validateSrc() {
     assert(
       typeof this._src === 'string' && this._src.length,
-      `<c-carousel-image> The "src" attribute value is required.`
+      `<sf-carousel-image> The "src" attribute value is required.`
     );
   }
 

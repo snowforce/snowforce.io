@@ -25,7 +25,7 @@ const defaultMin = 0;
 const defaultMax = 100;
 const defaultStep = 1;
 
-export default class cSlider extends LightningElement {
+export default class sfSlider extends LightningElement {
   @api size;
 
   @api type = 'horizontal';
@@ -66,7 +66,7 @@ export default class cSlider extends LightningElement {
     this.classList.add('slds-form-element');
 
     this.setAttribute('data-handles-touch', true);
-    assert(this.label, `<c-slider> Missing required "label" attribute.`);
+    assert(this.label, `<sf-slider> Missing required "label" attribute.`);
   }
 
   @api get min() {
@@ -298,7 +298,7 @@ export default class cSlider extends LightningElement {
   }
 }
 
-cSlider.interopMap = {
+sfSlider.interopMap = {
   exposeNativeEvent: {
     change: true,
     focus: true,

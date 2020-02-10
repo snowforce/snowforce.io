@@ -37,34 +37,34 @@
           >
             <template if:true={tab.iconName}>
               <span class={computedLeftIconClass}>
-                <c-icon
+                <sf-icon
                   icon-name={tab.iconName}
                   data-tab-value={tab.value}
                   size="small"
                   alternative-text={tab.iconAlternativeText}
-                ></c-icon>
+                ></sf-icon>
               </span>
             </template>
             {tab.label}
             <template if:true={tab.endIconName}>
               <span class={computedRightIconClass}>
-                <c-icon
+                <sf-icon
                   icon-name={tab.endIconName}
                   data-tab-value={tab.value}
                   size="small"
                   alternative-text={tab.endIconAlternativeText}
-                ></c-icon>
+                ></sf-icon>
               </span>
             </template>
             <template if:true={tab.showErrorIndicator}>
               <span class={computedRightIconClass}>
-                <c-icon
+                <sf-icon
                   icon-name="utility:error"
                   variant="error"
                   data-tab-value={tab.value}
                   size="small"
                   alternative-text={i18n.errorStateAlternativeText}
-                ></c-icon>
+                ></sf-icon>
               </span>
             </template>
           </a>
@@ -77,7 +77,7 @@
         class={computedOverflowClass}
         style={computedOverflowVisibility}
       >
-        <c-button-menu
+        <sf-button-menu
           variant="bare"
           alternative-text={i18n.moreAlternativeText}
           title={i18n.moreTitle}
@@ -88,14 +88,14 @@
         >
           <template for:each={_allTabs} for:item="tab">
             <template if:false={tab.visible}>
-              <c-menu-item
+              <sf-menu-item
                 key={tab.value}
                 label={tab.label}
                 value={tab.value}
-              ></c-menu-item>
+              ></sf-menu-item>
             </template>
           </template>
-        </c-button-menu>
+        </sf-button-menu>
       </li>
     </template>
   </ul>

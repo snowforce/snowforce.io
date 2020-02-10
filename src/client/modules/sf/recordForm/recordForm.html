@@ -6,7 +6,7 @@
  -->
 
 <template>
-  <c-record-edit-form
+  <sf-record-edit-form
     object-api-name={_objectApiName}
     record-id={_recordId}
     onload={handleLoad}
@@ -20,10 +20,10 @@
     <div class="slds-form" role="list">
       <lightning-messages></lightning-messages>
       <div class="slds-is-relative record-form-spinner-holder">
-        <c-spinner
+        <sf-spinner
           alternative-text={_labelLoading}
           if:true={_loading}
-        ></c-spinner>
+        ></sf-spinner>
         <template for:each={_rows} for:item="row">
           <div key={row.key} class="slds-grid slds-gutters_small">
             <template for:each={row.fields} for:item="field">
@@ -38,27 +38,27 @@
                     field-name={field.field}
                     class={computedInputClass}
                   ></lightning-input-field>
-                  <c-output-field
+                  <sf-output-field
                     if:false={field.updateable}
                     field-name={field.field}
                     class={computedInputClass}
-                  ></c-output-field>
+                  ></sf-output-field>
                 </template>
                 <template if:true={_viewMode}>
-                  <c-output-field
+                  <sf-output-field
                     field-class="slds-border_bottom"
                     class={computedOutputClass}
                     key={field.field}
                     field-name={field.field}
                   >
-                    <c-button-icon
+                    <sf-button-icon
                       if:true={field.editable}
                       onclick={toggleEdit}
                       icon-class="slds-button__icon_hint"
                       icon-name="utility:edit"
                       variant="bare"
-                    ></c-button-icon>
-                  </c-output-field>
+                    ></sf-button-icon>
+                  </sf-output-field>
                 </template>
               </div>
             </template>
@@ -67,21 +67,21 @@
       </div>
       <template if:true={_editMode}>
         <div class="slds-align_absolute-center slds-p-around_medium">
-          <c-button
+          <sf-button
             class="slds-m-around_xx-small lightning-record-form-cancel"
             onclick={handleCancel}
             name="cancel"
             label={_labelCancel}
-          ></c-button>
-          <c-button
+          ></sf-button>
+          <sf-button
             class="slds-m-around_xx-small lightning-record-form-submit"
             type="submit"
             name="submit"
             variant="brand"
             label={_labelSave}
-          ></c-button>
+          ></sf-button>
         </div>
       </template>
     </div>
-  </c-record-edit-form>
+  </sf-record-edit-form>
 </template>

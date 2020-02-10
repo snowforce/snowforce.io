@@ -8,7 +8,7 @@
 import { LightningElement, api } from 'lwc';
 import { numberFormat } from 'c/internationalizationLibrary';
 
-export default class cFormattedNumber extends LightningElement {
+export default class sfFormattedNumber extends LightningElement {
   @api value;
 
   @api formatStyle = 'decimal';
@@ -57,7 +57,7 @@ export default class cFormattedNumber extends LightningElement {
   }
 }
 
-cFormattedNumber.interopMap = {
+sfFormattedNumber.interopMap = {
   props: {
     formatStyle: 'style'
   }

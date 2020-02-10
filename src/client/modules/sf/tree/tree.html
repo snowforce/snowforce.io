@@ -9,7 +9,7 @@
   <div class="slds-tree_container">
     <h4 class="slds-tree__group-header" id="treeheading">{header}</h4>
 
-    <c-tree-item
+    <sf-tree-item
       if:true={hasChildren}
       class="slds-tree"
       role="tree"
@@ -19,6 +19,6 @@
       child-items={children}
       focused-child={focusedChild}
     >
-    </c-tree-item>
+    </sf-tree-item>
   </div>
 </template>

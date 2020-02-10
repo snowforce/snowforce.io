@@ -11,7 +11,7 @@ import { normalizeString as normalize } from 'c/utilsPrivate';
 import cPrimitiveButton from 'c/primitiveButton';
 import template from './button.html';
 
-export default class cButton extends cPrimitiveButton {
+export default class sfButton extends cPrimitiveButton {
   static delegatesFocus = true;
 
   @api name;
@@ -155,7 +155,7 @@ export default class cButton extends cPrimitiveButton {
   }
 }
 
-cButton.interopMap = {
+sfButton.interopMap = {
   exposeNativeEvent: {
     click: true,
     focus: true,

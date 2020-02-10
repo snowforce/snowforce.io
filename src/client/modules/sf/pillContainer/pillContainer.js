@@ -5,18 +5,16 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
  */
 
-import labelContainerLabel from '@salesforce/label/c.lightning_LightningPillContainer_label';
-import pillContainerMoreLabel from '@salesforce/label/c.lightning_LightningPillContainer_more';
 import { LightningElement, api, track } from 'lwc';
 import LightningPillItem from './pillItem';
 import { keyCodes, normalizeBoolean, normalizeString } from 'c/utilsPrivate';
 import { LightningResizeObserver } from 'c/resizeObserver';
 
 const i18n = {
-  containerLabel: labelContainerLabel
+  containerLabel: 'ContainerLabel'
 };
 
-export default class cPillContainer extends LightningElement {
+export default class sfPillContainer extends LightningElement {
   @api label = i18n.containerLabel;
 
   @track _variant;
@@ -275,17 +273,17 @@ export default class cPillContainer extends LightningElement {
     return this.isCollapsible && !this.isExpanded;
   }
 
-  get computedPillCountMoreLabel() {
-    if (
-      this._isExpanded ||
-      isNaN(this._pillsNotFittingCount) ||
-      this._pillsNotFittingCount <= 0
-    ) {
-      return undefined;
-    }
+  //   get computedPillCountMoreLabel() {
+  //     if (
+  //       this._isExpanded ||
+  //       isNaN(this._pillsNotFittingCount) ||
+  //       this._pillsNotFittingCount <= 0
+  //     ) {
+  //       return undefined;
+  //     }
 
-    return pillContainerMoreLabel.replace('{0}', this._pillsNotFittingCount);
-  }
+  //     return pillContainerMoreLabel.replace('{0}', this._pillsNotFittingCount);
+  //   }
 
   _setupResizeObserver() {
     const resizeObserver = new LightningResizeObserver(() => {

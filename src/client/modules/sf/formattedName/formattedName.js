@@ -12,7 +12,7 @@ import { nameFormat } from 'c/internationalizationLibrary';
 
 const DEFAULT_FORMAT = 'long';
 
-export default class cFormattedName extends LightningElement {
+export default class sfFormattedName extends LightningElement {
   @api format = DEFAULT_FORMAT;
 
   @track _salutation;

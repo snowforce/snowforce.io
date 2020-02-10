@@ -16,7 +16,7 @@ const DEFAULT_SIZE = 'medium';
 const DEFAULT_VARIANT = 'border';
 const DEFAULT_TYPE = 'button';
 
-export default class cButtonIcon extends cPrimitiveButton {
+export default class sfButtonIcon extends cPrimitiveButton {
   static delegatesFocus = true;
 
   @api name;
@@ -100,9 +100,9 @@ export default class cButtonIcon extends cPrimitiveButton {
           break;
         case 'large':
           console.warn(
-            `<c-button-icon> The non-bare variants of buttonIcon do not support a size value of "large". Supported values include "xx-small", "x-small", "small", and "medium". Falling back to size value "medium".`
+            `<sf-button-icon> The non-bare variants of buttonIcon do not support a size value of "large". Supported values include "xx-small", "x-small", "small", and "medium". Falling back to size value "medium".`
           );
-
+          break;
         case 'medium':
         default:
       }
@@ -141,9 +141,9 @@ export default class cButtonIcon extends cPrimitiveButton {
           break;
         case 'xx-small':
           console.warn(
-            `<c-button-icon> The bare variant of buttonIcon does not support a size value of "xx-small". Supported values include "x-small", "small", "medium", and "large". The default is "medium".`
+            `<sf-button-icon> The bare variant of buttonIcon does not support a size value of "xx-small". Supported values include "x-small", "small", "medium", and "large". The default is "medium".`
           );
-
+          break;
         case 'x-small':
           classes.add('slds-button__icon_x-small');
           break;

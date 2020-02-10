@@ -5,11 +5,6 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
  */
 
-import labelPillDelete from '@salesforce/label/c.lightning_LightningPill_delete';
-import labelPillError from '@salesforce/label/c.lightning_LightningPill_error';
-import labelPillRemove from '@salesforce/label/c.lightning_LightningPill_remove';
-import labelPillWarning from '@salesforce/label/c.lightning_LightningPill_warning';
-import labelPillDeleteAndNavigate from '@salesforce/label/c.lightning_LightningPill_deleteAndNavigate';
 import { LightningElement, api, track } from 'lwc';
 import {
   keyCodes,
@@ -23,11 +18,11 @@ import plainLink from './plainLink.html';
 import { updateRawLinkInfo } from 'c/routingService';
 
 const i18n = {
-  pillDelete: labelPillDelete,
-  pillError: labelPillError,
-  pillRemove: labelPillRemove,
-  pillWarning: labelPillWarning,
-  pillDeleteAndNavigate: labelPillDeleteAndNavigate
+  pillDelete: 'PillDelete',
+  pillError: 'PillError',
+  pillRemove: 'PillRemove',
+  pillWarning: 'PillWarning',
+  pillDeleteAndNavigate: 'PillDeleteAndNavigate'
 };
 
 const VARIANT = {
@@ -48,7 +43,7 @@ function modifyAttribute(el, name, value) {
   }
 }
 
-export default class cPill extends LightningElement {
+export default class sfPill extends LightningElement {
   @api get href() {
     return this._href;
   }

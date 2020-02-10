@@ -15,7 +15,7 @@ import {
 } from './styleUtils';
 import { normalizeBoolean } from 'c/utilsPrivate';
 
-export default class cLayout extends LightningElement {
+export default class sfLayout extends LightningElement {
   @api get horizontalAlign() {
     return this._horizontalAlign;
   }
