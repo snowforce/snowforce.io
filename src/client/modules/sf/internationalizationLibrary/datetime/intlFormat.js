@@ -13,7 +13,7 @@ import {
   toOtherCalendar,
   syncUTCToWallTime
 } from '../localizationService';
-import { isValidISODateTimeString, TIME_SEPARATOR } from 'c/iso8601Utils';
+import { isValidISODateTimeString, TIME_SEPARATOR } from 'sf/iso8601Utils';
 
 const dateTimeFormatInstancesCache = {};
 const POSSIBLE_OPTS = {

@@ -6,7 +6,7 @@
  */
 
 import { duration, displayDuration } from '../localizationService';
-import { assert } from 'c/utilsPrivate';
+import { assert } from 'sf/utilsPrivate';
 
 const MINUTE_MILLISECONDS = 1000 * 60;
 

@@ -13,7 +13,7 @@ import {
   VERTICAL_ALIGN,
   BOUNDARY
 } from './styleUtils';
-import { normalizeBoolean } from 'c/utilsPrivate';
+import { normalizeBoolean } from 'sf/utilsPrivate';
 
 export default class sfLayout extends LightningElement {
   @api get horizontalAlign() {

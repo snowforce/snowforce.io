@@ -7,8 +7,8 @@
 
 import { LightningElement, api, track } from 'lwc';
 import LightningPillItem from './pillItem';
-import { keyCodes, normalizeBoolean, normalizeString } from 'c/utilsPrivate';
-import { LightningResizeObserver } from 'c/resizeObserver';
+import { keyCodes, normalizeBoolean, normalizeString } from 'sf/utilsPrivate';
+import { LightningResizeObserver } from 'sf/resizeObserver';
 
 const i18n = {
   containerLabel: 'ContainerLabel'

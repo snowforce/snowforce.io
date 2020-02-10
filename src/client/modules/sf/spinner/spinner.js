@@ -6,8 +6,8 @@
  */
 
 import { LightningElement, api } from 'lwc';
-import { classSet } from 'c/utils';
-import { normalizeString as normalize } from 'c/utilsPrivate';
+import { classSet } from 'sf/utils';
+import { normalizeString as normalize } from 'sf/utilsPrivate';
 
 export default class sfSpinner extends LightningElement {
   @api alternativeText;

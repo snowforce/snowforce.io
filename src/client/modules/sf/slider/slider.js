@@ -6,20 +6,20 @@
  */
 
 import { LightningElement, api, track } from 'lwc';
-import { classSet } from 'c/utils';
+import { classSet } from 'sf/utils';
 import {
   assert,
   normalizeBoolean,
   normalizeString as normalize
-} from 'c/utilsPrivate';
-import numberUtils from 'c/numberUtils';
-import { numberFormat } from 'c/internationalizationLibrary';
+} from 'sf/utilsPrivate';
+import numberUtils from 'sf/numberUtils';
+import { numberFormat } from 'sf/internationalizationLibrary';
 import {
   InteractingState,
   normalizeVariant,
   FieldConstraintApiWithProxyInput,
   VARIANT
-} from 'c/inputUtils';
+} from 'sf/inputUtils';
 
 const defaultMin = 0;
 const defaultMax = 100;

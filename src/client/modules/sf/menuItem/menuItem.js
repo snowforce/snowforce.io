@@ -6,8 +6,8 @@
  */
 
 import { LightningElement, api, track } from 'lwc';
-import { classSet } from 'c/utils';
-import { normalizeBoolean, normalizeString, keyCodes } from 'c/utilsPrivate';
+import { classSet } from 'sf/utils';
+import { normalizeBoolean, normalizeString, keyCodes } from 'sf/utilsPrivate';
 
 export default class sfMenuItem extends LightningElement {
   @api value;

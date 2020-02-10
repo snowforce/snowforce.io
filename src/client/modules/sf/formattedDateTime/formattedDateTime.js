@@ -6,9 +6,9 @@
  */
 
 import { LightningElement, api, track } from 'lwc';
-import { dateTimeFormat } from 'c/internationalizationLibrary';
-import { isValidISODateTimeString } from 'c/iso8601Utils';
-import { normalizeBoolean } from 'c/utilsPrivate';
+import { dateTimeFormat } from 'sf/internationalizationLibrary';
+import { isValidISODateTimeString } from 'sf/iso8601Utils';
+import { normalizeBoolean } from 'sf/utilsPrivate';
 
 export default class sfFormattedDateTime extends LightningElement {
   @api value;

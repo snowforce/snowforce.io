@@ -13,13 +13,13 @@ import {
   createErrorEvent,
   densityValues,
   labelAlignValues
-} from 'c/fieldUtils';
-import { normalizeRecordId } from 'c/recordUtils';
+} from 'sf/fieldUtils';
+import { normalizeRecordId } from 'sf/recordUtils';
 import {
   doNormalization,
   resetResizeObserver,
   setLabelAlignment
-} from 'c/formDensityUtilsPrivate';
+} from 'sf/formDensityUtilsPrivate';
 
 export default class sfRecordView extends LightningElement {
   optionalFields = [];

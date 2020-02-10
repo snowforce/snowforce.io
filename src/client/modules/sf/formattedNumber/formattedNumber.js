@@ -6,7 +6,7 @@
  */
 
 import { LightningElement, api } from 'lwc';
-import { numberFormat } from 'c/internationalizationLibrary';
+import { numberFormat } from 'sf/internationalizationLibrary';
 
 export default class sfFormattedNumber extends LightningElement {
   @api value;

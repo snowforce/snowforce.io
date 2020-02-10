@@ -6,7 +6,7 @@
  */
 
 import { LightningElement, track, api } from 'lwc';
-import { assert } from 'c/utilsPrivate';
+import { assert } from 'sf/utilsPrivate';
 import { getFormattedRelativeDate, getTimeoutUnitsTillInvalid } from './utils';
 
 export default class sfRelativeDateTime extends LightningElement {

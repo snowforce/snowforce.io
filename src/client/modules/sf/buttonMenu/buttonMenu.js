@@ -6,12 +6,12 @@
  */
 
 import { api, LightningElement, track } from 'lwc';
-import { classSet } from 'c/utils';
+import { classSet } from 'sf/utils';
 import {
   normalizeBoolean,
   normalizeString,
   observePosition
-} from 'c/utilsPrivate';
+} from 'sf/utilsPrivate';
 import {
   handleKeyDownOnMenuItem,
   handleKeyDownOnMenuTrigger

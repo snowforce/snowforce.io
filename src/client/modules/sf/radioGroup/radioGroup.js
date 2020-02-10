@@ -12,7 +12,7 @@ import {
   getRealDOMId,
   normalizeString as normalize,
   classListMutation
-} from 'c/utilsPrivate';
+} from 'sf/utilsPrivate';
 import {
   isEmptyString,
   InteractingState,
@@ -20,8 +20,8 @@ import {
   generateUniqueId,
   normalizeVariant,
   VARIANT
-} from 'c/inputUtils';
-import { classSet } from 'c/utils';
+} from 'sf/inputUtils';
+import { classSet } from 'sf/utils';
 
 const i18n = {
   required: 'Required'

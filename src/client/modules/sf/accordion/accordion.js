@@ -6,7 +6,7 @@
  */
 
 import { LightningElement, api } from 'lwc';
-import { createAccordionManager } from 'c/accordionUtilsPrivate';
+import { createAccordionManager } from 'sf/accordionUtilsPrivate';
 
 export default class sfAccordion extends LightningElement {
   privateIsSectionLessInLastRender = true;

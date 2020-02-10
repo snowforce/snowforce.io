@@ -6,8 +6,8 @@
  */
 
 import { LightningElement, api, track } from 'lwc';
-import { classListMutation, normalizeString, isIE11 } from 'c/utilsPrivate';
-import { computeSldsClass, getCategory, isValidName } from 'c/iconUtils';
+import { classListMutation, normalizeString, isIE11 } from 'sf/utilsPrivate';
+import { computeSldsClass, getCategory, isValidName } from 'sf/iconUtils';
 
 export default class sfIcon extends LightningElement {
   @track state = {};

@@ -12,14 +12,14 @@ import {
   synchronizeAttrs,
   getRealDOMId,
   classListMutation
-} from 'c/utilsPrivate';
+} from 'sf/utilsPrivate';
 import {
   FieldConstraintApi,
   debounce,
   normalizeVariant,
   VARIANT
-} from 'c/inputUtils';
-import { classSet } from 'c/utils';
+} from 'sf/inputUtils';
+import { classSet } from 'sf/utils';
 
 const i18n = {
   required: 'Required'

@@ -6,7 +6,7 @@
  */
 
 import { LightningElement, api } from 'lwc';
-import { toNorthAmericanPhoneNumber } from 'c/utilsPrivate';
+import { toNorthAmericanPhoneNumber } from 'sf/utilsPrivate';
 
 export default class sfFormattedPhone extends LightningElement {
   @api value;

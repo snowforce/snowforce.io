@@ -5,10 +5,10 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
  */
 
-import { LightningResizeObserver } from 'c/resizeObserver';
-import { APP_DENSIFICATION_BREAKPOINT, appDensityValues } from 'c/layoutUtils';
-import { densityValues, labelAlignValues } from 'c/fieldUtils';
-import { normalizeString } from 'c/utilsPrivate';
+import { LightningResizeObserver } from 'sf/resizeObserver';
+import { APP_DENSIFICATION_BREAKPOINT, appDensityValues } from 'sf/layoutUtils';
+import { densityValues, labelAlignValues } from 'sf/fieldUtils';
+import { normalizeString } from 'sf/utilsPrivate';
 import { getOneConfig } from 'lightning/configProvider';
 
 export function doNormalization(val, cmpInterface) {

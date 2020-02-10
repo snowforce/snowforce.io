@@ -6,10 +6,10 @@
  */
 
 import { api, track } from 'lwc';
-import { classSet } from 'c/utils';
-import { normalizeString as normalize } from 'c/utilsPrivate';
+import { classSet } from 'sf/utils';
+import { normalizeString as normalize } from 'sf/utilsPrivate';
 
-import cPrimitiveButton from 'c/primitiveButton';
+import cPrimitiveButton from 'sf/primitiveButton';
 import template from './buttonIcon.html';
 
 const DEFAULT_SIZE = 'medium';

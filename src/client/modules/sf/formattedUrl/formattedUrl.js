@@ -6,8 +6,8 @@
  */
 
 import { LightningElement, api, track } from 'lwc';
-import { isAbsoluteUrl } from 'c/utilsPrivate';
-import { updateRawLinkInfo } from 'c/routingService';
+import { isAbsoluteUrl } from 'sf/utilsPrivate';
+import { updateRawLinkInfo } from 'sf/routingService';
 
 export default class sfFormattedUrl extends LightningElement {
   @api target;

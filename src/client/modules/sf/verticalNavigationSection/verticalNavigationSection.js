@@ -6,7 +6,7 @@
  */
 
 import { LightningElement, api, track } from 'lwc';
-import { guid } from 'c/utilsPrivate';
+import { guid } from 'sf/utilsPrivate';
 
 export default class sfVerticalNavigationSection extends LightningElement {
   headingId = guid();

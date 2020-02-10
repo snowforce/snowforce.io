@@ -6,7 +6,7 @@
  */
 
 import { LightningElement, api, track } from 'lwc';
-import { isIE11, normalizeBoolean, normalizeString } from 'c/utilsPrivate';
+import { isIE11, normalizeBoolean, normalizeString } from 'sf/utilsPrivate';
 
 export default class sfPrimitiveButton extends LightningElement {
   @track

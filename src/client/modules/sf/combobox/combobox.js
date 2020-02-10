@@ -6,20 +6,20 @@
  */
 
 import { LightningElement, api, track } from 'lwc';
-import { classSet } from 'c/utils';
+import { classSet } from 'sf/utils';
 import {
   normalizeBoolean,
   normalizeArray,
   synchronizeAttrs,
   classListMutation
-} from 'c/utilsPrivate';
+} from 'sf/utilsPrivate';
 import {
   isEmptyString,
   InteractingState,
   FieldConstraintApi,
   normalizeVariant,
   VARIANT
-} from 'c/inputUtils';
+} from 'sf/inputUtils';
 
 const i18n = {
   required: 'Required',

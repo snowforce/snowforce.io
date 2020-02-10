@@ -6,7 +6,7 @@
  */
 
 import { api, track, LightningElement } from 'lwc';
-import { assert, guid } from 'c/utilsPrivate';
+import { assert, guid } from 'sf/utilsPrivate';
 
 export default class sfCarouselImage extends LightningElement {
   @api get src() {

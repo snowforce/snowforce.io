@@ -16,17 +16,17 @@ import {
   filterByPicklistsInForm,
   formHasPicklists,
   validateForm
-} from 'c/recordEditUtils';
-import { densityValues, labelAlignValues } from 'c/fieldUtils';
+} from 'sf/recordEditUtils';
+import { densityValues, labelAlignValues } from 'sf/fieldUtils';
 import {
   doNormalization,
   resetResizeObserver,
   setLabelAlignment
-} from 'c/formDensityUtilsPrivate';
-import { deepCopy } from 'c/utilsPrivate';
+} from 'sf/formDensityUtilsPrivate';
+import { deepCopy } from 'sf/utilsPrivate';
 
-import { normalizeRecordId } from 'c/recordUtils';
-import { DependencyManager } from 'c/fieldDependencyManager';
+import { normalizeRecordId } from 'sf/recordUtils';
+import { DependencyManager } from 'sf/fieldDependencyManager';
 
 const MASTER_RECORD_TYPE_ID = '012000000000000AAA';
 

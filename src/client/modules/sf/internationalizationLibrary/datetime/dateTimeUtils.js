@@ -5,7 +5,7 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
  */
 
-import { assert } from 'c/utilsPrivate';
+import { assert } from 'sf/utilsPrivate';
 import mediumDateFormat from '@salesforce/i18n/dateTime.mediumDateFormat';
 import mediumTimeFormat from '@salesforce/i18n/dateTime.mediumTimeFormat';
 import {
@@ -14,7 +14,7 @@ import {
   removeTimeZoneSuffix,
   STANDARD_DATE_FORMAT,
   TIME_SEPARATOR
-} from 'c/iso8601Utils';
+} from 'sf/iso8601Utils';
 import {
   formatDate,
   formatTime,

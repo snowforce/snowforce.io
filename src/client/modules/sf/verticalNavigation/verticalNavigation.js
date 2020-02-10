@@ -6,8 +6,8 @@
  */
 
 import { LightningElement, api, track } from 'lwc';
-import { classSet } from 'c/utils';
-import { assert, normalizeBoolean, normalizeString } from 'c/utilsPrivate';
+import { classSet } from 'sf/utils';
+import { assert, normalizeBoolean, normalizeString } from 'sf/utilsPrivate';
 
 const ALLOWED_CHILDREN = [
   'C-VERTICAL-NAVIGATION-ITEM',

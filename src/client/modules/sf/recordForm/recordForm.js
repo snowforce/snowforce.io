@@ -14,9 +14,9 @@ import {
   isCompoundField,
   isPersonAccount,
   UNSUPPORTED_REFERENCE_FIELDS
-} from 'c/fieldUtils';
-import { normalizeString, deepCopy } from 'c/utilsPrivate';
-import { classSet } from 'c/utils';
+} from 'sf/fieldUtils';
+import { normalizeString, deepCopy } from 'sf/utilsPrivate';
+import { classSet } from 'sf/utils';
 
 const EDIT_MODE = 'edit';
 const VIEW_MODE = 'view';

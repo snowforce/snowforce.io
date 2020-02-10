@@ -6,8 +6,8 @@
  */
 
 import { LightningElement, api, track } from 'lwc';
-import { classSet } from 'c/utils';
-import { keyCodes } from 'c/utilsPrivate';
+import { classSet } from 'sf/utils';
+import { keyCodes } from 'sf/utilsPrivate';
 
 const i18n = {
   collapseBranch: 'CollapseBranch',

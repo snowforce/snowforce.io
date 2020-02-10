@@ -5,7 +5,7 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
  */
 
-import { timeout, animationFrame } from 'c/utilsPrivate';
+import { timeout, animationFrame } from 'sf/utilsPrivate';
 
 const DELAY_TIMEOUT = 200;
 export class LightningResizeObserver {

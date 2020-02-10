@@ -5,7 +5,7 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
  */
 
-import { keyCodes, runActionOnBufferedTypedCharacters } from 'c/utilsPrivate';
+import { keyCodes, runActionOnBufferedTypedCharacters } from 'sf/utilsPrivate';
 
 function preventDefaultAndStopPropagation(event) {
   event.preventDefault();

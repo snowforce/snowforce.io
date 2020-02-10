@@ -7,8 +7,8 @@
 
 import locale from '@salesforce/i18n/locale';
 import { LightningElement, api, track } from 'lwc';
-import { normalizeString as normalize } from 'c/utilsPrivate';
-import { nameFormat } from 'c/internationalizationLibrary';
+import { normalizeString as normalize } from 'sf/utilsPrivate';
+import { nameFormat } from 'sf/internationalizationLibrary';
 
 const DEFAULT_FORMAT = 'long';
 

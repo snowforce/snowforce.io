@@ -6,21 +6,21 @@
  */
 
 import { LightningElement, api, track } from 'lwc';
-import { classSet } from 'c/utils';
+import { classSet } from 'sf/utils';
 import {
   normalizeBoolean,
   synchronizeAttrs,
   getRealDOMId,
   classListMutation
-} from 'c/utilsPrivate';
+} from 'sf/utilsPrivate';
 import {
   InteractingState,
   normalizeVariant,
   FieldConstraintApiWithProxyInput,
   isEmptyString,
   VARIANT
-} from 'c/inputUtils';
-import { TouchScroller } from 'c/touchScrollLibrary';
+} from 'sf/inputUtils';
+import { TouchScroller } from 'sf/touchScrollLibrary';
 
 const i18n = {
   required: 'Required'

@@ -6,9 +6,9 @@
  */
 
 import { LightningElement, api, track } from 'lwc';
-import { classSet } from 'c/utils';
-import { generateUniqueId } from 'c/inputUtils';
-import { keyCodes } from 'c/utilsPrivate';
+import { classSet } from 'sf/utils';
+import { generateUniqueId } from 'sf/inputUtils';
+import { keyCodes } from 'sf/utilsPrivate';
 
 export default class sfAccordionSection extends LightningElement {
   @api name;

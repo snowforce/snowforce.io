@@ -6,7 +6,7 @@
  */
 
 import { getTreeNode } from './treeNode';
-import { assert } from 'c/utilsPrivate';
+import { assert } from 'sf/utilsPrivate';
 
 export class TreeData {
   constructor() {

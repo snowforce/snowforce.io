@@ -5,7 +5,7 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
  */
 
-import { EventEmitter, keyCodes, normalizeBoolean } from 'c/utilsPrivate';
+import { EventEmitter, keyCodes, normalizeBoolean } from 'sf/utilsPrivate';
 import { AccordionSectionList } from './accordionSectionList';
 import { SingleOpenSectionStrategy } from './singleOpenSectionStrategy';
 import { MultipleOpenSectionStrategy } from './multipleOpenSectionStrategy';

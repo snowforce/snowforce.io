@@ -7,20 +7,20 @@
 
 import { LightningElement, api, track } from 'lwc';
 import { handleKeyDownOnOption } from './keyboard';
-import { classSet } from 'c/utils';
+import { classSet } from 'sf/utils';
 import {
   assert,
   normalizeBoolean,
   getRealDOMId,
   classListMutation,
   ArraySlice
-} from 'c/utilsPrivate';
+} from 'sf/utilsPrivate';
 import {
   InteractingState,
   FieldConstraintApi,
   normalizeVariant,
   VARIANT
-} from 'c/inputUtils';
+} from 'sf/inputUtils';
 
 const i18n = {
   componentAssistiveText: 'ComponentAssistiveText',

@@ -5,8 +5,8 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
  */
 
-import { normalizeString } from 'c/utilsPrivate';
-import { classSet } from 'c/utils';
+import { normalizeString } from 'sf/utilsPrivate';
+import { classSet } from 'sf/utils';
 
 const SIZE_MIN = 1;
 const SIZE_MAX = 12;

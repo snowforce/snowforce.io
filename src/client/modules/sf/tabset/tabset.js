@@ -6,8 +6,8 @@
  */
 
 import { LightningElement, api, track } from 'lwc';
-import { normalizeString } from 'c/utilsPrivate';
-import { generateUniqueId } from 'c/inputUtils';
+import { normalizeString } from 'sf/utilsPrivate';
+import { generateUniqueId } from 'sf/inputUtils';
 
 const tabClassPrefixByVariant = {
   scoped: 'slds-tabs_scoped',

@@ -5,7 +5,7 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
  */
 
-import { assert, classListMutation, normalizeString } from 'c/utilsPrivate';
+import { assert, classListMutation, normalizeString } from 'sf/utilsPrivate';
 import { LightningElement, api, track } from 'lwc';
 import mediaTile from './mediaTile.html';
 import standardTile from './standardTile.html';

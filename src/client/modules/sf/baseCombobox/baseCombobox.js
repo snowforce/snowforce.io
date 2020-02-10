@@ -8,7 +8,7 @@
 import { api, LightningElement, track } from 'lwc';
 import { handleKeyDownOnInput } from './keyboard';
 import { BaseComboboxEvents } from './baseComboboxEvents';
-import { classSet } from 'c/utils';
+import { classSet } from 'sf/utils';
 import {
   assert,
   getRealDOMId,
@@ -16,9 +16,9 @@ import {
   normalizeBoolean,
   normalizeString,
   synchronizeAttrs
-} from 'c/utilsPrivate';
+} from 'sf/utilsPrivate';
 
-import { VARIANT } from 'c/inputUtils';
+import { VARIANT } from 'sf/inputUtils';
 
 const i18n = {
   ariaSelectedOptions: 'Selected Options',

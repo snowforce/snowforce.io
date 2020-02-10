@@ -6,9 +6,9 @@
  */
 
 import { LightningElement, api, track } from 'lwc';
-import { classSet } from 'c/utils';
-import { calculateOverflow } from 'c/overflowLibrary';
-import { LightningResizeObserver } from 'c/resizeObserver';
+import { classSet } from 'sf/utils';
+import { calculateOverflow } from 'sf/overflowLibrary';
+import { LightningResizeObserver } from 'sf/resizeObserver';
 import { handleKeyDownOnTabList } from './keyboard';
 
 const i18n = {

@@ -6,8 +6,8 @@
  */
 
 import { LightningElement, api, track } from 'lwc';
-import { normalizeBoolean } from 'c/utilsPrivate';
-import { getLinkInfo } from 'c/routingService';
+import { normalizeBoolean } from 'sf/utilsPrivate';
+import { getLinkInfo } from 'sf/routingService';
 
 export default class sfFormattedLookup extends LightningElement {
   @api displayValue;

@@ -11,7 +11,7 @@ import {
   emailRegexString,
   createHttpHref,
   createEmailHref
-} from 'c/utilsPrivate';
+} from 'sf/utilsPrivate';
 
 const linkRegex = new RegExp(
   `(${newLineRegexString})|${urlRegexString}|${emailRegexString}`,

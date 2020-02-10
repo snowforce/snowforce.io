@@ -6,13 +6,13 @@
  */
 
 import { LightningElement, api, track } from 'lwc';
-import { classSet } from 'c/utils';
+import { classSet } from 'sf/utils';
 import {
   assert,
   normalizeBoolean,
   normalizeString,
   classListMutation
-} from 'c/utilsPrivate';
+} from 'sf/utilsPrivate';
 import { validateCoordinate } from './geolocation';
 import {
   isEmptyString,
@@ -20,7 +20,7 @@ import {
   normalizeVariant,
   FieldConstraintApi,
   VARIANT
-} from 'c/inputUtils';
+} from 'sf/inputUtils';
 
 const i18n = {
   coordinateIsRequired: 'CoordinateIsRequired',

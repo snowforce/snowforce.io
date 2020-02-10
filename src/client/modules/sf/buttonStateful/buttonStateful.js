@@ -6,8 +6,11 @@
  */
 
 import { LightningElement, api, track } from 'lwc';
-import { classSet } from 'c/utils';
-import { normalizeBoolean, normalizeString as normalize } from 'c/utilsPrivate';
+import { classSet } from 'sf/utils';
+import {
+  normalizeBoolean,
+  normalizeString as normalize
+} from 'sf/utilsPrivate';
 
 const DEFAULT_VARIANT = 'neutral';
 

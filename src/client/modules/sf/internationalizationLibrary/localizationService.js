@@ -6,7 +6,7 @@
  */
 
 import { getLocalizationService } from 'lightning/configProvider';
-import { isValidISOTimeString } from 'c/iso8601Utils';
+import { isValidISOTimeString } from 'sf/iso8601Utils';
 
 export function isBefore(date1, date2, unit) {
   return getLocalizationService().isBefore(date1, date2, unit);

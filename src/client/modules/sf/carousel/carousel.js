@@ -6,7 +6,7 @@
  */
 
 import { LightningElement, api, track } from 'lwc';
-import { keyCodes, normalizeBoolean } from 'c/utilsPrivate';
+import { keyCodes, normalizeBoolean } from 'sf/utilsPrivate';
 
 const INDICATOR_ACTION = 'slds-carousel__indicator-action';
 const SLDS_ACTIVE = 'slds-is-active';

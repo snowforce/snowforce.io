@@ -5,7 +5,7 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
  */
 
-import { Fields } from 'c/fieldUtils';
+import { Fields } from 'sf/fieldUtils';
 
 export function filterByPicklistsInForm(objectInfo, picklistValues, fields) {
   const picklistsInForm = getPicklistFields(objectInfo, fields);

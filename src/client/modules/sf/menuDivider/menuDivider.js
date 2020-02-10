@@ -9,7 +9,7 @@ import { LightningElement, api, track } from 'lwc';
 import {
   normalizeString as normalize,
   classListMutation
-} from 'c/utilsPrivate';
+} from 'sf/utilsPrivate';
 
 export default class sfMenuDivider extends LightningElement {
   @track _variant = 'standard';

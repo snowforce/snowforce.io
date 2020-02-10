@@ -11,9 +11,9 @@ import {
   Fields,
   isCompoundField,
   isPersonAccount
-} from 'c/fieldUtils';
-import { normalizeVariant, VARIANT } from 'c/inputUtils';
-import { classListMutation } from 'c/utilsPrivate';
+} from 'sf/fieldUtils';
+import { normalizeVariant, VARIANT } from 'sf/inputUtils';
+import { classListMutation } from 'sf/utilsPrivate';
 
 const STATE_FIELD = 'State';
 const COUNTRY_FIELD = 'Country';

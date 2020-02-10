@@ -11,11 +11,11 @@ import {
   classListMutation,
   normalizeBoolean,
   isAbsoluteUrl
-} from 'c/utilsPrivate';
+} from 'sf/utilsPrivate';
 import link from './link.html';
 import plain from './plain.html';
 import plainLink from './plainLink.html';
-import { updateRawLinkInfo } from 'c/routingService';
+import { updateRawLinkInfo } from 'sf/routingService';
 
 const i18n = {
   pillDelete: 'PillDelete',

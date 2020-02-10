@@ -6,7 +6,7 @@
  */
 
 import { LightningElement, api, track } from 'lwc';
-import { classSet } from 'c/utils';
+import { classSet } from 'sf/utils';
 import { isNarrow, isBase } from './utils';
 
 export default class sfCard extends LightningElement {

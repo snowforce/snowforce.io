@@ -6,9 +6,9 @@
  */
 
 import { api, track } from 'lwc';
-import { classSet } from 'c/utils';
-import { normalizeString as normalize } from 'c/utilsPrivate';
-import cPrimitiveButton from 'c/primitiveButton';
+import { classSet } from 'sf/utils';
+import { normalizeString as normalize } from 'sf/utilsPrivate';
+import cPrimitiveButton from 'sf/primitiveButton';
 import template from './button.html';
 
 export default class sfButton extends cPrimitiveButton {

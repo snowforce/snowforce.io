@@ -7,7 +7,7 @@
 
 import { LightningElement, api, track } from 'lwc';
 import { TreeData } from './treeData';
-import { keyCodes, deepCopy } from 'c/utilsPrivate';
+import { keyCodes, deepCopy } from 'sf/utilsPrivate';
 
 export default class sfTree extends LightningElement {
   @api header;

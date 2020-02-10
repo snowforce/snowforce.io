@@ -6,9 +6,9 @@
  */
 
 import { LightningElement, api, track } from 'lwc';
-import { classSet } from 'c/utils';
-import { classListMutation, normalizeString } from 'c/utilsPrivate';
-import { computeSldsClass } from 'c/iconUtils';
+import { classSet } from 'sf/utils';
+import { classListMutation, normalizeString } from 'sf/utilsPrivate';
+import { computeSldsClass } from 'sf/iconUtils';
 
 const DEFAULT_SIZE = 'medium';
 const DEFAULT_VARIANT = 'square';

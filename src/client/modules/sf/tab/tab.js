@@ -6,7 +6,7 @@
  */
 
 import { LightningElement, api, track } from 'lwc';
-import { normalizeBoolean } from 'c/utilsPrivate';
+import { normalizeBoolean } from 'sf/utilsPrivate';
 
 export default class sfTab extends LightningElement {
   @track _loadContent = false;

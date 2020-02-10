@@ -6,7 +6,7 @@
  */
 
 import { LightningElement, track, api } from 'lwc';
-import { normalizeISOTime } from 'c/internationalizationLibrary';
+import { normalizeISOTime } from 'sf/internationalizationLibrary';
 
 export default class FormattedTime extends LightningElement {
   @track _formattedTimeValue = null;
