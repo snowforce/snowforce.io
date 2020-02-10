@@ -9,58 +9,58 @@ import { LightningElement, api } from 'lwc';
 import { toNorthAmericanPhoneNumber } from 'c/utilsPrivate';
 
 export default class cFormattedPhone extends LightningElement {
-    @api value;
+  @api value;
 
-    @api tabIndex;
+  @api tabIndex;
 
-    _connected = false;
+  _connected = false;
 
-    connectedCallback() {
-        this._connected = true;
+  connectedCallback() {
+    this._connected = true;
+  }
+
+  disconnectedCallback() {
+    this._connected = false;
+  }
+
+  @api
+  focus() {
+    if (this.phoneAnchor) {
+      this.phoneAnchor.focus();
     }
+  }
 
-    disconnectedCallback() {
-        this._connected = false;
+  @api
+  blur() {
+    if (this.phoneAnchor) {
+      this.phoneAnchor.blur();
     }
+  }
 
-    @api
-    focus() {
-        if (this.phoneAnchor) {
-            this.phoneAnchor.focus();
-        }
+  @api
+  click() {
+    const anchor = this.phoneAnchor;
+    if (anchor && anchor.click) {
+      anchor.click();
     }
+  }
 
-    @api
-    blur() {
-        if (this.phoneAnchor) {
-            this.phoneAnchor.blur();
-        }
+  get phoneAnchor() {
+    if (this._connected && this.showLink) {
+      return this.template.querySelector('a');
     }
+    return undefined;
+  }
 
-    @api
-    click() {
-        const anchor = this.phoneAnchor;
-        if (anchor && anchor.click) {
-            anchor.click();
-        }
-    }
+  get showLink() {
+    return this.value != null && this.value !== '';
+  }
 
-    get phoneAnchor() {
-        if (this._connected && this.showLink) {
-            return this.template.querySelector('a');
-        }
-        return undefined;
-    }
+  get formattedPhoneNumber() {
+    return toNorthAmericanPhoneNumber(this.value);
+  }
 
-    get showLink() {
-        return this.value != null && this.value !== '';
-    }
-
-    get formattedPhoneNumber() {
-        return toNorthAmericanPhoneNumber(this.value);
-    }
-
-    get link() {
-        return `tel:${this.value}`;
-    }
+  get link() {
+    return `tel:${this.value}`;
+  }
 }

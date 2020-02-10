@@ -5,12 +5,12 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
  */
 :host {
-    text-align: left;
+  text-align: left;
 }
 
 .description {
-    color: #706e6b;
-    margin-top: 1rem;
-    padding-top: 0.5rem;
-    border-top: 1px solid #706e6b;
+  color: #706e6b;
+  margin-top: 1rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid #706e6b;
 }

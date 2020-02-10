@@ -6,13 +6,13 @@
  -->
 
 <template>
-    <div
-        class={computedClass}
-        title={title}
-        onprivatetabregister={handleTabRegister}
-        onprivatetabdatachange={handleTabDataChange}
-    >
-        <c-tab-bar variant={variant} onselect={handleTabSelected}></c-tab-bar>
-        <slot></slot>
-    </div>
+  <div
+    class={computedClass}
+    title={title}
+    onprivatetabregister={handleTabRegister}
+    onprivatetabdatachange={handleTabDataChange}
+  >
+    <c-tab-bar variant={variant} onselect={handleTabSelected}></c-tab-bar>
+    <slot></slot>
+  </div>
 </template>

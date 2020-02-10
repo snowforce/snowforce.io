@@ -8,17 +8,17 @@
 import { LightningElement, api, track } from 'lwc';
 import { classSet } from 'c/utils';
 import {
-    assert,
-    normalizeBoolean,
-    normalizeString as normalize
+  assert,
+  normalizeBoolean,
+  normalizeString as normalize
 } from 'c/utilsPrivate';
 import numberUtils from 'c/numberUtils';
 import { numberFormat } from 'c/internationalizationLibrary';
 import {
-    InteractingState,
-    normalizeVariant,
-    FieldConstraintApiWithProxyInput,
-    VARIANT
+  InteractingState,
+  normalizeVariant,
+  FieldConstraintApiWithProxyInput,
+  VARIANT
 } from 'c/inputUtils';
 
 const defaultMin = 0;
@@ -26,286 +26,282 @@ const defaultMax = 100;
 const defaultStep = 1;
 
 export default class cSlider extends LightningElement {
-    @api size;
+  @api size;
 
-    @api type = 'horizontal';
+  @api type = 'horizontal';
 
-    @api label;
+  @api label;
 
-    @api messageWhenRangeOverflow;
+  @api messageWhenRangeOverflow;
 
-    @api messageWhenRangeUnderflow;
+  @api messageWhenRangeUnderflow;
 
-    @api messageWhenStepMismatch;
+  @api messageWhenStepMismatch;
 
-    @api messageWhenValueMissing;
+  @api messageWhenValueMissing;
 
-    @api messageWhenTooLong;
+  @api messageWhenTooLong;
 
-    @api messageWhenBadInput;
+  @api messageWhenBadInput;
 
-    @api messageWhenPatternMismatch;
+  @api messageWhenPatternMismatch;
 
-    @api messageWhenTypeMismatch;
+  @api messageWhenTypeMismatch;
 
-    @track _helpMessage;
-    @track _min = defaultMin;
-    @track _max = defaultMax;
-    @track _step = defaultStep;
-    @track _variant;
-    @track _value;
-    @track _disabled = false;
+  @track _helpMessage;
+  @track _min = defaultMin;
+  @track _max = defaultMax;
+  @track _step = defaultStep;
+  @track _variant;
+  @track _value;
+  @track _disabled = false;
 
-    constructor() {
-        super();
-        this.interactingState = new InteractingState();
-        this.interactingState.onleave(() => this.showHelpMessageIfInvalid());
+  constructor() {
+    super();
+    this.interactingState = new InteractingState();
+    this.interactingState.onleave(() => this.showHelpMessageIfInvalid());
+  }
+
+  connectedCallback() {
+    this.classList.add('slds-form-element');
+
+    this.setAttribute('data-handles-touch', true);
+    assert(this.label, `<c-slider> Missing required "label" attribute.`);
+  }
+
+  @api get min() {
+    return this._min;
+  }
+
+  set min(value) {
+    this._min = value || defaultMin;
+    this._updateProxyInputAttributes('min');
+  }
+
+  @api get max() {
+    return this._max;
+  }
+
+  set max(value) {
+    this._max = value || defaultMax;
+    this._updateProxyInputAttributes('max');
+  }
+
+  @api get step() {
+    return this._step;
+  }
+
+  set step(value) {
+    this._step = value || defaultStep;
+    this._updateProxyInputAttributes('step');
+  }
+
+  @api get disabled() {
+    return this._disabled;
+  }
+
+  set disabled(value) {
+    this._disabled = normalizeBoolean(value);
+    this._updateProxyInputAttributes('disabled');
+  }
+
+  @api get variant() {
+    return this._variant || VARIANT.STANDARD;
+  }
+
+  set variant(value) {
+    this._variant = normalizeVariant(value);
+  }
+
+  @api get value() {
+    return this._value;
+  }
+
+  set value(value) {
+    this._value = value;
+    this._updateProxyInputAttributes('value');
+  }
+
+  @api
+  focus() {
+    this.inputElement.focus();
+  }
+
+  @api
+  blur() {
+    this.inputElement.blur();
+  }
+
+  @api get validity() {
+    return this._constraint.validity;
+  }
+
+  @api
+  checkValidity() {
+    return this._constraint.checkValidity();
+  }
+
+  @api
+  reportValidity() {
+    return this._constraint.reportValidity(message => {
+      this._helpMessage = message;
+    });
+  }
+
+  @api
+  setCustomValidity(message) {
+    this._constraint.setCustomValidity(message);
+  }
+
+  @api
+  showHelpMessageIfInvalid() {
+    this.reportValidity();
+  }
+
+  get computedValue() {
+    return Number.isFinite(parseFloat(this._value)) ? this._value : null;
+  }
+
+  get formattedValue() {
+    if (!Number.isFinite(parseFloat(this._value))) {
+      return '';
     }
 
-    connectedCallback() {
-        this.classList.add('slds-form-element');
+    const decimalPlaces = numberUtils.decimalPlaces(this._step);
+    const formatConfig = { style: 'decimal' };
 
-        this.setAttribute('data-handles-touch', true);
-        assert(this.label, `<c-slider> Missing required "label" attribute.`);
+    if (decimalPlaces > 0) {
+      formatConfig.minimumFractionDigits = decimalPlaces;
+    }
+    return numberFormat(formatConfig).format(this.computedValue);
+  }
+
+  get computedClass() {
+    const { normalizedSize, normalizedType } = this;
+    const classes = classSet('slds-slider');
+
+    if (normalizedType === 'vertical') {
+      classes.add('slds-slider_vertical');
+    }
+    if (normalizedSize) {
+      classes.add(`slds-size_${normalizedSize}`);
+    }
+    return classes.toString();
+  }
+
+  get normalizedSize() {
+    return normalize(this.size, {
+      fallbackValue: '',
+      validValues: ['x-small', 'small', 'medium', 'large']
+    });
+  }
+
+  handleChange(event) {
+    event.stopPropagation();
+
+    const shouldIgnoreChangeEvent = this._value === event.target.value;
+    if (shouldIgnoreChangeEvent) {
+      return;
     }
 
-    @api get min() {
-        return this._min;
-    }
+    this.handleInput(event);
+  }
 
-    set min(value) {
-        this._min = value || defaultMin;
-        this._updateProxyInputAttributes('min');
-    }
+  get normalizedType() {
+    return normalize(this.type, {
+      fallbackValue: 'horizontal',
+      validValues: ['horizontal', 'vertical']
+    });
+  }
 
-    @api get max() {
-        return this._max;
-    }
+  get isLabelHidden() {
+    return this.variant === VARIANT.LABEL_HIDDEN;
+  }
 
-    set max(value) {
-        this._max = value || defaultMax;
-        this._updateProxyInputAttributes('max');
-    }
+  get computedLabelClass() {
+    const classes = classSet();
 
-    @api get step() {
-        return this._step;
-    }
+    classes.add(
+      this.isLabelHidden ? 'slds-assistive-text' : 'slds-slider-label__label'
+    );
 
-    set step(value) {
-        this._step = value || defaultStep;
-        this._updateProxyInputAttributes('step');
-    }
+    return classes.toString();
+  }
 
-    @api get disabled() {
-        return this._disabled;
-    }
+  handleInput(event) {
+    this.interactingState.interacting();
+    event.stopPropagation();
 
-    set disabled(value) {
-        this._disabled = normalizeBoolean(value);
-        this._updateProxyInputAttributes('disabled');
-    }
+    const newValue = event.target.value;
 
-    @api get variant() {
-        return this._variant || VARIANT.STANDARD;
-    }
+    this._value = newValue;
+    this._updateProxyInputAttributes('value');
 
-    set variant(value) {
-        this._variant = normalizeVariant(value);
-    }
+    const customEvent = this.createCustomChangeEvent(newValue);
+    this.dispatchEvent(customEvent);
+  }
 
-    @api get value() {
-        return this._value;
-    }
+  createCustomChangeEvent(value) {
+    const detail = { value };
 
-    set value(value) {
-        this._value = value;
-        this._updateProxyInputAttributes('value');
-    }
+    return new CustomEvent('change', {
+      bubbles: true,
+      composed: true,
+      detail
+    });
+  }
 
-    @api
-    focus() {
-        this.inputElement.focus();
-    }
+  handleFocus() {
+    this.interactingState.enter();
+    this.dispatchEvent(new CustomEvent('focus'));
+  }
 
-    @api
-    blur() {
-        this.inputElement.blur();
-    }
+  handleBlur() {
+    this.interactingState.leave();
+    this.dispatchEvent(new CustomEvent('blur'));
+  }
 
-    @api get validity() {
-        return this._constraint.validity;
-    }
+  handleTouchMove(event) {
+    event.stopPropagation();
+  }
 
-    @api
-    checkValidity() {
-        return this._constraint.checkValidity();
-    }
+  get inputElement() {
+    return this.template.querySelector('input');
+  }
 
-    @api
-    reportValidity() {
-        return this._constraint.reportValidity(message => {
-            this._helpMessage = message;
-        });
-    }
+  get computedAriaDescribedBy() {
+    return this._helpMessage ? this.computedUniqueHelpElementId : null;
+  }
 
-    @api
-    setCustomValidity(message) {
-        this._constraint.setCustomValidity(message);
+  _updateProxyInputAttributes(attributes) {
+    if (this._constraintApiProxyInputUpdater) {
+      this._constraintApiProxyInputUpdater(attributes);
     }
+  }
 
-    @api
-    showHelpMessageIfInvalid() {
-        this.reportValidity();
-    }
+  get _constraint() {
+    if (!this._constraintApi) {
+      this._constraintApi = new FieldConstraintApiWithProxyInput(() => this);
 
-    get computedValue() {
-        return Number.isFinite(parseFloat(this._value)) ? this._value : null;
-    }
-
-    get formattedValue() {
-        if (!Number.isFinite(parseFloat(this._value))) {
-            return '';
+      this._constraintApiProxyInputUpdater = this._constraint.setInputAttributes(
+        {
+          type: () => 'range',
+          value: () => this.value,
+          max: () => this.max,
+          min: () => this.min,
+          step: () => this.step,
+          disabled: () => this.disabled
         }
-
-        const decimalPlaces = numberUtils.decimalPlaces(this._step);
-        const formatConfig = { style: 'decimal' };
-
-        if (decimalPlaces > 0) {
-            formatConfig.minimumFractionDigits = decimalPlaces;
-        }
-        return numberFormat(formatConfig).format(this.computedValue);
+      );
     }
-
-    get computedClass() {
-        const { normalizedSize, normalizedType } = this;
-        const classes = classSet('slds-slider');
-
-        if (normalizedType === 'vertical') {
-            classes.add('slds-slider_vertical');
-        }
-        if (normalizedSize) {
-            classes.add(`slds-size_${normalizedSize}`);
-        }
-        return classes.toString();
-    }
-
-    get normalizedSize() {
-        return normalize(this.size, {
-            fallbackValue: '',
-            validValues: ['x-small', 'small', 'medium', 'large']
-        });
-    }
-
-    handleChange(event) {
-        event.stopPropagation();
-
-        const shouldIgnoreChangeEvent = this._value === event.target.value;
-        if (shouldIgnoreChangeEvent) {
-            return;
-        }
-
-        this.handleInput(event);
-    }
-
-    get normalizedType() {
-        return normalize(this.type, {
-            fallbackValue: 'horizontal',
-            validValues: ['horizontal', 'vertical']
-        });
-    }
-
-    get isLabelHidden() {
-        return this.variant === VARIANT.LABEL_HIDDEN;
-    }
-
-    get computedLabelClass() {
-        const classes = classSet();
-
-        classes.add(
-            this.isLabelHidden
-                ? 'slds-assistive-text'
-                : 'slds-slider-label__label'
-        );
-
-        return classes.toString();
-    }
-
-    handleInput(event) {
-        this.interactingState.interacting();
-        event.stopPropagation();
-
-        const newValue = event.target.value;
-
-        this._value = newValue;
-        this._updateProxyInputAttributes('value');
-
-        const customEvent = this.createCustomChangeEvent(newValue);
-        this.dispatchEvent(customEvent);
-    }
-
-    createCustomChangeEvent(value) {
-        const detail = { value };
-
-        return new CustomEvent('change', {
-            bubbles: true,
-            composed: true,
-            detail
-        });
-    }
-
-    handleFocus() {
-        this.interactingState.enter();
-        this.dispatchEvent(new CustomEvent('focus'));
-    }
-
-    handleBlur() {
-        this.interactingState.leave();
-        this.dispatchEvent(new CustomEvent('blur'));
-    }
-
-    handleTouchMove(event) {
-        event.stopPropagation();
-    }
-
-    get inputElement() {
-        return this.template.querySelector('input');
-    }
-
-    get computedAriaDescribedBy() {
-        return this._helpMessage ? this.computedUniqueHelpElementId : null;
-    }
-
-    _updateProxyInputAttributes(attributes) {
-        if (this._constraintApiProxyInputUpdater) {
-            this._constraintApiProxyInputUpdater(attributes);
-        }
-    }
-
-    get _constraint() {
-        if (!this._constraintApi) {
-            this._constraintApi = new FieldConstraintApiWithProxyInput(
-                () => this
-            );
-
-            this._constraintApiProxyInputUpdater = this._constraint.setInputAttributes(
-                {
-                    type: () => 'range',
-                    value: () => this.value,
-                    max: () => this.max,
-                    min: () => this.min,
-                    step: () => this.step,
-                    disabled: () => this.disabled
-                }
-            );
-        }
-        return this._constraintApi;
-    }
+    return this._constraintApi;
+  }
 }
 
 cSlider.interopMap = {
-    exposeNativeEvent: {
-        change: true,
-        focus: true,
-        blur: true
-    }
+  exposeNativeEvent: {
+    change: true,
+    focus: true,
+    blur: true
+  }
 };

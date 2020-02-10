@@ -11,82 +11,79 @@ import card from './card.html';
 import inline from './inline.html';
 
 export default class cBaseComboboxItem extends LightningElement {
-    @api item = {};
+  @api item = {};
 
-    connectedCallback() {
-        if (this.item.selectable) {
-            this.setAttribute('aria-selected', 'false');
-        }
-
-        if (this.item.type === 'option-inline') {
-            this.classList.add(
-                'slds-media_small',
-                'slds-listbox__option_plain'
-            );
-        } else {
-            this.classList.add('slds-listbox__option_entity');
-        }
+  connectedCallback() {
+    if (this.item.selectable) {
+      this.setAttribute('aria-selected', 'false');
     }
 
-    get textHasParts() {
-        const text = this.item.text;
-        return text && Array.isArray(text) && text.length > 0;
+    if (this.item.type === 'option-inline') {
+      this.classList.add('slds-media_small', 'slds-listbox__option_plain');
+    } else {
+      this.classList.add('slds-listbox__option_entity');
     }
+  }
 
-    get subTextHasParts() {
-        const subText = this.item.subText;
-        return subText && Array.isArray(subText) && subText.length > 0;
-    }
+  get textHasParts() {
+    const text = this.item.text;
+    return text && Array.isArray(text) && text.length > 0;
+  }
 
-    render() {
-        if (this.item.type === 'option-card') {
-            return card;
-        }
-        return inline;
-    }
+  get subTextHasParts() {
+    const subText = this.item.subText;
+    return subText && Array.isArray(subText) && subText.length > 0;
+  }
 
-    @api
-    highlight() {
-        this.toggleHighlight(true);
+  render() {
+    if (this.item.type === 'option-card') {
+      return card;
     }
+    return inline;
+  }
 
-    @api
-    removeHighlight() {
-        this.toggleHighlight(false);
-    }
+  @api
+  highlight() {
+    this.toggleHighlight(true);
+  }
 
-    toggleHighlight(highlighted) {
-        if (this.item.selectable) {
-            this.setAttribute('aria-selected', highlighted ? 'true' : 'false');
-            this.classList.toggle('slds-has-focus', highlighted);
-        }
-    }
+  @api
+  removeHighlight() {
+    this.toggleHighlight(false);
+  }
 
-    partsToText(parts) {
-        if (parts && Array.isArray(parts) && parts.length > 0) {
-            return parts.map(part => part.text).join('');
-        }
-        return parts;
+  toggleHighlight(highlighted) {
+    if (this.item.selectable) {
+      this.setAttribute('aria-selected', highlighted ? 'true' : 'false');
+      this.classList.toggle('slds-has-focus', highlighted);
     }
+  }
 
-    get rightIconSize() {
-        return this.item.rightIconSize || 'small';
+  partsToText(parts) {
+    if (parts && Array.isArray(parts) && parts.length > 0) {
+      return parts.map(part => part.text).join('');
     }
+    return parts;
+  }
 
-    get iconSize() {
-        return this.item.iconSize || 'small';
-    }
+  get rightIconSize() {
+    return this.item.rightIconSize || 'small';
+  }
 
-    get text() {
-        return this.partsToText(this.item.text);
-    }
+  get iconSize() {
+    return this.item.iconSize || 'small';
+  }
 
-    get subText() {
-        return this.partsToText(this.item.subText);
-    }
+  get text() {
+    return this.partsToText(this.item.text);
+  }
 
-    get hasSubText() {
-        const subText = this.item.subText;
-        return subText && subText.length > 0;
-    }
+  get subText() {
+    return this.partsToText(this.item.subText);
+  }
+
+  get hasSubText() {
+    const subText = this.item.subText;
+    return subText && subText.length > 0;
+  }
 }

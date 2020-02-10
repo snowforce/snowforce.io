@@ -15,118 +15,117 @@ const DEFAULT_SIZE = 'medium';
 const DEFAULT_VARIANT = 'border';
 
 export default class cButtonIconStateful extends cPrimitiveButton {
-    static delegatesFocus = true;
+  static delegatesFocus = true;
 
-    @api name;
+  @api name;
 
-    @api value;
+  @api value;
 
-    @api variant = DEFAULT_VARIANT;
+  @api variant = DEFAULT_VARIANT;
 
-    @api iconName;
+  @api iconName;
 
-    @api size = DEFAULT_SIZE;
+  @api size = DEFAULT_SIZE;
 
-    @api alternativeText;
+  @api alternativeText;
 
-    @track _order = null;
+  @track _order = null;
 
-    render() {
-        return template;
+  render() {
+    return template;
+  }
+
+  get computedTitle() {
+    return this.state.title || this.alternativeText || null;
+  }
+
+  get normalizedVariant() {
+    return normalizeString(this.variant, {
+      fallbackValue: DEFAULT_VARIANT,
+      validValues: ['border', 'border-filled', 'border-inverse']
+    });
+  }
+
+  get normalizedSize() {
+    return normalizeString(this.size, {
+      fallbackValue: DEFAULT_SIZE,
+      validValues: ['xx-small', 'x-small', 'small', 'medium']
+    });
+  }
+
+  @api get selected() {
+    return this.state.selected || false;
+  }
+
+  set selected(value) {
+    this.state.selected = normalizeBoolean(value);
+  }
+
+  get computedAriaPressed() {
+    return String(this.selected);
+  }
+
+  get computedButtonClass() {
+    const { normalizedSize, normalizedVariant } = this;
+    const classes = classSet('slds-button slds-button_icon');
+    switch (normalizedSize) {
+      case 'small':
+        classes.add('slds-button_icon-small');
+        break;
+      case 'x-small':
+        classes.add('slds-button_icon-x-small');
+        break;
+      case 'xx-small':
+        classes.add('slds-button_icon-xx-small');
+        break;
+      case 'medium':
+      default:
     }
 
-    get computedTitle() {
-        return this.state.title || this.alternativeText || null;
-    }
+    classes.add({
+      'slds-button_icon-border': normalizedVariant === 'border',
+      'slds-button_icon-border-filled': normalizedVariant === 'border-filled',
 
-    get normalizedVariant() {
-        return normalizeString(this.variant, {
-            fallbackValue: DEFAULT_VARIANT,
-            validValues: ['border', 'border-filled', 'border-inverse']
-        });
-    }
+      'slds-button_icon-border slds-button_icon-inverse':
+        normalizedVariant === 'border-inverse',
+      'slds-is-selected': this.selected === true,
 
-    get normalizedSize() {
-        return normalizeString(this.size, {
-            fallbackValue: DEFAULT_SIZE,
-            validValues: ['xx-small', 'x-small', 'small', 'medium']
-        });
-    }
+      'slds-button_first': this._order === 'first',
+      'slds-button_middle': this._order === 'middle',
+      'slds-button_last': this._order === 'last'
+    });
 
-    @api get selected() {
-        return this.state.selected || false;
-    }
+    return classes.toString();
+  }
 
-    set selected(value) {
-        this.state.selected = normalizeBoolean(value);
-    }
+  @api
+  focus() {
+    this.template.querySelector('button').focus();
+  }
 
-    get computedAriaPressed() {
-        return String(this.selected);
-    }
+  setOrder(order) {
+    this._order = order;
+  }
 
-    get computedButtonClass() {
-        const { normalizedSize, normalizedVariant } = this;
-        const classes = classSet('slds-button slds-button_icon');
-        switch (normalizedSize) {
-            case 'small':
-                classes.add('slds-button_icon-small');
-                break;
-            case 'x-small':
-                classes.add('slds-button_icon-x-small');
-                break;
-            case 'xx-small':
-                classes.add('slds-button_icon-xx-small');
-                break;
-            case 'medium':
-            default:
+  connectedCallback() {
+    const privatebuttonregister = new CustomEvent('privatebuttonregister', {
+      bubbles: true,
+      detail: {
+        callbacks: {
+          setOrder: this.setOrder.bind(this),
+          setDeRegistrationCallback: deRegistrationCallback => {
+            this._deRegistrationCallback = deRegistrationCallback;
+          }
         }
+      }
+    });
 
-        classes.add({
-            'slds-button_icon-border': normalizedVariant === 'border',
-            'slds-button_icon-border-filled':
-                normalizedVariant === 'border-filled',
+    this.dispatchEvent(privatebuttonregister);
+  }
 
-            'slds-button_icon-border slds-button_icon-inverse':
-                normalizedVariant === 'border-inverse',
-            'slds-is-selected': this.selected === true,
-
-            'slds-button_first': this._order === 'first',
-            'slds-button_middle': this._order === 'middle',
-            'slds-button_last': this._order === 'last'
-        });
-
-        return classes.toString();
+  disconnectedCallback() {
+    if (this._deRegistrationCallback) {
+      this._deRegistrationCallback();
     }
-
-    @api
-    focus() {
-        this.template.querySelector('button').focus();
-    }
-
-    setOrder(order) {
-        this._order = order;
-    }
-
-    connectedCallback() {
-        const privatebuttonregister = new CustomEvent('privatebuttonregister', {
-            bubbles: true,
-            detail: {
-                callbacks: {
-                    setOrder: this.setOrder.bind(this),
-                    setDeRegistrationCallback: deRegistrationCallback => {
-                        this._deRegistrationCallback = deRegistrationCallback;
-                    }
-                }
-            }
-        });
-
-        this.dispatchEvent(privatebuttonregister);
-    }
-
-    disconnectedCallback() {
-        if (this._deRegistrationCallback) {
-            this._deRegistrationCallback();
-        }
-    }
+  }
 }

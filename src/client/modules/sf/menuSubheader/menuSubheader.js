@@ -8,12 +8,12 @@
 import { LightningElement, api } from 'lwc';
 
 export default class cMenuSubheader extends LightningElement {
-    @api label;
+  @api label;
 
-    connectedCallback() {
-        this.classList.add('slds-dropdown__header');
-        this.classList.add('slds-truncate');
+  connectedCallback() {
+    this.classList.add('slds-dropdown__header');
+    this.classList.add('slds-truncate');
 
-        this.setAttribute('role', 'separator');
-    }
+    this.setAttribute('role', 'separator');
+  }
 }

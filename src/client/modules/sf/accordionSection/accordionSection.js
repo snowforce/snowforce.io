@@ -11,121 +11,117 @@ import { generateUniqueId } from 'c/inputUtils';
 import { keyCodes } from 'c/utilsPrivate';
 
 export default class cAccordionSection extends LightningElement {
-    @api name;
+  @api name;
 
-    @api label;
+  @api label;
 
-    @api title;
+  @api title;
 
-    @track privateIsOpen = false;
+  @track privateIsOpen = false;
 
-    pendingFocus = false;
+  pendingFocus = false;
 
-    privateUniqueId = generateUniqueId('lgt-accordion-section');
+  privateUniqueId = generateUniqueId('lgt-accordion-section');
 
-    connectedCallback() {
-        this.setAttribute('role', 'listitem');
-        this.classList.add('slds-accordion__list-item');
-        this.registerSectionWithParent();
+  connectedCallback() {
+    this.setAttribute('role', 'listitem');
+    this.classList.add('slds-accordion__list-item');
+    this.registerSectionWithParent();
+  }
+
+  disconnectedCallback() {
+    this.privateAccordionSectionObserver.notifySectionDeregister();
+  }
+
+  renderedCallback() {
+    if (this.privateIsOpen && this.pendingFocus) {
+      this.pendingFocus = false;
+      this.focusSection();
     }
+  }
 
-    disconnectedCallback() {
-        this.privateAccordionSectionObserver.notifySectionDeregister();
+  get computedAriaExpanded() {
+    return this.privateIsOpen.toString();
+  }
+
+  get computedAriaHidden() {
+    return (!this.privateIsOpen).toString();
+  }
+
+  get computedSectionClasses() {
+    return classSet('slds-accordion__section')
+      .add({
+        'slds-is-open': this.privateIsOpen
+      })
+      .toString();
+  }
+
+  get computedHidden() {
+    return this.privateIsOpen ? '' : (!this.privateIsOpen).toString();
+  }
+
+  handleKeyDown(event) {
+    switch (event.keyCode) {
+      case keyCodes.up:
+      case keyCodes.right:
+      case keyCodes.down:
+      case keyCodes.left:
+        event.preventDefault();
+        event.stopPropagation();
+        this.privateAccordionSectionObserver.notifySectionKeyNav(event.keyCode);
+
+        break;
+      default:
+        break;
     }
+  }
 
-    renderedCallback() {
-        if (this.privateIsOpen && this.pendingFocus) {
-            this.pendingFocus = false;
-            this.focusSection();
-        }
-    }
+  handleSelectSection() {
+    this.pendingFocus = true;
+    this.privateAccordionSectionObserver.notifySectionSelect();
+  }
 
-    get computedAriaExpanded() {
-        return this.privateIsOpen.toString();
-    }
+  registerSectionWithParent() {
+    const detail = {
+      targetId: this.privateUniqueId,
+      targetName: this.name,
+      openSection: this.openSection.bind(this),
+      isOpen: this.isOpen.bind(this),
+      closeSection: this.closeSection.bind(this),
+      focusSection: this.focusSection.bind(this),
+      ackParentAccordion: this.ackParentAccordion.bind(this)
+    };
 
-    get computedAriaHidden() {
-        return (!this.privateIsOpen).toString();
-    }
+    this.dispatchEvent(
+      new CustomEvent('privateaccordionsectionregister', {
+        bubbles: true,
+        composed: true,
+        cancelable: true,
+        detail
+      })
+    );
+  }
 
-    get computedSectionClasses() {
-        return classSet('slds-accordion__section')
-            .add({
-                'slds-is-open': this.privateIsOpen
-            })
-            .toString();
-    }
+  openSection() {
+    this.privateIsOpen = true;
+  }
 
-    get computedHidden() {
-        return this.privateIsOpen ? '' : (!this.privateIsOpen).toString();
-    }
+  closeSection() {
+    this.privateIsOpen = false;
+  }
 
-    handleKeyDown(event) {
-        switch (event.keyCode) {
-            case keyCodes.up:
-            case keyCodes.right:
-            case keyCodes.down:
-            case keyCodes.left:
-                event.preventDefault();
-                event.stopPropagation();
-                this.privateAccordionSectionObserver.notifySectionKeyNav(
-                    event.keyCode
-                );
+  focusSection() {
+    const sectionButton = this.template.querySelector('button.section-control');
 
-                break;
-            default:
-                break;
-        }
-    }
+    sectionButton.blur();
+    sectionButton.focus();
+  }
 
-    handleSelectSection() {
-        this.pendingFocus = true;
-        this.privateAccordionSectionObserver.notifySectionSelect();
-    }
+  isOpen() {
+    return this.privateIsOpen;
+  }
 
-    registerSectionWithParent() {
-        const detail = {
-            targetId: this.privateUniqueId,
-            targetName: this.name,
-            openSection: this.openSection.bind(this),
-            isOpen: this.isOpen.bind(this),
-            closeSection: this.closeSection.bind(this),
-            focusSection: this.focusSection.bind(this),
-            ackParentAccordion: this.ackParentAccordion.bind(this)
-        };
-
-        this.dispatchEvent(
-            new CustomEvent('privateaccordionsectionregister', {
-                bubbles: true,
-                composed: true,
-                cancelable: true,
-                detail
-            })
-        );
-    }
-
-    openSection() {
-        this.privateIsOpen = true;
-    }
-
-    closeSection() {
-        this.privateIsOpen = false;
-    }
-
-    focusSection() {
-        const sectionButton = this.template.querySelector(
-            'button.section-control'
-        );
-
-        sectionButton.blur();
-        sectionButton.focus();
-    }
-
-    isOpen() {
-        return this.privateIsOpen;
-    }
-
-    ackParentAccordion(accordionSectionObserver) {
-        this.privateAccordionSectionObserver = accordionSectionObserver;
-    }
+  ackParentAccordion(accordionSectionObserver) {
+    this.privateAccordionSectionObserver = accordionSectionObserver;
+  }
 }

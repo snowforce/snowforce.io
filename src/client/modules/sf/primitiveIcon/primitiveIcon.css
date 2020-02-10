@@ -14,5 +14,5 @@ at the SLDS level or at the browser level.
 */
 _:-ms-lang(x),
 svg {
-    pointer-events: none;
+  pointer-events: none;
 }

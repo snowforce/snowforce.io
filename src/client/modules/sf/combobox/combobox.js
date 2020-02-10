@@ -10,351 +10,348 @@ import labelPlaceholder from '@salesforce/label/c.lightning_LightningCombobox_pl
 import { LightningElement, api, track } from 'lwc';
 import { classSet } from 'c/utils';
 import {
-    normalizeBoolean,
-    normalizeArray,
-    synchronizeAttrs,
-    classListMutation
+  normalizeBoolean,
+  normalizeArray,
+  synchronizeAttrs,
+  classListMutation
 } from 'c/utilsPrivate';
 import {
-    isEmptyString,
-    InteractingState,
-    FieldConstraintApi,
-    normalizeVariant,
-    VARIANT
+  isEmptyString,
+  InteractingState,
+  FieldConstraintApi,
+  normalizeVariant,
+  VARIANT
 } from 'c/inputUtils';
 
 const i18n = {
-    required: labelRequired,
-    placeholder: labelPlaceholder
+  required: labelRequired,
+  placeholder: labelPlaceholder
 };
 
 export default class cCombobox extends LightningElement {
-    static delegatesFocus = true;
+  static delegatesFocus = true;
 
-    @track _ariaLabelledBy = '';
-    @track _ariaDescribedBy = '';
-    @track _fieldLevelHelp = '';
-    @track _selectedLabel = '';
-    @track _disabled = false;
-    @track _readOnly = false;
-    @track _spinnerActive = false;
-    @track _required = false;
+  @track _ariaLabelledBy = '';
+  @track _ariaDescribedBy = '';
+  @track _fieldLevelHelp = '';
+  @track _selectedLabel = '';
+  @track _disabled = false;
+  @track _readOnly = false;
+  @track _spinnerActive = false;
+  @track _required = false;
 
-    @api label;
+  @api label;
 
-    @api dropdownAlignment = 'left';
+  @api dropdownAlignment = 'left';
 
-    @api placeholder = i18n.placeholder;
+  @api placeholder = i18n.placeholder;
 
-    @api messageWhenValueMissing;
+  @api messageWhenValueMissing;
 
-    @api name;
+  @api name;
 
-    @track _items = [];
-    @track _variant;
-    @track _helpMessage;
+  @track _items = [];
+  @track _variant;
+  @track _helpMessage;
 
-    _labelForId;
+  _labelForId;
 
-    renderedCallback() {
-        this.synchronizeA11y();
+  renderedCallback() {
+    this.synchronizeA11y();
+  }
+
+  connectedCallback() {
+    this.classList.add('slds-form-element');
+    this.updateClassList();
+    this.interactingState = new InteractingState();
+    this.interactingState.onleave(() => this.showHelpMessageIfInvalid());
+
+    this.connected = true;
+
+    this._items = this.generateItems(this.options);
+
+    if (this.options && this.selectedValue !== undefined) {
+      this.updateSelectedOptions();
     }
+  }
 
-    connectedCallback() {
-        this.classList.add('slds-form-element');
-        this.updateClassList();
-        this.interactingState = new InteractingState();
-        this.interactingState.onleave(() => this.showHelpMessageIfInvalid());
+  updateClassList() {
+    classListMutation(this.classList, {
+      'slds-form-element_stacked': this.variant === VARIANT.LABEL_STACKED,
+      'slds-form-element_horizontal': this.variant === VARIANT.LABEL_INLINE
+    });
+  }
 
-        this.connected = true;
+  disconnectedCallback() {
+    this.connected = false;
+  }
 
-        this._items = this.generateItems(this.options);
+  @api get ariaLabelledBy() {
+    return this._ariaLabelledBy;
+  }
 
-        if (this.options && this.selectedValue !== undefined) {
-            this.updateSelectedOptions();
-        }
-    }
+  set ariaLabelledBy(labelledBy) {
+    this._ariaLabelledBy = labelledBy;
+  }
 
-    updateClassList() {
-        classListMutation(this.classList, {
-            'slds-form-element_stacked': this.variant === VARIANT.LABEL_STACKED,
-            'slds-form-element_horizontal':
-                this.variant === VARIANT.LABEL_INLINE
-        });
-    }
+  @api get ariaDescribedBy() {
+    return this._ariaDescribedBy;
+  }
 
-    disconnectedCallback() {
-        this.connected = false;
-    }
+  set ariaDescribedBy(describedBy) {
+    this._ariaDescribedBy = describedBy;
+  }
 
-    @api get ariaLabelledBy() {
-        return this._ariaLabelledBy;
-    }
+  @api get fieldLevelHelp() {
+    return this._fieldLevelHelp;
+  }
 
-    set ariaLabelledBy(labelledBy) {
-        this._ariaLabelledBy = labelledBy;
-    }
+  set fieldLevelHelp(value) {
+    this._fieldLevelHelp = value;
+  }
 
-    @api get ariaDescribedBy() {
-        return this._ariaDescribedBy;
-    }
+  @api get variant() {
+    return this._variant || VARIANT.STANDARD;
+  }
 
-    set ariaDescribedBy(describedBy) {
-        this._ariaDescribedBy = describedBy;
-    }
+  set variant(value) {
+    this._variant = normalizeVariant(value);
+    this.updateClassList();
+  }
 
-    @api get fieldLevelHelp() {
-        return this._fieldLevelHelp;
-    }
+  @api get value() {
+    return this.selectedValue;
+  }
 
-    set fieldLevelHelp(value) {
-        this._fieldLevelHelp = value;
-    }
-
-    @api get variant() {
-        return this._variant || VARIANT.STANDARD;
-    }
-
-    set variant(value) {
-        this._variant = normalizeVariant(value);
-        this.updateClassList();
-    }
-
-    @api get value() {
-        return this.selectedValue;
-    }
-
-    set value(newValue) {
-        if (newValue !== this.selectedValue) {
-            this.selectedValue = newValue;
-            if (this.connected && this.options) {
-                this.updateSelectedOptions();
-            }
-        }
-    }
-
-    @api get options() {
-        return this._options || [];
-    }
-
-    set options(newValue) {
-        this._options = normalizeArray(newValue);
-
-        if (this.connected) {
-            this._items = this.generateItems(this._options);
-            this.updateSelectedOptions();
-        }
-    }
-
-    @api get disabled() {
-        return this._disabled || this._readOnly || false;
-    }
-
-    set disabled(value) {
-        this._disabled = normalizeBoolean(value);
-    }
-
-    @api get readOnly() {
-        return this.disabled;
-    }
-
-    set readOnly(value) {
-        this._readOnly = normalizeBoolean(value);
-    }
-
-    @api get required() {
-        return this._required;
-    }
-
-    set required(value) {
-        this._required = normalizeBoolean(value);
-    }
-
-    @api get spinnerActive() {
-        return this._spinnerActive;
-    }
-
-    set spinnerActive(value) {
-        this._spinnerActive = normalizeBoolean(value);
-    }
-
-    @api
-    focus() {
-        if (this.connected) {
-            this.getBaseComboboxElement().focus();
-        }
-    }
-
-    @api
-    blur() {
-        if (this.connected) {
-            this.getBaseComboboxElement().blur();
-        }
-    }
-
-    @api get validity() {
-        return this._constraint.validity;
-    }
-
-    @api
-    checkValidity() {
-        return this._constraint.checkValidity();
-    }
-
-    @api
-    reportValidity() {
-        return this._constraint.reportValidity(message => {
-            this._helpMessage = message;
-        });
-    }
-
-    @api
-    setCustomValidity(message) {
-        this._constraint.setCustomValidity(message);
-    }
-
-    @api
-    showHelpMessageIfInvalid() {
-        this.reportValidity();
-    }
-
-    handleComboboxReady(e) {
-        this._labelForId = e.detail.id;
-    }
-
-    synchronizeA11y() {
-        synchronizeAttrs(this.template.querySelector('label'), {
-            for: this._labelForId
-        });
-
-        const baseCombobox = this.template.querySelector('c-base-combobox');
-
-        baseCombobox.inputLabelledByElement = this.ariaLabelledBy;
-        baseCombobox.inputDescribedByElements = this.computedAriaDescribedBy;
-    }
-
-    get i18n() {
-        return i18n;
-    }
-
-    get isLabelHidden() {
-        return this.variant === VARIANT.LABEL_HIDDEN;
-    }
-
-    get computedLabelClass() {
-        return classSet('slds-form-element__label')
-            .add({ 'slds-assistive-text': this.isLabelHidden })
-            .toString();
-    }
-
-    get computedAriaDescribedBy() {
-        const describedByElements = [];
-
-        if (this._helpMessage) {
-            const helpText = this.template.querySelector('[data-help-text]');
-            describedByElements.push(helpText);
-        }
-
-        if (typeof this.ariaDescribedBy === 'string') {
-            describedByElements.push(this.ariaDescribedBy);
-        }
-
-        return describedByElements;
-    }
-
-    handleSelect(event) {
-        if (event.detail.value === this.selectedValue) {
-            return;
-        }
-        this.selectedValue = event.detail.value;
+  set value(newValue) {
+    if (newValue !== this.selectedValue) {
+      this.selectedValue = newValue;
+      if (this.connected && this.options) {
         this.updateSelectedOptions();
+      }
+    }
+  }
 
-        this.dispatchEvent(
-            new CustomEvent('change', {
-                composed: true,
-                bubbles: true,
-                detail: {
-                    value: this.selectedValue
-                }
-            })
-        );
+  @api get options() {
+    return this._options || [];
+  }
+
+  set options(newValue) {
+    this._options = normalizeArray(newValue);
+
+    if (this.connected) {
+      this._items = this.generateItems(this._options);
+      this.updateSelectedOptions();
+    }
+  }
+
+  @api get disabled() {
+    return this._disabled || this._readOnly || false;
+  }
+
+  set disabled(value) {
+    this._disabled = normalizeBoolean(value);
+  }
+
+  @api get readOnly() {
+    return this.disabled;
+  }
+
+  set readOnly(value) {
+    this._readOnly = normalizeBoolean(value);
+  }
+
+  @api get required() {
+    return this._required;
+  }
+
+  set required(value) {
+    this._required = normalizeBoolean(value);
+  }
+
+  @api get spinnerActive() {
+    return this._spinnerActive;
+  }
+
+  set spinnerActive(value) {
+    this._spinnerActive = normalizeBoolean(value);
+  }
+
+  @api
+  focus() {
+    if (this.connected) {
+      this.getBaseComboboxElement().focus();
+    }
+  }
+
+  @api
+  blur() {
+    if (this.connected) {
+      this.getBaseComboboxElement().blur();
+    }
+  }
+
+  @api get validity() {
+    return this._constraint.validity;
+  }
+
+  @api
+  checkValidity() {
+    return this._constraint.checkValidity();
+  }
+
+  @api
+  reportValidity() {
+    return this._constraint.reportValidity(message => {
+      this._helpMessage = message;
+    });
+  }
+
+  @api
+  setCustomValidity(message) {
+    this._constraint.setCustomValidity(message);
+  }
+
+  @api
+  showHelpMessageIfInvalid() {
+    this.reportValidity();
+  }
+
+  handleComboboxReady(e) {
+    this._labelForId = e.detail.id;
+  }
+
+  synchronizeA11y() {
+    synchronizeAttrs(this.template.querySelector('label'), {
+      for: this._labelForId
+    });
+
+    const baseCombobox = this.template.querySelector('c-base-combobox');
+
+    baseCombobox.inputLabelledByElement = this.ariaLabelledBy;
+    baseCombobox.inputDescribedByElements = this.computedAriaDescribedBy;
+  }
+
+  get i18n() {
+    return i18n;
+  }
+
+  get isLabelHidden() {
+    return this.variant === VARIANT.LABEL_HIDDEN;
+  }
+
+  get computedLabelClass() {
+    return classSet('slds-form-element__label')
+      .add({ 'slds-assistive-text': this.isLabelHidden })
+      .toString();
+  }
+
+  get computedAriaDescribedBy() {
+    const describedByElements = [];
+
+    if (this._helpMessage) {
+      const helpText = this.template.querySelector('[data-help-text]');
+      describedByElements.push(helpText);
     }
 
-    handleFocus() {
-        this.interactingState.enter();
-
-        this.dispatchEvent(new CustomEvent('focus'));
+    if (typeof this.ariaDescribedBy === 'string') {
+      describedByElements.push(this.ariaDescribedBy);
     }
 
-    handleBlur() {
-        this.interactingState.leave();
+    return describedByElements;
+  }
 
-        this.dispatchEvent(new CustomEvent('blur'));
+  handleSelect(event) {
+    if (event.detail.value === this.selectedValue) {
+      return;
     }
+    this.selectedValue = event.detail.value;
+    this.updateSelectedOptions();
 
-    handleDropdownOpen() {
-        this.dispatchEvent(new CustomEvent('open'));
-    }
-
-    updateSelectedOptions() {
-        this.updateSelectedLabelFromValue(this.selectedValue);
-        this.markOptionSelectedFromValue(this.selectedValue);
-    }
-
-    markOptionSelectedFromValue(value) {
-        if (this._items) {
-            const selectedItem = this._items.find(item => item.value === value);
-
-            if (this._selectedItem) {
-                this._selectedItem.iconName = undefined;
-                this._selectedItem.highlight = false;
-            }
-            this._selectedItem = selectedItem;
-            if (selectedItem) {
-                selectedItem.iconName = 'utility:check';
-                this._selectedItem.highlight = true;
-            }
-
-            this._items = this._items.slice();
+    this.dispatchEvent(
+      new CustomEvent('change', {
+        composed: true,
+        bubbles: true,
+        detail: {
+          value: this.selectedValue
         }
-    }
+      })
+    );
+  }
 
-    updateSelectedLabelFromValue(newValue) {
-        this._selectedLabel = this.getOptionLabelByValue(newValue);
-    }
+  handleFocus() {
+    this.interactingState.enter();
 
-    getOptionLabelByValue(value) {
-        const foundOption = this.options.find(option => option.value === value);
-        if (foundOption) {
-            return foundOption.label;
-        }
-        return '';
-    }
+    this.dispatchEvent(new CustomEvent('focus'));
+  }
 
-    generateItems(options) {
-        return options.map(option => {
-            return {
-                type: 'option-inline',
-                text: option.label,
-                highlight: this.value === option.value,
-                value: option.value
-            };
-        });
-    }
+  handleBlur() {
+    this.interactingState.leave();
 
-    getBaseComboboxElement() {
-        return this.template.querySelector('c-base-combobox');
-    }
+    this.dispatchEvent(new CustomEvent('blur'));
+  }
 
-    get _constraint() {
-        if (!this._constraintApi) {
-            this._constraintApi = new FieldConstraintApi(() => this, {
-                valueMissing: () =>
-                    !this.disabled &&
-                    this.required &&
-                    isEmptyString(this.selectedValue)
-            });
-        }
-        return this._constraintApi;
+  handleDropdownOpen() {
+    this.dispatchEvent(new CustomEvent('open'));
+  }
+
+  updateSelectedOptions() {
+    this.updateSelectedLabelFromValue(this.selectedValue);
+    this.markOptionSelectedFromValue(this.selectedValue);
+  }
+
+  markOptionSelectedFromValue(value) {
+    if (this._items) {
+      const selectedItem = this._items.find(item => item.value === value);
+
+      if (this._selectedItem) {
+        this._selectedItem.iconName = undefined;
+        this._selectedItem.highlight = false;
+      }
+      this._selectedItem = selectedItem;
+      if (selectedItem) {
+        selectedItem.iconName = 'utility:check';
+        this._selectedItem.highlight = true;
+      }
+
+      this._items = this._items.slice();
     }
+  }
+
+  updateSelectedLabelFromValue(newValue) {
+    this._selectedLabel = this.getOptionLabelByValue(newValue);
+  }
+
+  getOptionLabelByValue(value) {
+    const foundOption = this.options.find(option => option.value === value);
+    if (foundOption) {
+      return foundOption.label;
+    }
+    return '';
+  }
+
+  generateItems(options) {
+    return options.map(option => {
+      return {
+        type: 'option-inline',
+        text: option.label,
+        highlight: this.value === option.value,
+        value: option.value
+      };
+    });
+  }
+
+  getBaseComboboxElement() {
+    return this.template.querySelector('c-base-combobox');
+  }
+
+  get _constraint() {
+    if (!this._constraintApi) {
+      this._constraintApi = new FieldConstraintApi(() => this, {
+        valueMissing: () =>
+          !this.disabled && this.required && isEmptyString(this.selectedValue)
+      });
+    }
+    return this._constraintApi;
+  }
 }

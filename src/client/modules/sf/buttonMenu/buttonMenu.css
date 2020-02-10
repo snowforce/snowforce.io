@@ -6,6 +6,6 @@
  */
 
 .slds-dropdown__list {
-    max-height: 25rem;
-    overflow-y: auto;
+  max-height: 25rem;
+  overflow-y: auto;
 }

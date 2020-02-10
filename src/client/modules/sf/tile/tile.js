@@ -14,80 +14,80 @@ import standardTile from './standardTile.html';
 const VALID_TYPE_VALUES = ['standard', 'media'];
 
 const i18n = {
-    showActions: labelShowActions
+  showActions: labelShowActions
 };
 
 export default class cTile extends LightningElement {
-    @api label;
+  @api label;
 
-    @api href = '';
-    @track _type = 'standard';
-    @track _actions = [];
+  @api href = '';
+  @track _type = 'standard';
+  @track _actions = [];
 
-    @api get actions() {
-        return this._actions;
+  @api get actions() {
+    return this._actions;
+  }
+
+  set actions(actions) {
+    this._actions = actions;
+  }
+
+  @api get type() {
+    return this._type;
+  }
+
+  set type(value) {
+    assert(
+      VALID_TYPE_VALUES.indexOf(value) !== -1,
+      `Invalid type attribute value of ${value}. Must be one of ${VALID_TYPE_VALUES}.`
+    );
+
+    this._type = normalizeString(value, {
+      fallbackValue: 'standard',
+      validValues: VALID_TYPE_VALUES
+    });
+
+    if (this._connected) {
+      this.setClassesAndTemplate();
     }
+  }
 
-    set actions(actions) {
-        this._actions = actions;
-    }
-
-    @api get type() {
-        return this._type;
-    }
-
-    set type(value) {
-        assert(
-            VALID_TYPE_VALUES.indexOf(value) !== -1,
-            `Invalid type attribute value of ${value}. Must be one of ${VALID_TYPE_VALUES}.`
-        );
-
-        this._type = normalizeString(value, {
-            fallbackValue: 'standard',
-            validValues: VALID_TYPE_VALUES
-        });
-
-        if (this._connected) {
-            this.setClassesAndTemplate();
+  handleActionSelect(event) {
+    this.dispatchEvent(
+      new CustomEvent('actiontriggered', {
+        detail: {
+          action: event.detail.value
         }
-    }
+      })
+    );
+  }
 
-    handleActionSelect(event) {
-        this.dispatchEvent(
-            new CustomEvent('actiontriggered', {
-                detail: {
-                    action: event.detail.value
-                }
-            })
-        );
-    }
+  setClassesAndTemplate() {
+    classListMutation(this.classList, {
+      'slds-media': this.isMedia,
+      'slds-hint-parent': this.hasActions
+    });
+  }
 
-    setClassesAndTemplate() {
-        classListMutation(this.classList, {
-            'slds-media': this.isMedia,
-            'slds-hint-parent': this.hasActions
-        });
-    }
+  connectedCallback() {
+    this._connected = true;
+    this.classList.add('slds-tile');
+    this.setClassesAndTemplate();
+  }
 
-    connectedCallback() {
-        this._connected = true;
-        this.classList.add('slds-tile');
-        this.setClassesAndTemplate();
-    }
+  render() {
+    return this.isMedia ? mediaTile : standardTile;
+  }
 
-    render() {
-        return this.isMedia ? mediaTile : standardTile;
-    }
+  get isMedia() {
+    return this.type === 'media';
+  }
 
-    get isMedia() {
-        return this.type === 'media';
-    }
+  get hasActions() {
+    return Object.keys(this.actions).length > 0;
+  }
 
-    get hasActions() {
-        return Object.keys(this.actions).length > 0;
-    }
-
-    get buttonAlternateText() {
-        return `${i18n.showActions}`;
-    }
+  get buttonAlternateText() {
+    return `${i18n.showActions}`;
+  }
 }
