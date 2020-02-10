@@ -17,9 +17,10 @@ import {
   REQUEST_ORGANIZERS,
   REQUEST_SESSION,
   ADD_REQUEST,
-  CLEAR_REQUEST
+  CLEAR_REQUEST,
+  BOOKMARKS_UPDATE,
+  SET_SESSION_FILTER
 } from 'redux/shared';
-import { SET_SESSION_FILTER } from '../shared/shared';
 
 /******** Menu ********/
 
@@ -126,8 +127,35 @@ export function setSessionsTrackName(name) {
 
 /** Sessions */
 
+const formatTime = t => {
+  const tArray = t.split(':');
+  // TODO: internationalize this
+  const hourNum = parseInt(tArray[0], 10);
+  if (hourNum) {
+    const hour = hourNum > 12 ? hourNum - 12 : hourNum;
+    const min = tArray[1];
+    const tag = hourNum >= 12 ? 'pm' : 'am';
+    return `${hour}:${min}${tag}`;
+  }
+  return t;
+};
+
 export const receiveSessions = sessions => {
-  return { type: RECEIVE_SESSIONS, data: { val: sessions } };
+  return {
+    type: RECEIVE_SESSIONS,
+    data: {
+      val: sessions
+        .map(s => {
+          return {
+            ...s,
+            time: formatTime(s.time),
+            endTime: formatTime(s.endTime),
+            startDateTime: new Date(`${s.date}T${s.time}`)
+          };
+        })
+        .sort((a, b) => a.startDateTime - b.startDateTime)
+    }
+  };
 };
 
 export const requestSession = id => {
@@ -138,29 +166,38 @@ export const requestSessions = () => {
   return { type: REQUEST_SESSIONS, data: {} };
 };
 
-export const sessionsFilterTrack = track => {
-  return { type: SET_SESSION_FILTER, data: { filter: 'track', val: track } };
-};
-
-export const sessionsFilterAudience = audience => {
+export const sessionsFilterTrack = ({ selectorParam }) => {
   return {
     type: SET_SESSION_FILTER,
-    data: { filter: 'audience', val: audience }
+    data: { filter: 'track', val: selectorParam }
   };
 };
 
-export const sessionsFilterLevel = level => {
-  return { type: SET_SESSION_FILTER, data: { filter: 'level', val: level } };
-};
-
-export const sessionsFilterFormat = format => {
-  return { type: SET_SESSION_FILTER, data: { filter: 'format', val: format } };
-};
-
-export const sessionsFilterStartTime = startTime => {
+export const sessionsFilterAudience = ({ selectorParam }) => {
   return {
     type: SET_SESSION_FILTER,
-    data: { filter: 'startTime', val: startTime }
+    data: { filter: 'audience', val: selectorParam }
+  };
+};
+
+export const sessionsFilterLevel = ({ selectorParam }) => {
+  return {
+    type: SET_SESSION_FILTER,
+    data: { filter: 'level', val: selectorParam }
+  };
+};
+
+export const sessionsFilterFormat = ({ selectorParam }) => {
+  return {
+    type: SET_SESSION_FILTER,
+    data: { filter: 'format', val: selectorParam }
+  };
+};
+
+export const sessionsFilterStartTime = ({ selectorParam }) => {
+  return {
+    type: SET_SESSION_FILTER,
+    data: { filter: 'startTime', val: selectorParam }
   };
 };
 
@@ -217,4 +254,11 @@ export const addRequest = requestType => {
 
 export const clearRequest = requestType => {
   return { type: CLEAR_REQUEST, data: { type: requestType } };
+};
+
+export const updateBookmarks = ({ bookmarks }) => {
+  return {
+    type: BOOKMARKS_UPDATE,
+    payload: { bookmarks }
+  };
 };

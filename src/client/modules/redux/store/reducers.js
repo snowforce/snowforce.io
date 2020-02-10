@@ -11,8 +11,30 @@ import {
   VIEW_TRACK,
   VIEW_DAY,
   ADD_REQUEST,
-  CLEAR_REQUEST
+  CLEAR_REQUEST,
+  COOKIES_ACCEPT,
+  COOKIES_REJECT,
+  BOOKMARKS_UPDATE
 } from 'redux/shared';
+
+export function user(state = {}, { type, payload }) {
+  switch (type) {
+    case COOKIES_ACCEPT:
+      return {
+        ...state,
+        cookiesAcceptedAt: payload.now,
+        cookiesRejectedAt: undefined
+      };
+    case COOKIES_REJECT:
+      return {
+        ...state,
+        cookiesAcceptedAt: undefined,
+        cookiesRejectedAt: payload.now
+      };
+    default:
+      return state;
+  }
+}
 
 export function conference(state = {}, { type, data }) {
   switch (type) {
@@ -182,6 +204,15 @@ export function view(
       return {
         isMenuOpen: false
       };
+    default:
+      return state;
+  }
+}
+
+export function bookmarks(state = {}, { type = '', payload = {} }) {
+  switch (type) {
+    case BOOKMARKS_UPDATE:
+      return payload.bookmarks;
     default:
       return state;
   }

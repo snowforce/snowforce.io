@@ -5,9 +5,9 @@
         <div>
           Track
         </div>
-        <select data-filter="selectedTrack">
+        <select data-filter="track">
           <template for:each={tracks} for:item="track">
-            <option key={track} value={track}>{track}</option>
+            <option key={track} value={track} id={track}>{track}</option>
           </template>
         </select>
       </div>
@@ -15,9 +15,11 @@
         <div>
           Audience
         </div>
-        <select data-filter="selectedAudience">
+        <select data-filter="audience">
           <template for:each={audiences} for:item="audience">
-            <option key={audience} value={audience}>{audience}</option>
+            <option key={audience} value={audience} id={audience}
+              >{audience}</option
+            >
           </template>
         </select>
       </div>
@@ -25,9 +27,9 @@
         <div>
           Level
         </div>
-        <select data-filter="selectedLevel">
+        <select data-filter="level">
           <template for:each={levels} for:item="level">
-            <option key={level} value={level}>{level}</option>
+            <option key={level} value={level} id={level}>{level}</option>
           </template>
         </select>
       </div>
@@ -35,9 +37,9 @@
         <div>
           Format
         </div>
-        <select data-filter="selectedFormat">
+        <select data-filter="format">
           <template for:each={formats} for:item="format">
-            <option key={format} value={format}>{format}</option>
+            <option key={format} value={format} id={format}>{format}</option>
           </template>
         </select>
       </div>
@@ -45,9 +47,11 @@
         <div>
           Start Time
         </div>
-        <select data-filter="selectedStartTime">
+        <select data-filter="startTime">
           <template for:each={startTimes} for:item="startTime">
-            <option key={startTime} value={startTime}>{startTime}</option>
+            <option key={startTime} value={startTime} id={startTime}
+              >{startTime}</option
+            >
           </template>
         </select>
       </div>

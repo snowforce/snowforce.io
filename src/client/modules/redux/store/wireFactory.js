@@ -4,11 +4,11 @@ export const imperativeArrayFactory = async (
   store,
   selector,
   action,
-  param
+  params
 ) => {
   function getData() {
     return {
-      data: Object.values(selector(store.getState(), param)),
+      data: Object.values(selector(store.getState(), params)),
       error: undefined
     };
   }
@@ -16,7 +16,7 @@ export const imperativeArrayFactory = async (
   return new Promise((res, rej) => {
     try {
       if (action) {
-        store.dispatch(action()).then(() => {
+        store.dispatch(action(params)).then(() => {
           res(getData());
         });
       } else {
@@ -32,11 +32,11 @@ export const imperativeObjectFactory = async (
   store,
   selector,
   action,
-  param
+  params
 ) => {
   function getData() {
     return {
-      data: selector(store.getState(), param),
+      data: selector(store.getState(), params),
       error: undefined
     };
   }
@@ -44,7 +44,7 @@ export const imperativeObjectFactory = async (
   return new Promise((res, rej) => {
     try {
       if (action) {
-        store.dispatch(action()).then(() => {
+        store.dispatch(action(params)).then(() => {
           res(getData());
         });
       } else {
@@ -62,10 +62,10 @@ export const imperativeObjectFactory = async (
 
 export const wireArrayFactory = (reduxSelector, reduxFetchAction) => {
   return function(eventTarget) {
-    let reduxStore;
+    let store;
     let subscription;
     let data = [];
-    let param;
+    let params = {};
 
     const notifyStateChange = newData => {
       eventTarget.dispatchEvent(
@@ -75,9 +75,9 @@ export const wireArrayFactory = (reduxSelector, reduxFetchAction) => {
 
     const debounceNotifications = () => {
       const newData = Object.values(
-        // FIXME: requiring the param in this fashion creates a leaky abstraction
-        // the end user needs to know the selector signature and order the param correctly
-        reduxSelector(reduxStore.getState(), param)
+        // FIXME: requiring the params in this fashion creates a leaky abstraction
+        // the end user needs to know the selector signature and order the params correctly
+        reduxSelector(store.getState(), params)
       );
       if (
         newData.length !== data.length ||
@@ -89,19 +89,22 @@ export const wireArrayFactory = (reduxSelector, reduxFetchAction) => {
     };
 
     const subscribeRedux = () => {
-      subscription = reduxStore.subscribe(() => {
+      subscription = store.subscribe(() => {
         debounceNotifications();
       });
     };
 
-    eventTarget.addEventListener('config', ({ store, selectorParam }) => {
-      reduxStore = store;
-      param = selectorParam;
+    eventTarget.addEventListener('config', configParams => {
+      if (configParams) {
+        store = configParams.store;
+        params = { ...configParams };
+      }
+
       if (!subscription) {
         subscribeRedux();
       }
       if (reduxFetchAction) {
-        reduxStore.dispatch(reduxFetchAction(selectorParam));
+        store.dispatch(reduxFetchAction(params));
       }
       debounceNotifications();
     });
@@ -116,10 +119,10 @@ export const wireArrayFactory = (reduxSelector, reduxFetchAction) => {
 
 export const wireObjectFactory = (reduxSelector, reduxFetchAction) => {
   return function(eventTarget) {
-    let reduxStore;
+    let store;
     let subscription;
     let data = {};
-    let param;
+    let params = {};
 
     const notifyStateChange = newData => {
       eventTarget.dispatchEvent(
@@ -128,9 +131,9 @@ export const wireObjectFactory = (reduxSelector, reduxFetchAction) => {
     };
 
     const debounceNotifications = () => {
-      // FIXME: requiring the param in this fashion creates a leaky abstraction
-      // the end user needs to know the selector signature and order the param correctly
-      const newData = reduxSelector(reduxStore.getState(), param);
+      // FIXME: requiring the params in this fashion creates a leaky abstraction
+      // the end user needs to know the selector signature and order the params correctly
+      const newData = reduxSelector(store.getState(), params);
       if (JSON.stringify(newData) !== JSON.stringify(data)) {
         data = { ...newData };
         notifyStateChange({ ...newData });
@@ -138,17 +141,22 @@ export const wireObjectFactory = (reduxSelector, reduxFetchAction) => {
     };
 
     const subscribeRedux = () => {
-      subscription = reduxStore.subscribe(() => {
+      subscription = store.subscribe(() => {
         debounceNotifications();
       });
     };
 
-    eventTarget.addEventListener('config', ({ store, selectorParam }) => {
-      reduxStore = store;
-      param = selectorParam;
-      subscribeRedux();
+    eventTarget.addEventListener('config', configParams => {
+      if (configParams) {
+        store = configParams.store;
+        params = { ...configParams };
+      }
+
+      if (!subscription) {
+        subscribeRedux();
+      }
       if (reduxFetchAction) {
-        reduxStore.dispatch(reduxFetchAction());
+        store.dispatch(reduxFetchAction(params));
       }
       debounceNotifications();
     });

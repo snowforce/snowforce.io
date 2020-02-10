@@ -6,5 +6,6 @@ export { default as instagram } from './templates/instagram.html';
 export { default as lightning } from './templates/lightning.html';
 export { default as trailhead } from './templates/trailhead.html';
 export { default as backArrow } from './templates/backArrow.html';
+export { default as star } from './templates/star.html';
 
 export { default as void } from './templates/void.html';
