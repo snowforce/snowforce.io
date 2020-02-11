@@ -1,13 +1,9 @@
 .container {
   display: flex;
-  width: 100%;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
   max-width: 50em;
   margin: auto;
-  position: relative;
-  font-size: 1em;
 }
 
 .title {
@@ -48,16 +44,23 @@ h1 {
   text-shadow: 1px 0.125em #00000026;
 }
 
-table {
+.table {
   padding: 2em 0;
 }
 
-th {
+.row {
+  display: flex;
+}
+
+.table-header {
+  box-sizing: border-box;
   padding-right: 2em;
+  min-width: 10em;
+  max-width: 10em;
   text-align: right;
 }
 
-td {
+.table-data {
   text-decoration: underline;
   cursor: pointer;
 }
@@ -77,6 +80,11 @@ img {
   margin: auto;
   padding: 0 2em;
   max-width: 100vw;
+}
+
+.audience {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .audience > span {

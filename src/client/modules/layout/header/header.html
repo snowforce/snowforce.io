@@ -22,12 +22,12 @@
       <div class="overlay" onclick={toggleMenu}></div>
       <div class="side-menu">
         <template for:each={menuItems} for:item="item">
-          <div key={item.link} class="p-left-medium">
+          <div key={item.title} class="p-left-medium">
             <base-link onnavigate={toggleMenu} href={item.link}>
               <h2>{item.title}</h2>
             </base-link>
             <template for:each={item.subItems} for:item="sub">
-              <div key={sub.link} class="p-left-medium">
+              <div key={sub.title} class="p-left-medium">
                 <base-link onnavigate={toggleMenu} href={sub.link}>
                   <h3>{sub.title}</h3>
                 </base-link>

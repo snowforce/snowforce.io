@@ -19,6 +19,7 @@ export const store = createStore(
 );
 
 export {
+  wireBookmarks,
   wireCurrentConference,
   wireCurrentSponsors,
   wireCurrentSpeakers,

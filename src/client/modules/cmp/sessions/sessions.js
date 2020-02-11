@@ -9,8 +9,15 @@ export default class CmpSessions extends LightningElement {
     return this._sessions;
   }
   set sessions(val) {
-    this._sessions = val;
-    this.displaySessions = val;
+    if (val) {
+      this._sessions = val.map(s => {
+        return {
+          ...s,
+          audience: s.audience ? s.audience.split(';').join(', ') : ''
+        };
+      });
+      this.displaySessions = this._sessions;
+    }
     this.haveSessions = val && val.length > 0 ? true : false;
   }
 }

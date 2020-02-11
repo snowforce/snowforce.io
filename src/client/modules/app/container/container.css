@@ -17,3 +17,9 @@
 layout-footer {
   flex-shrink: 0;
 }
+
+@media only screen and (max-width: 500px) {
+  .container {
+    font-size: 0.8em;
+  }
+}

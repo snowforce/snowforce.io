@@ -1,7 +1,9 @@
 .selectors {
   display: flex;
   flex-wrap: wrap;
+  font-size: 1.5em;
   justify-content: space-evenly;
+  padding-top: 1em;
 }
 
 select {

@@ -23,9 +23,7 @@ export default class ViewSession extends LightningElement {
 
   @wire(wireSessionById, { store, selectorParam: '$sessionId' })
   wiredSession({ data, error }) {
-    if (error) {
-      throw error;
-    }
+    if (error) throw error;
     this.session = {
       ...data,
       audience: data.audience.split(';')

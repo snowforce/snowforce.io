@@ -19,38 +19,50 @@
         </template>
       </div>
       <base-rich-text content={session.abstract}></base-rich-text>
-      <table onclick={manualNav}>
-        <tr if:true={session.type}>
-          <th>Session Format</th>
-          <td data-filter="format" data-val={session.type}>{session.type}</td>
-        </tr>
-        <tr if:true={session.track}>
-          <th>Track</th>
-          <td data-filter="track" data-val={session.track}>{session.track}</td>
-        </tr>
-        <tr if:true={session.startTime}>
-          <th>Start Time</th>
-          <td data-filter="startTime" data-val={session.time}>
+      <div class="table" onclick={manualNav}>
+        <div class="row" if:true={session.type}>
+          <div class="table-header">Session Format</div>
+          <div class="table-data" data-filter="format" data-val={session.type}>
+            {session.type}
+          </div>
+        </div>
+        <div class="row" if:true={session.track}>
+          <div class="table-header">Track</div>
+          <div class="table-data" data-filter="track" data-val={session.track}>
+            {session.track}
+          </div>
+        </div>
+        <div class="row" if:true={session.time}>
+          <div class="table-header">Start Time</div>
+          <div
+            class="table-data"
+            data-filter="startTime"
+            data-val={session.time}
+          >
             {session.time}
-          </td>
-        </tr>
-        <tr if:true={session.audienceLevel}>
-          <th>Level</th>
-          <td data-filter="level" data-val={session.audienceLevel}>
+          </div>
+        </div>
+        <div class="row" if:true={session.audienceLevel}>
+          <div class="table-header">Level</div>
+          <div
+            class="table-data"
+            data-filter="level"
+            data-val={session.audienceLevel}
+          >
             {session.audienceLevel}
-          </td>
-        </tr>
-        <tr if:true={session.audience}>
-          <th>Audience</th>
-          <td class="audience">
+          </div>
+        </div>
+        <div class="row" if:true={session.audience}>
+          <div class="table-header">Audience</div>
+          <div class="table-data audience">
             <template for:each={session.audience} for:item="a">
               <span key={a} data-filter="audience" data-val={a}>
                 {a}
               </span>
             </template>
-          </td>
-        </tr>
-      </table>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>

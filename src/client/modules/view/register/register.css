@@ -4,7 +4,7 @@ iframe {
 
 h2 {
   font-weight: 500;
-  font-size: 2em;
+  font-size: 2rem;
 }
 
 .center {
@@ -13,18 +13,18 @@ h2 {
 }
 
 .vertical-padding-lg {
-  padding-top: 4em;
-  padding-bottom: 4em;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
 }
 
 .registration-box {
   margin: auto;
-  max-width: 65em;
+  max-width: 65rem;
 }
 
 .container {
-  height: 18.55em;
-  box-shadow: 0 0.1875em 1em 0.25em hsla(0, 0%, 79%, 0.91);
+  height: 18.55rem;
+  box-shadow: 0 0.1875rem 1rem 0.25rem hsla(0, 0%, 79%, 0.91);
 }
 
 .powered-by-eb {
@@ -34,7 +34,7 @@ h2 {
 
 @media screen and (max-width: 841px) {
   .container {
-    height: 19.25em;
+    height: 19.25rem;
   }
 }
 
@@ -46,6 +46,6 @@ h2 {
 
 @media screen and (max-width: 512px) {
   .container {
-    height: 23.35em;
+    height: 23.35rem;
   }
 }

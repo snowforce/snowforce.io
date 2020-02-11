@@ -2,37 +2,40 @@
   <template if:true={haveSessions}>
     <template for:each={displaySessions} for:item="session">
       <div key={session.id} class="card">
-        <base-link href={session.link}>
-          <h3>{session.title}</h3>
-        </base-link>
-        <table class="details">
-          <tr>
-            <td class="detail">Track</td>
-            <td class="val">{session.track}</td>
-          </tr>
-          <tr>
-            <td class="detail">Audience</td>
-            <td class="val">{session.audience}</td>
-          </tr>
-          <tr>
-            <td class="detail">Level</td>
-            <td class="val">{session.audienceLevel}</td>
-          </tr>
-        </table>
+        <div>
+          <base-link href={session.link}>
+            <h3>{session.title}</h3>
+          </base-link>
+          <!-- <base-bookmark id={session.id} type="session"></base-bookmark> -->
+        </div>
 
-        <base-link if:true={session.room} href="/venue">
-          <h4 class="room time">
-            {session.time} Room {session.room}
-          </h4>
-        </base-link>
-
-        <!-- <div if:true={session.speakers} class="speakers">
-          <template for:each={session.speakers} for:item="speaker">
-            <base-link key={speaker.id} href={speaker.link} class="speaker">
-              {speaker.firstName} {speaker.lastName}
+        <div class="details">
+          <div if:true={session.track} class="row">
+            <div class="detail">Track</div>
+            <div class="val">{session.track}</div>
+          </div>
+          <div if:true={session.audience} class="row">
+            <div class="detail">Audience</div>
+            <div class="val">{session.audience}</div>
+          </div>
+          <div if:true={session.audienceLevel} class="row">
+            <div class="detail">Level</div>
+            <div class="val">{session.audienceLevel}</div>
+          </div>
+          <base-link if:true={session.room} href="/venue" class="row">
+            <h4 class="loc-block">
+              <span>{session.time}</span
+              ><span class="room">{session.room}</span>
+            </h4>
+          </base-link>
+          <!-- <div if:true={session.speakers} class="speakers">
+            <template for:each={session.speakers} for:item="speaker">
+                <base-link key={speaker.id} href={speaker.link} class="speaker">
+                {speaker.firstName} {speaker.lastName}
             </base-link>
-          </template>
-        </div> -->
+        </template>
+    </div> -->
+        </div>
       </div>
     </template>
   </template>

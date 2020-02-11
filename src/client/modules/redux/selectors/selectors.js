@@ -53,8 +53,8 @@ export const currentSessionsSelector = ({ conference: { year }, sessions }) => {
  * @param {object} reduxState reduxStore.getState()
  * @param {string} Session Id
  */
-export const sessionByIdSelector = ({ sessions }, id) => {
-  return { ...sessions[id] };
+export const sessionByIdSelector = ({ sessions }, { selectorParam }) => {
+  return { ...sessions[selectorParam] };
 };
 
 /**
@@ -64,20 +64,9 @@ export const sessionByIdSelector = ({ sessions }, id) => {
  */
 export const sessionsBySpeakerIdSelector = (
   { speakers, sessions },
-  speakerId
+  { selectorParam }
 ) => {
-  return speakers[speakerId].sessions.map(sId => sessions[sId]);
-};
-
-/**
- * Returns All Sessions with the Speaker Listed.
- * @param {object} reduxState reduxStore.getState()
- * @param {string} Year
- */
-export const sessionsByYearSelector = ({ sessions }, year) => {
-  return Object.values(sessions).filter(
-    s => parseInt(s.year, 10) === parseInt(year, 10)
-  );
+  return speakers[selectorParam].sessions.map(sId => sessions[sId]);
 };
 
 export const sessionFiltersSelector = ({ sessionFilters }) => {
@@ -115,10 +104,10 @@ const sessionFilterMap = {
       return sessions.filter(s => JSON.stringify(s).indexOf(searchStr));
     };
   },
-  startTime: startTime => {
+  startTime: time => {
     return sessions => {
-      if (!startTime || startTime === 'All' || !sessions) return sessions;
-      return sessions.filter(s => s.startTime === startTime);
+      if (!time || time === 'All' || !sessions) return sessions;
+      return sessions.filter(s => s.time === time);
     };
   }
 };
@@ -215,8 +204,11 @@ export const speakersSelector = ({ speakers }) => {
  * @param {object} reduxState reduxStore.getState()
  * @param {string} Speaker Id
  */
-export const speakerByIdSelector = ({ speakers, sessions }, id) => {
-  const speaker = { ...speakers[id] };
+export const speakerByIdSelector = (
+  { speakers, sessions },
+  { selectorParam }
+) => {
+  const speaker = { ...speakers[selectorParam] };
   if (
     speaker &&
     speaker.sessions &&
@@ -290,8 +282,8 @@ export const currentSponsorsSelector = ({ conference: { year }, sponsors }) => {
  * @param {object} reduxState reduxStore.getState()
  * @param {string} Sponsor Id
  */
-export const sponsorByIdSelector = ({ sponsors }, sponsorId) => {
-  return sponsors[sponsorId];
+export const sponsorByIdSelector = ({ sponsors }, { selectorParam }) => {
+  return sponsors[selectorParam];
 };
 
 /**
@@ -358,4 +350,10 @@ export const currentOrganizersSelector = ({ organizers }) => {
 
 export const viewSelector = ({ view }) => {
   return view;
+};
+
+/** Bookmarks */
+
+export const bookmarksSelector = ({ bookmarks }) => {
+  return bookmarks;
 };

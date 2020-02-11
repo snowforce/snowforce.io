@@ -17,6 +17,11 @@ h4 {
   box-shadow: 2px 2px 8px 1px rgba(0, 0, 0, 0.5);
 }
 
+.row {
+  display: flex;
+  margin: 0 1em;
+}
+
 .speakers {
   display: inline-block;
 }
@@ -29,23 +34,33 @@ h4 {
   content: ',\00a0';
 }
 
-.room:before {
+.time:before {
   content: '\00a0';
 }
 
+.room {
+  margin-left: 2em;
+}
+
 .detail {
-  padding-left: 1em;
+  box-sizing: border-box;
+  width: 25%;
+  max-width: 7em;
+  margin: auto 0;
 }
 
 .val {
   padding-left: 0.75em;
+  text-overflow: ellipsis;
+  white-space: pre-wrap;
+}
+
+.details > .row:not(:last-child) {
+  border-bottom: 1px solid var(--background-color);
 }
 
 @media only screen and (max-width: 500px) {
   .card {
-    margin: 1em;
-    white-space: pre-wrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    margin: 1em 0.5em;
   }
 }

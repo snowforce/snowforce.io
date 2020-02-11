@@ -26,7 +26,8 @@ import {
   currentSessionsAudiencesSelector,
   currentSessionsLevelsSelector,
   currentSessionsFormatsSelector,
-  currentSessionsStartTimesSelector
+  currentSessionsStartTimesSelector,
+  bookmarksSelector
 } from 'redux/selectors';
 
 import {
@@ -39,7 +40,8 @@ import {
   sessionsFilterTrack,
   sessionsFilterLevel,
   sessionsFilterFormat,
-  sessionsFilterStartTime
+  sessionsFilterStartTime,
+  updateBookmarks
 } from 'redux/actions';
 
 /***********  Imperative Wire Adapters ***********/
@@ -181,6 +183,10 @@ export function wireSessionStartTimes({ store, selectorParam }) {
   );
 }
 
+export function wireBookmarks({ store }) {
+  return imperativeArrayFactory(store, bookmarksSelector, updateBookmarks, {});
+}
+
 /********* Register Wire Adapters */
 
 const registrations = [
@@ -284,6 +290,12 @@ const registrations = [
     factory: wireArrayFactory,
     action: sessionsFilterStartTime,
     selector: currentSessionsStartTimesSelector
+  },
+  {
+    adapter: wireBookmarks,
+    factory: wireObjectFactory,
+    action: updateBookmarks,
+    selector: bookmarksSelector
   }
 ];
 
