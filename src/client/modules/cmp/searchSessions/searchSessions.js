@@ -73,10 +73,11 @@ export default class CmpSearchSessions extends LightningElement {
     this.startTimes = data;
   }
 
-  setUrlParams = true;
+  doneWithUrlParams = false;
   renderedCallback() {
-    if (this.setUrlParams) {
+    if (!this.doneWithUrlParams) {
       const searchParams = new URL(window.location.href).searchParams.entries();
+      let isDone = true;
       // eslint-disable-next-line no-constant-condition
       while (true) {
         const param = searchParams.next();
@@ -84,15 +85,18 @@ export default class CmpSearchSessions extends LightningElement {
         if (this[param.value[0]]) {
           console.log(`${param.value[0]} - ${param.value[1]}`);
           this[param.value[0]] = param.value[1];
-
-          //   const selectInput = this.template.querySelector(
-          //     `select[data-filter=${param.value[0]}]`
-          //   );
-
-          //   const namedInput = selectInput.namedItem(param.value[1]);
+          const selectElm = this.template.querySelector(
+            `select[data-filter=${param.value[0]}]`
+          );
+          if (isDone) {
+            isDone = selectElm.options.length > 1;
+            if (isDone) {
+              selectElm.value = param.value[1];
+            }
+          }
         }
       }
-      this.setUrlParams = false;
+      this.doneWithUrlParams = isDone;
     }
   }
 }

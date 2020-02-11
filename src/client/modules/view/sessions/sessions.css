@@ -17,6 +17,10 @@ cmp-sessions {
   flex-grow: 2;
 }
 
+.p-left-s {
+  padding-left: 0.5em;
+}
+
 @media screen and (max-width: 480px) {
   .container {
     padding: 0;
