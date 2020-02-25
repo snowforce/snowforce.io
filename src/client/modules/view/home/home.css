@@ -92,6 +92,13 @@ h2 {
   box-shadow: 0 0.1875em 1em 0.25em hsla(0, 0%, 79%, 0.91);
 }
 
+.content-fit {
+  object-fit: contain;
+  max-width: 95vw;
+  width: 95%;
+  margin: auto;
+}
+
 @media screen and (max-width: 800px) {
   .background-box {
     padding: 1em;
