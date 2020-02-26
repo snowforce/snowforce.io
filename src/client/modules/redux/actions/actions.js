@@ -15,6 +15,7 @@ import {
   FETCH_ACTION,
   REQUEST_SPEAKER,
   REQUEST_ORGANIZERS,
+  RECEIVE_ORGANIZERS,
   REQUEST_SESSION,
   ADD_REQUEST,
   CLEAR_REQUEST,
@@ -232,6 +233,10 @@ export const setRequest = requestStr => {
 };
 
 /** Organizers */
+
+export const receiveOrganizers = organizers => {
+  return { type: RECEIVE_ORGANIZERS, data: { val: organizers } };
+};
 
 export const requestOrganizers = () => {
   return { type: REQUEST_ORGANIZERS, data: {} };

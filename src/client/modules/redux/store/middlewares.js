@@ -3,13 +3,15 @@ import {
   SESSIONS,
   SPEAKERS,
   SPONSORS,
+  ORGANIZERS,
   REQUEST_CONFERENCES,
   REQUEST_SESSIONS,
   REQUEST_SESSION,
   REQUEST_SPEAKERS,
   REQUEST_SPEAKER,
   REQUEST_SPONSORS,
-  REQUEST_SPONSOR
+  REQUEST_SPONSOR,
+  REQUEST_ORGANIZERS
 } from 'redux/shared';
 
 import {
@@ -17,6 +19,7 @@ import {
   receiveSessions,
   receiveSpeakers,
   receiveSponsors,
+  receiveOrganizers,
   addRequest,
   clearRequest
 } from 'redux/actions';
@@ -24,6 +27,7 @@ import {
 import {
   conferencesSelector,
   requestsSelector,
+  organizersSelector,
   speakersSelector,
   sessionsSelector,
   sponsorsSelector,
@@ -66,6 +70,11 @@ const serverRequestsMap = {
     selector: sponsorByIdSelector,
     table: SPONSORS,
     response: receiveSponsors
+  },
+  [REQUEST_ORGANIZERS]: {
+    selector: organizersSelector,
+    table: ORGANIZERS,
+    response: receiveOrganizers
   }
 };
 
@@ -77,7 +86,7 @@ const fetchData = async table => {
       return res.json();
     })
     .catch(err => {
-      throw err;
+      console.error(err);
     });
 };
 

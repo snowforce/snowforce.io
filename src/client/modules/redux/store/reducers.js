@@ -14,7 +14,8 @@ import {
   CLEAR_REQUEST,
   COOKIES_ACCEPT,
   COOKIES_REJECT,
-  BOOKMARKS_UPDATE
+  BOOKMARKS_UPDATE,
+  RECEIVE_ORGANIZERS
 } from 'redux/shared';
 
 export function user(state = {}, { type, payload }) {
@@ -102,6 +103,21 @@ export function speakers(state = {}, { type, data }) {
   }
 }
 
+export function organizers(state = {}, { type, data }) {
+  switch (type) {
+    case RECEIVE_ORGANIZERS:
+      return {
+        ...state,
+        ...data.val.reduce((res, r) => {
+          res[r.id] = r;
+          return res;
+        }, {})
+      };
+    default:
+      return state;
+  }
+}
+
 export function sponsors(state = {}, { type, data }) {
   switch (type) {
     case RECEIVE_SPONSORS:
@@ -138,13 +154,6 @@ export function menu(state = { isOpen: false }, { type }) {
       return {
         isOpen: false
       };
-    default:
-      return state;
-  }
-}
-
-export function organizers(state = {}, action) {
-  switch (action.type) {
     default:
       return state;
   }

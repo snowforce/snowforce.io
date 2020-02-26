@@ -193,6 +193,33 @@ export const currentSessionsStartTimesSelector = createSelector(
   }
 );
 
+/************************************************* Organizers *************************************************/
+
+/**
+ * Returns All Organizers.
+ * @param {object} reduxState reduxStore.getState()
+ */
+export const organizersSelector = ({ organizers }) => {
+  return organizers;
+};
+
+/**
+ * Returns All Organizers tied to the Current Year.
+ * @param {object} reduxState reduxStore.getState()
+ */
+export const currentOrganizersSelector = ({
+  organizers,
+  conference: { year }
+}) => {
+  return Object.values(organizers).filter(
+    o => parseInt(o.year, 10) === parseInt(year, 10)
+  );
+};
+
+export const organizerByIdSelector = ({ organizers }, { selectorParam }) => {
+  return { ...organizers[selectorParam] };
+};
+
 /************************************************* Speakers *************************************************/
 
 export const speakersSelector = ({ speakers }) => {
@@ -340,10 +367,6 @@ export const trackIndexByNameSelector = (reduxState, name) => {
   return trackSelector(reduxState)
     .map(e => e.name)
     .indexOf(name);
-};
-
-export const currentOrganizersSelector = ({ organizers }) => {
-  return organizers;
 };
 
 /** View Selectors */
