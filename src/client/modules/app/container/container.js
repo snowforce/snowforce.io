@@ -119,6 +119,14 @@ export default class AppContainer extends LightningElement {
         );
         this.setPage('view-organizers', ViewOrganizers);
       },
+      '/organizer/:id': async ({ id }) => {
+        const { default: ViewOrganizer } = await import(
+          /* webpackChunkName: "view-organizer" */ 'view/organizer'
+        );
+        this.setPage('view-organizer', ViewOrganizer, {
+          organizerId: id
+        });
+      },
       '/past-events': async () => {
         const { default: ViewPastEvents } = await import(
           /* webpackChunkName: "view-past-events" */ 'view/pastEvents'
