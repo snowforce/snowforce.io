@@ -11,22 +11,12 @@ export default class ViewOrganizers extends LightningElement {
   @wire(wireCurrentOrganizers, { store })
   wiredOrganizers({ data, error }) {
     if (data) {
-      this.organizers = data
-        .sort((a, b) => {
-          if (a.responsibilities && b.responsibilities) {
-            return b.responsibilities.length - a.responsibilities.length;
-          }
-          return 1;
-        })
-        .sort((a, b) => {
-          if (a.responsibilities && b.responsibilities) {
-            return (
-              (b.responsibilities.match(/;/g) || []).length -
-              (a.responsibilities.match(/;/g) || []).length
-            );
-          }
-          return 1;
-        });
+      this.organizers = data.sort((a, b) => {
+        return (
+          (b.responsibilities.match(/;/g) || []).length -
+          (a.responsibilities.match(/;/g) || []).length
+        );
+      });
     } else if (error) {
       throw error;
     }
