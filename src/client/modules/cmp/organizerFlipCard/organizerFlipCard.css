@@ -15,6 +15,7 @@
 @media (min-width: 1024px) {
   .flip-card {
     width: 16em;
+    height: 24em;
   }
 }
 

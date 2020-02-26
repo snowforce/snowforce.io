@@ -4,8 +4,6 @@ import {
   wireCurrentOrganizers,
   wireCurrentConference
 } from 'redux/store';
-import { uniqueObjArrayByKey } from 'app/utils';
-
 export default class ViewOrganizers extends LightningElement {
   @track organizers = [];
   @track conference = {};
@@ -13,7 +11,22 @@ export default class ViewOrganizers extends LightningElement {
   @wire(wireCurrentOrganizers, { store })
   wiredOrganizers({ data, error }) {
     if (data) {
-      this.organizers = uniqueObjArrayByKey(data, 'contactId');
+      this.organizers = data
+        .sort((a, b) => {
+          if (a.responsibilities && b.responsibilities) {
+            return b.responsibilities.length - a.responsibilities.length;
+          }
+          return 1;
+        })
+        .sort((a, b) => {
+          if (a.responsibilities && b.responsibilities) {
+            return (
+              (b.responsibilities.match(/;/g) || []).length -
+              (a.responsibilities.match(/;/g) || []).length
+            );
+          }
+          return 1;
+        });
     } else if (error) {
       throw error;
     }
