@@ -1,2 +1,53 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
 :host {
+  width: 100%;
+}
+
+.cards {
+  width: 95%;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card {
+  margin: 0.75em;
+}
+
+h1 {
+  text-align: center;
+  margin-left: 1em;
+  margin-right: 1em;
+  margin-block-end: 0;
+}
+
+.center {
+  margin: auto;
+  text-align: center;
+}
+
+.vertical-padding {
+  padding-top: 2em;
+  padding-bottom: 2em;
+}
+
+@media only screen and (max-width: 800px) {
+  h1 {
+    font-size: 1.5em;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .cards {
+    width: 100%;
+  }
+  .card {
+    margin: 0.5em;
+  }
 }
