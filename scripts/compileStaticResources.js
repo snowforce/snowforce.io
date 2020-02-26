@@ -72,6 +72,9 @@ const confirmedSponsorsQuery =
 
 const sponsorTypesQuery = 'SELECT Id, Name FROM Sponsor_Type__c';
 
+const organizersQuery =
+  'SELECT Id, Name, Contact__c, Responsibilities__c, Conference__c, Year__c FROM Organizer__c';
+
 const conferenceWrapper = conference => {
   return {
     id: conference.Id,
@@ -115,6 +118,33 @@ const speakerWrapper = (speaker, contact, currentSession, allSessionIds) => {
       website: contact.Personal_Website__c || ''
     },
     sessions: allSessionIds
+  };
+};
+
+const organizerWrapper = (organizer, contact) => {
+  return {
+    id: organizer.Id,
+    contactId: contact.Id,
+    personalTitle: contact.Salutation || '',
+    firstName: contact.FirstName,
+    lastName: contact.LastName,
+    title: organizer.Title__c || contact.Title || '',
+    link: `/organizer/${organizer.Id}`,
+    year: organizer.Year__c,
+    img: contact.Headshot_URL__c,
+    imgAlt: [contact.FirstName, contact.LastName].join(' '),
+    bio: contact.Bio__c || '',
+    responsibilities: organizer.Responsibilities__c || '',
+    social: {
+      twitter: contact.Twitter__c || '',
+      facebook: contact.Facebook__c || '',
+      linkedin: contact.LinkedIn__c || '',
+      instagram: contact.Instagram__c || '',
+      trailhead: contact.Trailhead__c || '',
+      blog: contact.Blog__c || '',
+      podcast: contact.Podcast__c || '',
+      website: contact.Personal_Website__c || ''
+    }
   };
 };
 
@@ -238,6 +268,38 @@ const speakerReducer = async (speakerArray, contactsById, sessionArray) => {
   });
 };
 
+const organizerReducer = async (organizerArray, contactsById) => {
+  return resolveAll([organizerArray, contactsById]).then(res => {
+    // sorting by the number of responsibilities
+    return res[0]
+      .sort((a, b) => {
+        if (a.Responsibilities__c && b.Responsibilities__c) {
+          return b.Responsibilities__c.length - a.Responsibilities__c.length;
+        }
+        return 1;
+      })
+      .sort((a, b) => {
+        if (a.Responsibilities__c && b.Responsibilities__c) {
+          return (
+            (b.Responsibilities__c.match(/;/g) || []).length -
+            (a.Responsibilities__c.match(/;/g) || []).length
+          );
+        }
+        return 1;
+      })
+      .reduce((organizers, o) => {
+        const contact = res[1][o.Contact__c];
+        if (contact) {
+          if (!organizers[o.Year__c]) {
+            organizers[o.Year__c] = [];
+          }
+          organizers[o.Year__c].push(organizerWrapper(o, contact));
+        }
+        return organizers;
+      }, {});
+  });
+};
+
 const sessionReducer = async (sessionArray, speakerArray) => {
   return resolveAll([sessionArray, speakerArray]).then(res => {
     return res[0].reduce((sessions, s) => {
@@ -278,6 +340,7 @@ const compileResources = async () => {
   const sfDemoJamArray = querySalesforce(demoJamQuery);
   const sfSponsorArray = querySalesforce(confirmedSponsorsQuery);
   const sfSponsorTypesById = querySalesforce(sponsorTypesQuery, true);
+  const sfOrganizerArray = querySalesforce(organizersQuery);
 
   const conferences = await conferenceReducer(sfConferences);
   writeConferenceData(serverDir, conferences, 'conferences');
@@ -298,6 +361,12 @@ const compileResources = async () => {
     sfSessionArray
   );
   writeYearlyData(serverDir, allSpeakers, 'speakers');
+
+  const allOrganizers = await organizerReducer(
+    sfOrganizerArray,
+    sfContactsById
+  );
+  writeYearlyData(serverDir, allOrganizers, 'organizers');
 
   const allSessions = await sessionReducer(sfSessionArray, sfSpeakerArray);
   writeYearlyData(serverDir, allSessions, 'sessions');
