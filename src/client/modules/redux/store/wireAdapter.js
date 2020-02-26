@@ -18,6 +18,8 @@ import {
   sessionsSelector,
   speakersSelector,
   speakerByIdSelector,
+  organizersSelector,
+  organizerByIdSelector,
   sessionByIdSelector,
   sponsorByIdSelector,
   viewSelector,
@@ -104,6 +106,24 @@ export function wireSpeakers({ store, selectorParam }) {
     store,
     speakersSelector,
     requestSpeakers,
+    selectorParam
+  );
+}
+
+export function wireOrganizerById({ store, selectorParam }) {
+  return imperativeObjectFactory(
+    store,
+    organizerByIdSelector,
+    requestOrganizers,
+    selectorParam
+  );
+}
+
+export function wireOrganizers({ store, selectorParam }) {
+  return imperativeArrayFactory(
+    store,
+    organizersSelector,
+    requestOrganizers,
     selectorParam
   );
 }
@@ -249,6 +269,18 @@ const registrations = [
     factory: wireObjectFactory,
     action: requestSpeakers,
     selector: speakersSelector
+  },
+  {
+    adapter: wireOrganizerById,
+    factory: wireObjectFactory,
+    action: requestOrganizers,
+    selector: organizerByIdSelector
+  },
+  {
+    adapter: wireOrganizers,
+    factory: wireObjectFactory,
+    action: requestOrganizers,
+    selector: organizersSelector
   },
   {
     adapter: wireView,

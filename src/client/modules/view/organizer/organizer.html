@@ -1,0 +1,18 @@
+<template>
+  <div class="container">
+    <div class="speaker-info">
+      <div class="speaker-img">
+        <cmp-speaker-img-card speaker={organizer}></cmp-speaker-img-card>
+      </div>
+      <div class="speaker-name">
+        <h2>
+          {organizer.personalTitle} {organizer.firstName} {organizer.lastName}
+        </h2>
+        <h3>{organizer.title}</h3>
+      </div>
+    </div>
+    <div class="speaker-content">
+      <base-rich-text content={organizer.bio}></base-rich-text>
+    </div>
+  </div>
+</template>

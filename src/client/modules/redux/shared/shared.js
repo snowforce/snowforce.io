@@ -9,6 +9,10 @@ export const RECEIVE_SPEAKERS = 'RECEIVE_SPEAKERS';
 export const REQUEST_SPEAKERS = 'REQUEST_SPEAKERS';
 export const REQUEST_SPEAKER = 'REQUEST_SPEAKER';
 
+export const RECEIVE_ORGANIZERS = 'RECEIVE_ORGANIZERS';
+export const REQUEST_ORGANIZERS = 'REQUEST_ORGANIZERS';
+export const REQUEST_ORGANIZER = 'REQUEST_ORGANIZER';
+
 export const RECEIVE_SESSIONS = 'RECEIVE_SESSIONS';
 export const REQUEST_SESSIONS = 'REQUEST_SESSIONS';
 export const REQUEST_SESSION = 'REQUEST_SESSION';
@@ -21,8 +25,6 @@ export const BOOKMARKS_UPDATE = 'BOOKMARKS_UPDATE';
 export const RECEIVE_SUBMISSIONS = 'RECEIVE_SUBMISSIONS';
 export const RECEIVE_AUDIENCES = 'RECEIVE_AUDIENCES';
 export const RECEIVE_SPONSOR_LEVELS = 'RECEIVE_SPONSOR_LEVELS';
-
-export const REQUEST_ORGANIZERS = 'REQUEST_ORGANIZERS';
 
 export const SET_CONFERENCE_YEAR = 'SET_CONFERENCE_YEAR';
 export const SET_TRACK_INDEX = 'SET_TRACK_INDEX';
@@ -37,6 +39,7 @@ export const SESSIONS = 'sessions';
 export const SPEAKERS = 'speakers';
 export const SPONSORS = 'sponsors';
 export const CONFERENCES = 'conferences';
+export const ORGANIZERS = 'organizers';
 
 export const FETCH_ACTION = 'FETCH_ACTION';
 

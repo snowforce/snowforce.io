@@ -1,0 +1,37 @@
+<template>
+  <div class="flip-card">
+    <div class="flip-card-inner">
+      <div class="flip-card-front">
+        <div class="hover">
+          <img src={organizer.img} alt={organizer.imgAlt} />
+        </div>
+        <div class="content">
+          <div class="organizer">
+            {organizer.firstName} {organizer.lastName}
+          </div>
+          <div>
+            {organizer.title}
+          </div>
+        </div>
+      </div>
+      <div class="flip-card-back">
+        <base-link href={organizer.link}>
+          <h3>{organizer.firstName} {organizer.lastName}</h3>
+          <div class="responsibilities">
+            <template
+              for:each={organizer.responsibilities}
+              for:item="responsibility"
+            >
+              <div key={responsibility}>
+                {responsibility}
+              </div>
+            </template>
+          </div>
+        </base-link>
+        <div class="links">
+          <base-social social={organizer.social}></base-social>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
