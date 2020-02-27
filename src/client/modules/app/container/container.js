@@ -1,6 +1,6 @@
 /* global process */
 
-import { LightningElement, createElement } from 'lwc';
+import { LightningElement, createElement, track } from 'lwc';
 import Navigo from 'navigo';
 import { store } from 'redux/store';
 import { requestConferences } from 'redux/actions';
@@ -105,12 +105,12 @@ export default class AppContainer extends LightningElement {
         );
         this.setPage('view-sessions', ViewSessions);
       },
-      '/sessions/:track': async ({ track }) => {
+      '/sessions/:confTrack': async ({ confTrack }) => {
         const { default: ViewSessions } = await import(
           /* webpackChunkName: "view-sessions" */ 'view/sessions'
         );
         this.setPage('view-sessions', ViewSessions, {
-          track: track.toLowerCase()
+          track: confTrack.toLowerCase()
         });
       },
       '/organizers': async () => {
@@ -155,6 +155,8 @@ export default class AppContainer extends LightningElement {
     this.router.on(navigateToDefault);
   }
 
+  @track scrollEvent = 0;
+
   renderedCallback() {
     // Resolve the current view only after the container has rendered
     if (this.isRendered) {
@@ -167,7 +169,7 @@ export default class AppContainer extends LightningElement {
     this.template.querySelector('.container').addEventListener(
       'scroll',
       event => {
-        this.template.querySelector('base-back-button').scrollTop = event;
+        this.scrollEvent = event;
       },
       { passive: true }
     );
