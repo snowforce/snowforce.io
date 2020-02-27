@@ -94,8 +94,7 @@ h2 {
 
 .content-fit {
   object-fit: contain;
-  max-width: 95vw;
-  width: 95%;
+  width: 100%;
   margin: auto;
 }
 

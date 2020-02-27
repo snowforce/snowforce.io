@@ -1,27 +1,22 @@
 <template>
   <div class="contrast-background">
     <base-snow></base-snow>
-    <base-banner
+    <!-- <base-banner
       img="https://snowforce.s3-us-west-1.amazonaws.com/event-images/2020/SnowforceLogo_Banner.png"
     >
-    </base-banner>
+    </base-banner> -->
+    <img
+      class="content-fit"
+      src="https://snowforce.s3-us-west-1.amazonaws.com/app/Snowforce20Agenda.png"
+      alt="Snowforce Agenda"
+    />
     <div class="background-box center">
-      <div class="margin-bottom-l">
-        <view-register></view-register>
-      </div>
-      <div class="keynotes">
+      <div class="keynotes padding-vertical-lg">
         <h2 class="center">Opening and Closing Keynote Speakers</h2>
         <cmp-speakers speakers={keynotes}></cmp-speakers>
       </div>
       <div class="margin-bottom-l">
         <view-sponsors></view-sponsors>
-      </div>
-      <div class="padding-vertical-lg">
-        <img
-          class="content-fit"
-          src="https://snowforce.s3-us-west-1.amazonaws.com/app/Snowforce20Agenda.png"
-          alt="Snowforce Agenda"
-        />
       </div>
       <div class="padding-bottom-desktop">
         <view-events class="small-section"></view-events>
@@ -39,7 +34,7 @@
       </div>
     </base-section>
     <div class="padding-bottom-s">
-      <div class="background-box center">
+      <div class="background-box center padding-vertical-lg">
         <h3>Snowforce 2020 Speaker Lineup</h3>
         <cmp-speakers speakers={speakers}></cmp-speakers>
       </div>
