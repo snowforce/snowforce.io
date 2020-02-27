@@ -74,11 +74,7 @@ export const wireArrayFactory = (reduxSelector, reduxFetchAction) => {
     };
 
     const debounceNotifications = () => {
-      const newData = Object.values(
-        // FIXME: requiring the params in this fashion creates a leaky abstraction
-        // the end user needs to know the selector signature and order the params correctly
-        reduxSelector(store.getState(), params)
-      );
+      const newData = Object.values(reduxSelector(store.getState(), params));
       if (
         newData.length !== data.length ||
         JSON.stringify(newData) !== JSON.stringify(data)
@@ -131,8 +127,6 @@ export const wireObjectFactory = (reduxSelector, reduxFetchAction) => {
     };
 
     const debounceNotifications = () => {
-      // FIXME: requiring the params in this fashion creates a leaky abstraction
-      // the end user needs to know the selector signature and order the params correctly
       const newData = reduxSelector(store.getState(), params);
       if (JSON.stringify(newData) !== JSON.stringify(data)) {
         data = { ...newData };
