@@ -1,4 +1,4 @@
-import { LightningElement, api, track, wire } from 'lwc';
+import { LightningElement, track, wire } from 'lwc';
 import { wireView, wireCurrentConference, store } from 'redux/store';
 import { openMenu, closeMenu } from 'redux/actions';
 
@@ -88,11 +88,6 @@ export default class LayoutHeader extends LightningElement {
           title: 'Venue',
           link: '/venue',
           iconName: 'venue'
-        },
-        {
-          title: 'Scanner',
-          link: '/scanner',
-          iconName: 'scanner'
         }
       ]
     },
@@ -106,21 +101,21 @@ export default class LayoutHeader extends LightningElement {
           link: '/register',
           iconName: 'register'
         },
-        // {
-        //   title: 'Call for Speakers',
-        //   link: '/speaker-sign-up',
-        //   iconName: 'speaker'
-        // },
+        {
+          title: 'Call for Speakers',
+          link: '/speaker-sign-up',
+          iconName: 'speaker'
+        },
         {
           title: 'Sponsor Snowforce',
           link: '/sponsor-sign-up',
           iconName: 'sponsor'
+        },
+        {
+          title: 'Volunteer',
+          link: '/volunteer',
+          iconName: 'volunteer'
         }
-        // {
-        //   title: 'Volunteer',
-        //   link: '/volunteer',
-        //   iconName: 'volunteer'
-        // }
       ]
     },
     {
