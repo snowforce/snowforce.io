@@ -31,3 +31,6 @@ $RECYCLE.BIN/
 .env
 
 src/server/data/**
+
+__lwr_cache__
+__generated_site__

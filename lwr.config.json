@@ -16,8 +16,6 @@
       "@lwc/synthetic-shadow"
     ]
   },
-  "layoutsDir": "$rootDir/src/layouts",
-  "globalDataDir": "$rootDir/scr/data",
   "routes": [
     {
       "id": "home",
