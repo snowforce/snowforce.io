@@ -5,6 +5,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "prestart": "node scripts/compileStaticResources.js",
     "prebuild": "node scripts/compileStaticResources.js",
     "clean": "rm -rf __lwr_cache__",
     "dev": "lwr serve",
