@@ -1,0 +1,11 @@
+h1 {
+  font-weight: 500;
+  font-size: 5em;
+  text-align: center;
+}
+
+@media only screen and (max-width: 1200px) {
+  h1 {
+    font-size: 6vw;
+  }
+}

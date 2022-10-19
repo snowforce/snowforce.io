@@ -1,88 +1,34 @@
 {
-  "name": "snowforce",
-  "description": "Open Source Salesforce Community Conference Website Template Built with Lightning Web Components",
-  "version": "0.0.0",
-  "author": "Alex Bryner",
-  "bugs": "https://github.com/snowforce/snowforce.io/issues",
-  "dependencies": {
-    "@lwc/wire-service": "1.1.1",
-    "dotenv": "^8.2.0",
-    "flickity": "^2.2.1",
-    "fs-extra": "^8.1.0",
-    "jsforce": "^2.0.0-alpha.6",
-    "jsqr": "^1.2.0",
-    "lwc-services": "^3.2.2",
-    "navigo": "^7.1.2",
-    "pg": "^7.12.1",
-    "redux": "^4.0.4",
-    "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.3.0",
-    "request": "^2.88.0",
-    "reselect": "^4.0.0",
-    "sanitize-html": "^1.20.1",
-    "winston": "^3.2.1",
-    "workbox-build": "^4.3.1"
-  },
-  "devDependencies": {
-    "husky": "^3.0.7",
-    "lint-staged": "^9.4.3",
-    "npm-run-all": "^4.1.5"
-  },
-  "engines": {
-    "node": ">=10.0.0 <11.0.0"
-  },
-  "homepage": "https://github.com/snowforce/snowforce.io",
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "keywords": [
-    "lwc"
-  ],
+  "name": "snowforce-lwr",
+  "version": "0.0.1",
   "license": "MIT",
-  "lint-staged": {
-    "**/*.{css,html,js,json,md,ts,yaml,yml}": [
-      "prettier --write"
-    ],
-    "./src/**/*.js": [
-      "eslint"
-    ],
-    "*": [
-      "git add"
-    ]
-  },
-  "nodemonConfig": {
-    "watch": [
-      "src/server/**/*.js",
-      "scripts/express-dev.js"
-    ],
-    "ext": "js",
-    "ignore": [
-      "src/**/*.spec.js",
-      "src/**/*.test.js"
-    ],
-    "exec": "node ./scripts/express-dev.js"
-  },
-  "repository": "snowforce/snowforce.io",
+  "private": true,
+  "type": "module",
   "scripts": {
     "prebuild": "node scripts/compileStaticResources.js",
-    "build": "lwc-services build -m production",
+    "clean": "rm -rf __lwr_cache__",
+    "dev": "lwr serve",
+    "start": "lwr serve --mode prod",
     "compileResources": "node scripts/compileStaticResources.js",
     "prebuild:development": "node scripts/devBuildStaticResources.js",
-    "build:development": "lwc-services build",
-    "postbuild:development": "lwc-services serve",
-    "lint": "eslint ./src/**/*.js",
-    "prettier": "prettier --write '**/*.{css,html,js,json,md,ts,yaml,yml}'",
-    "prettier:verify": "prettier --list-different '**/*.{css,html,js,json,md,ts,yaml,yml}'",
-    "serve": "lwc-services serve",
-    "start": "lwc-services serve",
-    "test:unit": "lwc-services test:unit",
-    "test:unit:coverage": "lwc-services test:unit --coverage",
-    "test:unit:debug": "lwc-services test:unit --debug",
-    "test:unit:watch": "lwc-services test:unit --watch",
-    "watch": "run-p watch:client watch:server",
-    "watch:client": "lwc-services watch",
-    "watch:server": "nodemon"
+    "start:compat": "lwr serve --mode compat",
+    "start:prod-compat": "lwr serve --mode prod-compat"
+  },
+  "dependencies": {
+    "@lwc/synthetic-shadow": "^2.27.0",
+    "@lwc/wire-service": "^2.26.0",
+    "@reduxjs/toolkit": "^1.8.6",
+    "@salesforce-ux/design-system": "^2.19.0",
+    "axios": "^1.1.3",
+    "dotenv": "^16.0.3",
+    "fs-extra": "^10.1.0",
+    "jsforce": "^2.0.0-alpha.6",
+    "lightning-base-components": "^1.16.6-alpha",
+    "lwc": "2.17.0",
+    "lwr": "0.8.0",
+    "redux-thunk": "^2.4.1"
+  },
+  "engines": {
+    "node": ">=16 <19"
   }
 }

@@ -1,7 +1,7 @@
-const fs = require('fs-extra');
-const { setToProjectRootDirectory } = require('./updateDirectory.js');
-let jsforce = require('jsforce');
-require('dotenv').config();
+import fs from 'fs-extra';
+import jsforce from 'jsforce';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 const writeYearlyData = (dir, obj, name) => {
   fs.ensureDirSync(dir);
@@ -316,13 +316,8 @@ const sessionReducer = async (sessionArray, speakerArray) => {
 };
 
 const compileResources = async () => {
-  const dir = setToProjectRootDirectory();
-  if (!dir) {
-    console.error('Unable to set directory');
-    return;
-  }
 
-  const serverDir = `${dir}/src/server/data`;
+  const serverDir = 'src/server/data';
   fs.ensureDirSync(serverDir);
   fs.emptyDirSync(serverDir);
 

@@ -1,0 +1,50 @@
+<template>
+  <lightning-card>
+    <h3 slot="title">
+      Interested in Speaking?
+    </h3>
+    <div slot="footer">
+      <lightning-button-group if:true={canSubmit}>
+        <lightning-button label="Cancel" onclick={handleCancel}></lightning-button>
+        <lightning-button variant="brand" label="Submit" onclick={handleSubmit}></lightning-button>
+      </lightning-button-group>
+    </div>
+    <div style="margin: 1em;" onchange={handleChange}>
+      <template if:true={showError}>
+        <p>There was an error submitting your form. Please try again or you can submit through an email to
+          {speakerOrganizerEmail}</p>
+        <p>Sorry for any inconfinence</p>
+      </template>
+      <template if:false={haveSubmitted}>
+        <template if:false={showError}>
+          <p>
+            Tell us a little about who you are and your presentation!
+          </p>
+        </template>
+        <lightning-input label="First Name" data-prop="firstName"></lightning-input>
+        <lightning-input label="Last Name" data-prop="lastName"></lightning-input>
+        <lightning-input label="Title" data-prop="position"></lightning-input>
+        <lightning-input label="Company" data-prop="company"></lightning-input>
+        <lightning-input label="Email" type="email" data-prop="email"></lightning-input>
+        <lightning-input label="Phone" type="tel" data-prop="phone"></lightning-input>
+        <lightning-input label="Session Title" data-prop="headline"></lightning-input>
+        <lightning-dual-listbox name="Audience" label="Audience" data-prop="audience" source-label="Available" selected-label="Selected"
+          field-level-help="Who is your target audience?" options={audienceOptions}></lightning-dual-listbox>
+        <lightning-combobox name="AudienceLevel" label="AudienceLevel" data-prop="audienceLevel" value={value} placeholder="Select..."
+          options={audienceLevelOptions}></lightning-combobox>
+        <lightning-combobox name="Format" label="Format" value={value} data-prop="format" placeholder="Select..." options={formatOptions}>
+        </lightning-combobox>
+        <lightning-textarea name="Abstract" label="Session Abstract" data-prop="abstract"></lightning-textarea>
+        <lightning-textarea name="Bio" label="Please Share A Little About You" data-prop="bio"></lightning-textarea>
+        <lightning-input label="Linkedin" data-prop="linkedin"></lightning-input>
+        <lightning-input label="Twitter" data-prop="twitter"></lightning-input>
+        <lightning-input label="Website" data-prop="website"></lightning-input>
+      </template>
+      <template if:true={haveSubmitted}>
+        <p>
+          Thank you for your interest! We will get back to you shortly!
+        </p>
+      </template>
+    </div>
+  </lightning-card>
+</template>

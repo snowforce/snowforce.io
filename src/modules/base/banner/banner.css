@@ -1,0 +1,36 @@
+.backgroundImg {
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.container {
+  max-width: 1600px;
+  margin: auto;
+}
+
+.section {
+  width: 100vw;
+  height: 50vw;
+  max-height: 800px;
+  margin: auto;
+}
+
+/* Targets IOS Safari */
+@supports (-webkit-overflow-scrolling: touch) {
+  .backgroundImg {
+    background-attachment: scroll;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .section {
+    margin-top: 10vh;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .section {
+    margin-top: 25vh;
+    height: 70vw;
+  }
+}

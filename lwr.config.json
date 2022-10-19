@@ -1,0 +1,186 @@
+{
+  "lwc": {
+    "modules": [
+      {
+        "dir": "$rootDir/src/modules"
+      },
+      {
+        "npm": "lightning-base-components"
+      }
+    ]
+  },
+  "bundleConfig": {
+    "exclude": [
+      "lwc",
+      "lwr/navigation",
+      "@lwc/synthetic-shadow"
+    ]
+  },
+  "layoutsDir": "$rootDir/src/layouts",
+  "globalDataDir": "$rootDir/scr/data",
+  "routes": [
+    {
+      "id": "home",
+      "path": "/",
+      "rootComponent": "view/home",
+      "layoutTemplate": "$rootDir/src/layouts/Snowforce.html",
+      "properties": {
+        "title": "Snowforce"
+      },
+      "bootstrap": {
+        "syntheticShadow": true
+      }
+    },
+    {
+      "id": "speakers",
+      "path": "/speakers",
+      "rootComponent": "view/speakers",
+      "layoutTemplate": "$rootDir/src/layouts/Snowforce.html",
+      "properties": {
+        "title": "Snowforce Speakers"
+      },
+      "bootstrap": {
+        "syntheticShadow": true
+      }
+    },
+    {
+      "id": "sessions",
+      "path": "/sessions",
+      "rootComponent": "view/sessions",
+      "layoutTemplate": "$rootDir/src/layouts/Snowforce.html",
+      "properties": {
+        "title": "Snowforce Sessions"
+      },
+      "bootstrap": {
+        "syntheticShadow": true
+      }
+    },
+    {
+      "id": "organizers",
+      "path": "/organizers",
+      "rootComponent": "view/organizers",
+      "layoutTemplate": "$rootDir/src/layouts/Snowforce.html",
+      "properties": {
+        "title": "Snowforce Organizers"
+      },
+      "bootstrap": {
+        "syntheticShadow": true
+      }
+    },
+    {
+      "id": "sponsors",
+      "path": "/sponsors",
+      "rootComponent": "view/sponsors",
+      "layoutTemplate": "$rootDir/src/layouts/Snowforce.html",
+      "properties": {
+        "title": "Sponsor Snowforce"
+      },
+      "bootstrap": {
+        "syntheticShadow": true
+      }
+    },
+    {
+      "id": "volunteer",
+      "path": "/volunteer",
+      "rootComponent": "view/volunteer",
+      "layoutTemplate": "$rootDir/src/layouts/Snowforce.html",
+      "properties": {
+        "title": "Volunteer At Snowforce"
+      },
+      "bootstrap": {
+        "syntheticShadow": true
+      }
+    },
+    {
+      "id": "speakerRegistration",
+      "path": "/speak-at-snowforce",
+      "rootComponent": "view/speakerSignUp",
+      "layoutTemplate": "$rootDir/src/layouts/Snowforce.html",
+      "properties": {
+        "title": "Speak At Snowforce"
+      },
+      "bootstrap": {
+        "syntheticShadow": true
+      }
+    },
+    {
+      "id": "slackProxy",
+      "path": "/api/v1/post/:param",
+      "routeHandler": "$rootDir/src/server/postSlack.ts"
+    }
+  ],
+  "errorRoutes": [
+    {
+      "id": "not_found",
+      "status": 404,
+      "rootComponent": "view/home",
+      "layoutTemplate": "$rootDir/src/layouts/Snowforce.html",
+      "properties": {
+        "title": "Snowforce"
+      }
+    },
+    {
+      "id": "server_error",
+      "status": 500,
+      "rootComponent": "view/home",
+      "layoutTemplate": "$rootDir/src/layouts/Snowforce.html",
+      "properties": {
+        "title": "Snowforce"
+      }
+    }
+  ],
+  "assets": [
+    {
+      "file": "$rootDir/src/assets/favicon.png",
+      "urlPath": "/favicon.ico"
+    },
+    {
+      "file": "$rootDir/src/assets/manifest.json",
+      "urlPath": "/manifest.json"
+    },
+    {
+      "file": "$rootDir/src/assets/robots.txt",
+      "urlPath": "/robots.txt"
+    },
+    {
+      "file": "$rootDir/src/assets/styles/sw.js",
+      "urlPath": "/sw.js"
+    },
+    {
+      "alias": "sldsStyles",
+      "dir": "$rootDir/node_modules/@salesforce-ux/design-system/assets",
+      "urlPath": "/lib/slds"
+    },
+    {
+      "file": "$rootDir/src/server/data/conferences.json",
+      "urlPath": "/api/v1/data/conferences.json"
+    },
+    {
+      "file": "$rootDir/src/server/data/demoJams.json",
+      "urlPath": "/api/v1/data/demoJams.json"
+    },
+    {
+      "file": "$rootDir/src/server/data/organizers.json",
+      "urlPath": "/api/v1/data/organizers.json"
+    },
+    {
+      "file": "$rootDir/src/server/data/sessions.json",
+      "urlPath": "/api/v1/data/sessions.json"
+    },
+    {
+      "file": "$rootDir/src/server/data/speakers.json",
+      "urlPath": "/api/v1/data/speakers.json"
+    },
+    {
+      "file": "$rootDir/src/server/data/sponsors.json",
+      "urlPath": "/api/v1/data/sponsors.json"
+    }
+  ],
+  "staticSiteGenerator": {
+    "_additionalModules": [
+        "@lwc/synthetic-shadow",
+        "lwc",
+        "lwr/navigation"
+    ]
+  }
+}

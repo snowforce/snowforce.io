@@ -1,5 +1,4 @@
-const fs = require('fs');
-const { setToProjectRootDirectory } = require('./updateDirectory.js');
+import fs from 'fs';
 
 function isDirEmpty(dirname) {
   return fs.promises.readdir(dirname).then(files => {
@@ -8,7 +7,6 @@ function isDirEmpty(dirname) {
 }
 
 const buildStaticResourcesIfEmpty = async () => {
-  const dir = setToProjectRootDirectory();
   const isEmpty = await isDirEmpty(`${dir}/src/server/data`);
 
   if (isEmpty) {
