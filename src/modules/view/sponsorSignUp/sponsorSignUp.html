@@ -1,9 +1,41 @@
 <template>
-  <div class="sponsor-container">
-    <img
-      class="sponsor-sheet"
-      src="https://snowforce.s3-us-west-1.amazonaws.com/sponsors/2020/2020SnowforceSponsorProspectus.png"
-      alt="Sponsor Snowforce Prospectus"
-    />
+  <div class="form-card">
+    <lightning-card>
+      <h3 slot="title">
+        Interested in Sponsoring?
+      </h3>
+      <div slot="footer">
+        <lightning-button-group if:true={canSubmit}>
+          <lightning-button label="Cancel" onclick={handleCancel}></lightning-button>
+          <lightning-button variant="brand" label="Submit" onclick={handleSubmit}></lightning-button>
+        </lightning-button-group>
+      </div>
+      <div style="margin: 1em;" onchange={handleChange}>
+        <template if:true={showError}>
+          <p>There was an error submitting your form. Please try again or you can submit through an email to
+            {speakerOrganizerEmail}</p>
+          <p>Sorry for any inconfinence</p>
+        </template>
+        <template if:false={haveSubmitted}>
+          <template if:false={showError}>
+            <p>
+              We are still putting together the sponsorship packages. Send us your information and we will get back to you shortly!
+            </p>
+          </template>
+          <lightning-input label="First Name" data-prop="firstName"></lightning-input>
+          <lightning-input label="Last Name" data-prop="lastName"></lightning-input>
+          <lightning-input label="Title" data-prop="position"></lightning-input>
+          <lightning-input label="Company" data-prop="company"></lightning-input>
+          <lightning-input label="Email" type="email" data-prop="email"></lightning-input>
+          <lightning-input label="Phone" type="tel" data-prop="phone"></lightning-input>
+          <lightning-textarea name="goals" label="How can we help this be a success?" data-prop="goals"></lightning-textarea>
+        </template>
+        <template if:true={haveSubmitted}>
+          <p>
+            Thank you! We will get back to you shortly!
+          </p>
+        </template>
+      </div>
+    </lightning-card>
   </div>
 </template>

@@ -11,7 +11,7 @@ const serialize = function (obj) {
 };
 
 const audienceLevelOptions = [{ value: 'Beginner', label: 'Beginner' }, { value: 'Intermediate', label: 'Intermediate' }, { value: 'Advanced', label: 'Advanced' }];
-const audienceOptions = [{ value: 'Admin', label: 'Admin' }, { value: 'Developer', label: 'Developer' }, { value: 'Business Analyst', label: 'Business Analyst' }, { value: 'Customer', label: 'Customer' }, { value: 'End User', label: 'End User' }, { value: 'Executive', label: 'Executive' }, { value: 'Marketing', label: 'Marketing' }]
+const audienceOptions = [{ value: 'Admin', label: 'Admin' }, { value: 'Architect', label: 'Architect' }, { value: 'Developer', label: 'Developer' }, { value: 'Executive', label: 'Executive' }, { value: 'Marketing', label: 'Marketing' }];
 const formatOptions = [{ value: 'Breakout', label: 'Breakout' }, { value: 'Hands On', label: 'Hands On' }, { value: 'Keynote', label: 'Keynote' }];
 
 export default class ViewSpeakerSignUp extends LightningElement {

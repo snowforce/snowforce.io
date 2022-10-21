@@ -46,16 +46,19 @@ export default class BaseLink extends LightningElement {
   };
 
   navEvent = () => {
-    const link = this.href;
-    const createComponents = this.createComponents;
-    const scrollUp = this.scrollUp;
-    this.template.querySelector('slot').dispatchEvent(
-      new CustomEvent('navigate', {
-        bubbles: true,
-        composed: true,
-        detail: { link, createComponents, scrollUp }
-      })
-    );
+    window.location.href = this.href;
+    // const link = this.href;
+    // const createComponents = this.createComponents;
+    // const scrollUp = this.scrollUp;
+
+    // history.pushState({}, '', this.href);
+    // this.template.querySelector('slot').dispatchEvent(
+    //   new CustomEvent('navigate', {
+    //     bubbles: true,
+    //     composed: true,
+    //     detail: { link, createComponents, scrollUp }
+    //   })
+    // );
   };
 
   touchStart = () => {

@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="columns">
-      <div class="col conference">
+      <!-- <div class="col conference">
         <base-link href="/" class="col-header">
           Snowforce
         </base-link>
@@ -11,44 +11,36 @@
         <base-link href="/sponsors" class="item">
           Sponsors
         </base-link>
-        <!-- TODO: track sessions and schedule correctly -->
         <base-link href="/sessions" class="item">
           Schedule
         </base-link>
         <base-link href="/venue" class="item">
           Venue
         </base-link>
-      </div>
+      </div> -->
       <div class="col planning">
         <base-link href="/" class="col-header">
           Conference
         </base-link>
-        <base-link
-          if:true={conference.isRegistrationOpen}
+        <!-- <base-link
           href="/register"
           class="item"
         >
           Registration
-        </base-link>
+        </base-link> -->
         <base-link
-          if:true={conference.isSpeakerOpen}
-          href="/speaker-sign-up"
+          href="/speak-at-snowforce"
           class="item"
         >
           Call for Speakers
         </base-link>
         <base-link
-          if:true={conference.isSponsorOpen}
-          href="/sponsor-sign-up"
+          href="/sponsor-snowforce"
           class="item"
         >
           Sponsor Snowforce
         </base-link>
-        <!-- <base-link href="/food" class="item">
-        Lunch Preferences
-      </base-link> -->
         <base-link
-          if:true={conference.isVolunteerOpen}
           href="/volunteer"
           class="item"
         >
@@ -62,9 +54,9 @@
         <base-link href="/organizers" class="item">
           Organizers
         </base-link>
-        <base-link href="/past-events" class="item">
+        <!-- <base-link href="/past-events" class="item">
           Past Events
-        </base-link>
+        </base-link> -->
         <base-link href="https://github.com/snowforce" class="item">
           Github
         </base-link>

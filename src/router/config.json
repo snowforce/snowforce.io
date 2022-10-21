@@ -1,0 +1,59 @@
+{
+    "routes": [
+        {
+            "id": "home",
+            "uri": "/",
+            "component": "view/home",
+            "page": {
+                "type": "home"
+            },
+            "metadata": {
+                "title": "Home"
+            }
+        },
+        {
+            "id": "speakers",
+            "uri": "/speakers",
+            "handler": "viewSpeakers",
+            "page": {
+                "type": "namedPage",
+                "attributes": {
+                    "pageName": "speakers"
+                }
+            }
+        },
+        {
+            "id": "namedPage",
+            "uri": "/:pageName",
+            "handler": "view/:pageName",
+            "page": {
+                "type": "namedPage",
+                "attributes": {
+                    "pageName": ":pageName"
+                }
+            }
+        },
+        {
+            "id": "namedPage",
+            "uri": "/:pageName",
+            "handler": "view/:pageName",
+            "page": {
+                "type": "namedPage",
+                "attributes": {
+                    "pageName": ":pageName"
+                }
+            }
+        },
+        {
+            "id": "namedPage",
+            "uri": "/:pageName",
+            "handler": "view/:pageName",
+            "page": {
+                "type": "namedPage",
+                "attributes": {
+                    "pageName": ":pageName"
+                }
+            }
+        }
+    ]
+}

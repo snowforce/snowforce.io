@@ -35,7 +35,16 @@ const fieldsByForm = {
     { name: "format", label: "Format" },
     { name: "abstract", label: "Session Abstract" },
     { name: "bio", label: "Please Share A Little About You" }
-  ]
+  ],
+  Sponsor: [
+    { name: "firstName", label: "First Name" },
+    { name: "lastName", label: "Last Name" },
+    { name: "position", label: "Title" },
+    { name: "company", label: "Company" },
+    { name: "email", label: "Email" },
+    { name: "phone", label: "Phone" },
+    { name: "goals", label: "How can we help this be a success?" },
+  ],
 };
 
 const cleanText = (str = '') => {

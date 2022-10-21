@@ -1,7 +1,12 @@
-iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
 
-  min-height: 75vh;
+.form-card {
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}
+
+
+@media only screen and (max-width: 500px) {
+  .form-card {
+    font-size: 1.0125em;
+  }
 }

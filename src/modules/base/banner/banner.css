@@ -9,8 +9,7 @@
 }
 
 .section {
-  width: 100vw;
-  height: 50vw;
+  height: 50vh;
   max-height: 800px;
   margin: auto;
 }

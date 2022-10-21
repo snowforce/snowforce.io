@@ -111,11 +111,34 @@
           .unsupported_message {
             opacity: 0.7;
           }
+
+          .space-block {
+            min-height: 70vh; 
+            width: 100vw;
+          }
+
+          .content-container {
+            margin: 8em auto 2em auto; 
+            max-width: 1200px;
+          }
+          
+          @media only screen and (max-width: 700px) {
+            .space-block {
+              min-height: 50vh;
+            }
+          }
+
         </style>
       </head>
       
     <body style="overflow: auto;">
-        {{{body}}} {{{lwr_resources}}}
+        <layout-header></layout-header>
+        <div class="space-block">
+          <div class="content-container">
+            {{{body}}} {{{lwr_resources}}}
+          </div>
+        </div>
+        <layout-footer style="width: 100vw;"></layout-footer>
     </body>
 
     <!-- <script type="module">

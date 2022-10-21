@@ -110,7 +110,7 @@ h3 {
   width: 20em;
   background-color: white;
   box-shadow: -0.5625em 0 0.9375em 0 rgba(0, 0, 0, 0.75);
-  z-index: 2;
+  z-index: 3;
   box-sizing: border-box;
   padding: 1em;
   overflow-y: auto;

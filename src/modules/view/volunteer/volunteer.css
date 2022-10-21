@@ -1,4 +1,11 @@
-
-lightning-input {
-    width: 100%;
-}
+.form-card {
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+  }
+  
+  
+  @media only screen and (max-width: 500px) {
+    .form-card {
+      font-size: 1.0125em;
+    }
+  }

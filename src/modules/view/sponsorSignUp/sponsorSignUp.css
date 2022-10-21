@@ -1,11 +1,11 @@
-.sponsor-container {
-  width: 100vw;
-  display: flex;
-  justify-content: center;
+.form-card {
+  margin-left: 0.5em;
+  margin-right: 0.5em;
 }
 
-.sponsor-sheet {
-  width: 100%;
-  max-width: 75em;
-  object-position: top;
+
+@media only screen and (max-width: 500px) {
+  .form-card {
+    font-size: 1.0125em;
+  }
 }

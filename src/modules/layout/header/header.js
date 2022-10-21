@@ -27,22 +27,22 @@ export default class LayoutHeader extends LightningElement {
 
   @track containerClass = 'display';
 
-  @api
-  get scrollTop() {
-    return this._scrollTop;
-  }
-  set scrollTop(val) {
-    if (val) {
-      const px = val.target.scrollTop;
-      const dif = this._scrollTop - px;
-      if (dif > this.significantScroll) {
-        this.containerClass = 'display';
-      } else if (dif < -1 * this.significantScroll) {
-        this.containerClass = 'hide';
-      }
-      this._scrollTop = px;
-    }
-  }
+  // @api
+  // get scrollTop() {
+  //   return this._scrollTop;
+  // }
+  // set scrollTop(val) {
+  //   if (val) {
+  //     const px = val.target.scrollTop;
+  //     const dif = this._scrollTop - px;
+  //     if (dif > this.significantScroll) {
+  //       this.containerClass = 'display';
+  //     } else if (dif < -1 * this.significantScroll) {
+  //       this.containerClass = 'hide';
+  //     }
+  //     this._scrollTop = px;
+  //   }
+  // }
 
   @wire(wireView, { store })
   wiredMenu({ data, error }) {
@@ -67,48 +67,16 @@ export default class LayoutHeader extends LightningElement {
     {
       title: 'Snowforce',
       link: '/',
-      iconName: 'snowforce',
-      subItems: [
-        {
-          title: 'Speakers',
-          link: '/speakers',
-          iconName: 'speaker'
-        },
-        {
-          title: 'Sponsors',
-          link: '/sponsors',
-          iconName: 'sponsor'
-        },
-        {
-          title: 'Sessions',
-          link: '/sessions',
-          iconName: 'session'
-        },
-        {
-          title: 'Venue',
-          link: '/venue',
-          iconName: 'venue'
-        }
-      ]
-    },
-    {
-      title: 'Conference',
-      link: '/',
       iconName: 'planning',
       subItems: [
         {
-          title: 'Register',
-          link: '/register',
-          iconName: 'register'
-        },
-        {
           title: 'Call for Speakers',
-          link: '/speaker-sign-up',
+          link: '/speak-at-snowforce',
           iconName: 'speaker'
         },
         {
           title: 'Sponsor Snowforce',
-          link: '/sponsor-sign-up',
+          link: '/sponsor-snowforce',
           iconName: 'sponsor'
         },
         {
@@ -127,11 +95,6 @@ export default class LayoutHeader extends LightningElement {
           title: 'Organizers',
           link: '/organizers',
           iconName: 'organizer'
-        },
-        {
-          title: 'Past Events',
-          link: '/past-events',
-          iconName: 'history'
         },
         {
           title: 'Github',

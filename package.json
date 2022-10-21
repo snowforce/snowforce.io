@@ -18,6 +18,7 @@
   "dependencies": {
     "@lwc/synthetic-shadow": "^2.27.0",
     "@lwc/wire-service": "^2.26.0",
+    "@lwrjs/router": "^0.8.0",
     "@reduxjs/toolkit": "^1.8.6",
     "@salesforce-ux/design-system": "^2.19.0",
     "axios": "^1.1.3",
