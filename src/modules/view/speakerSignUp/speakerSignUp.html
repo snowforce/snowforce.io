@@ -5,7 +5,7 @@
         Interested in Speaking?
       </h3>
       <div slot="footer">
-        <lightning-button-group if:true={canSubmit}>
+        <lightning-button-group if:false={haveSubmitted}>
           <lightning-button label="Cancel" onclick={handleCancel}></lightning-button>
           <lightning-button variant="brand" label="Submit" onclick={handleSubmit}></lightning-button>
         </lightning-button-group>

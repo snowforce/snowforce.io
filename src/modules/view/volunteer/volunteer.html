@@ -3,7 +3,7 @@
     <lightning-card>
       <h3 slot="title">Interested in Helping Out?</h3>
       <div slot="footer">
-        <lightning-button-group if:true="{canSubmit}">
+        <lightning-button-group if:false="{haveSubmitted}">
           <lightning-button label="Cancel" onclick="{handleCancel}"></lightning-button>
           <lightning-button variant="brand" label="Submit" onclick="{handleSubmit}"></lightning-button>
         </lightning-button-group>
