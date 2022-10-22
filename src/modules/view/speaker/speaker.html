@@ -1,29 +1,31 @@
 <template>
-  <div class="container">
-    <div class="speaker-info">
-      <div class="speaker-img">
-        <cmp-speaker-img-card speaker={speaker}></cmp-speaker-img-card>
-      </div>
-      <div class="speaker-name">
-        <h2>
-          {speaker.personalTitle} {speaker.firstName} {speaker.lastName}
-        </h2>
-        <h3>{speaker.title}</h3>
-      </div>
-    </div>
-    <div class="speaker-content">
-      <base-rich-text content={speaker.bio}></base-rich-text>
-      <div class="sessions">
-        <div>
-          <h3>Sessions</h3>
+  <div class="dreamin-page">
+    <div class="container">
+      <div class="speaker-info">
+        <div class="speaker-img">
+          <cmp-speaker-img-card speaker={speaker}></cmp-speaker-img-card>
         </div>
-        <template for:each={sessions} for:item="s">
-          <div key={s.link}>
-            <base-link href={s.link} class="session">
-              {s.year} - {s.title}
-            </base-link>
+        <div class="speaker-name">
+          <h2>
+            {speaker.personalTitle} {speaker.firstName} {speaker.lastName}
+          </h2>
+          <h3>{speaker.title}</h3>
+        </div>
+      </div>
+      <div class="speaker-content">
+        <base-rich-text content={speaker.bio}></base-rich-text>
+        <div class="sessions">
+          <div>
+            <h3>Sessions</h3>
           </div>
-        </template>
+          <template for:each={sessions} for:item="s">
+            <div key={s.link}>
+              <base-link href={s.link} class="session">
+                {s.year} - {s.title}
+              </base-link>
+            </div>
+          </template>
+        </div>
       </div>
     </div>
   </div>

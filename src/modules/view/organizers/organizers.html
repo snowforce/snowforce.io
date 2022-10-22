@@ -1,14 +1,14 @@
 <template>
-  <div class="container">
-    <h1>Snowforce {conference.year} Organizers</h1>
-    <div if:true={organizers} class="cards">
-      <template for:each={organizers} for:item="organizer">
-        <div key={organizer.id} class="card">
-          <cmp-organizer-flip-card
-            organizer={organizer}
-          ></cmp-organizer-flip-card>
-        </div>
-      </template>
+  <div class="dreamin-page">
+    <div class="container">
+      <h1>Snowforce {conference.year} Organizers</h1>
+      <div if:true={organizers} class="cards">
+        <template for:each={organizers} for:item="organizer">
+          <div key={organizer.id} class="card">
+            <cmp-organizer-flip-card organizer={organizer}></cmp-organizer-flip-card>
+          </div>
+        </template>
+      </div>
     </div>
   </div>
 </template>

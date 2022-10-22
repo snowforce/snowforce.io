@@ -1,34 +1,36 @@
 <template>
-  <div class="container">
-    <div if:true={haveSponsors} class="sponsors">
-      <div class="center">
-        <h1>Snowforce Sponsors {conference.year}!</h1>
+  <div class="dreamin-page">
+    <div class="container">
+      <div if:true={haveSponsors} class="sponsors">
+        <div class="center">
+          <h1>Snowforce Sponsors {conference.year}!</h1>
+        </div>
+        <div if:true={platinum} class="row">
+          <template for:each={platinum} for:item="s">
+            <a key={s.id} href={s.link} class="platinum">
+              <img src={s.logo} alt={s.name} />
+            </a>
+          </template>
+        </div>
+        <div if:true={gold} class="row">
+          <template for:each={gold} for:item="s">
+            <a key={s.id} href={s.link} class="gold">
+              <img src={s.logo} alt={s.name} />
+            </a>
+          </template>
+        </div>
+        <div if:true={silver} class="row">
+          <template if:true={silver} for:each={silver} for:item="s">
+            <a key={s.id} href={s.link} class="silver">
+              <img src={s.logo} alt={s.name} />
+            </a>
+          </template>
+        </div>
       </div>
-      <div if:true={platinum} class="row">
-        <template for:each={platinum} for:item="s">
-          <a key={s.id} href={s.link} class="platinum">
-            <img src={s.logo} alt={s.name} />
-          </a>
-        </template>
-      </div>
-      <div if:true={gold} class="row">
-        <template for:each={gold} for:item="s">
-          <a key={s.id} href={s.link} class="gold">
-            <img src={s.logo} alt={s.name} />
-          </a>
-        </template>
-      </div>
-      <div if:true={silver} class="row">
-        <template if:true={silver} for:each={silver} for:item="s">
-          <a key={s.id} href={s.link} class="silver">
-            <img src={s.logo} alt={s.name} />
-          </a>
-        </template>
-      </div>
-    </div>
-    <div if:false={haveSponsors} class="sponsors">
-      <div class="center">
-        <h1>Sponsors To Be Announced Soon!</h1>
+      <div if:false={haveSponsors} class="sponsors">
+        <div class="center">
+          <h1>Sponsors To Be Announced Soon!</h1>
+        </div>
       </div>
     </div>
   </div>

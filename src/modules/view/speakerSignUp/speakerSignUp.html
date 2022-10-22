@@ -1,5 +1,5 @@
 <template>
-  <div class="form-card">
+  <div class="dreamin-page">
     <lightning-card>
       <h3 slot="title">
         Interested in Speaking?
@@ -10,7 +10,7 @@
           <lightning-button variant="brand" label="Submit" onclick={handleSubmit}></lightning-button>
         </lightning-button-group>
       </div>
-      <div style="margin: 1em;" onchange={handleChange}>
+      <div class="dreamin-form dreamin-card-content" onchange={handleChange}>
         <template if:true={showError}>
           <p>There was an error submitting your form. Please try again or you can submit through an email to
             {speakerOrganizerEmail}</p>

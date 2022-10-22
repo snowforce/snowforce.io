@@ -1,10 +1,12 @@
 <template>
-  <div class="container">
-    <cmp-search-sessions></cmp-search-sessions>
-    <div class="p-left-s">
-      <h1>{conference.year} Sessions</h1>
+  <div class="dreamin-page">
+    <div class="container">
+      <cmp-search-sessions></cmp-search-sessions>
+      <div class="p-left-s">
+        <h1>{conference.year} Sessions</h1>
+      </div>
+      <cmp-sessions sessions={sessions}></cmp-sessions>
+      <!-- <cmp-pluralsight></cmp-pluralsight> -->
     </div>
-    <cmp-sessions sessions={sessions}></cmp-sessions>
-    <!-- <cmp-pluralsight></cmp-pluralsight> -->
   </div>
 </template>

@@ -1,6 +1,23 @@
+@import 'styles/page';
+
 h1 {
   font-weight: 500;
   font-size: 5em;
+  text-align: center;
+}
+
+.dreamin-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  padding-top: 5em;
+  padding-bottom: 5em;
+  max-height: 57em;
+}
+
+.center {
   text-align: center;
 }
 

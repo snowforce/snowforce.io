@@ -1,95 +1,70 @@
 <template>
-  <div class="container">
-    <!-- <button onclick={captureNewLead}>Scan New Badge</button> -->
-    <base-link href="scanner"><button>New Scan</button></base-link>
-    <div class="loading-container" if:false={haveCameraAccess}>
-      <p>
-        ⌛ Loading video...
-      </p>
-    </div>
-    <div if:false={haveQrCode}>
-      <canvas height="480" width="640"></canvas>
-      <div>
-        <div if:false={haveQrCode}>
-          No QR Code Detected
-        </div>
-        <div if:true={haveQrCode}>
-          {qrCodeResult}
+  <div class="dreamin-page">
+    <div class="container">
+      <!-- <button onclick={captureNewLead}>Scan New Badge</button> -->
+      <base-link href="scanner"><button>New Scan</button></base-link>
+      <div class="loading-container" if:false={haveCameraAccess}>
+        <p>
+          ⌛ Loading video...
+        </p>
+      </div>
+      <div if:false={haveQrCode}>
+        <canvas height="480" width="640"></canvas>
+        <div>
+          <div if:false={haveQrCode}>
+            No QR Code Detected
+          </div>
+          <div if:true={haveQrCode}>
+            {qrCodeResult}
+          </div>
         </div>
       </div>
-    </div>
-    <div if:true={haveQrCode}>
-      <form action="">
-        <div class="input-container">
-          <div>
-            <label for="scannedCode">Scanned Code</label>
-            <input
-              type="text"
-              name="Scan"
-              id="scannedCode"
-              value={qrCodeResult}
-              class="scanned-code"
-            />
-          </div>
-          <div>
-            <label for="firstName">FirstName</label>
-            <input type="text" name="Name" id="firstName" class="first-name" />
-          </div>
-          <div>
-            <label for="lastName">LastName</label>
-            <input type="text" name="Name" id="lastName" class="last-name" />
-          </div>
-          <div>
-            <label for="organizationInput">Organization</label>
-            <input
-              type="text"
-              name="Organization"
-              id="organizationInput"
-              class="organization-input"
-            />
-          </div>
-          <div>
-            <label for="titleInput">Title</label>
-            <input
-              type="text"
-              name="Title"
-              id="titleInput"
-              class="title-input"
-            />
-          </div>
-          <div>
-            <label for="roleInput">Role</label>
-            <input type="text" name="Role" id="roleInput" class="role-input" />
-          </div>
-          <div>
-            <label for="phone">Phone</label>
-            <input type="tel" name="Phone" id="phone" class="phone-input" />
-          </div>
-          <div>
-            <label for="userEmail">Email</label>
-            <input
-              type="email"
-              name="Email"
-              id="userEmail"
-              class="email-input"
-            />
-          </div>
-          <div>
-            <label for="notesInput">Notes</label>
-            <textarea
-              name="Notes"
-              cols="40"
-              rows="5"
-              id="notesInput"
-              class="notes-input"
-            >
+      <div if:true={haveQrCode}>
+        <form action="">
+          <div class="input-container">
+            <div>
+              <label for="scannedCode">Scanned Code</label>
+              <input type="text" name="Scan" id="scannedCode" value={qrCodeResult} class="scanned-code" />
+            </div>
+            <div>
+              <label for="firstName">FirstName</label>
+              <input type="text" name="Name" id="firstName" class="first-name" />
+            </div>
+            <div>
+              <label for="lastName">LastName</label>
+              <input type="text" name="Name" id="lastName" class="last-name" />
+            </div>
+            <div>
+              <label for="organizationInput">Organization</label>
+              <input type="text" name="Organization" id="organizationInput" class="organization-input" />
+            </div>
+            <div>
+              <label for="titleInput">Title</label>
+              <input type="text" name="Title" id="titleInput" class="title-input" />
+            </div>
+            <div>
+              <label for="roleInput">Role</label>
+              <input type="text" name="Role" id="roleInput" class="role-input" />
+            </div>
+            <div>
+              <label for="phone">Phone</label>
+              <input type="tel" name="Phone" id="phone" class="phone-input" />
+            </div>
+            <div>
+              <label for="userEmail">Email</label>
+              <input type="email" name="Email" id="userEmail" class="email-input" />
+            </div>
+            <div>
+              <label for="notesInput">Notes</label>
+              <textarea name="Notes" cols="40" rows="5" id="notesInput" class="notes-input">
             </textarea>
+            </div>
           </div>
-        </div>
-        <div>
-          <button onclick={saveContactInfo}>Save</button>
-        </div>
-      </form>
+          <div>
+            <button onclick={saveContactInfo}>Save</button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </template>
