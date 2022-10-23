@@ -5,8 +5,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "prestart": "node scripts/compileStaticResources.js",
-    "prebuild": "node scripts/compileStaticResources.js",
+    "prestart": "node scripts/processStyles.js && node scripts/compileStaticResources.js",
+    "prebuild": "node scripts/processStyles.js && node scripts/compileStaticResources.js",
     "processStyles": "node scripts/processStyles.js",
     "clean": "rm -rf __lwr_cache__",
     "dev": "lwr serve",
