@@ -287,7 +287,7 @@
       opacity: 0.7;
     }
 
-    .page {
+    .page-wrapper {
       height: 100%;
       display: flex;
       flex-direction: column;
@@ -295,13 +295,13 @@
       overflow: auto;
     }
 
-    .content {
+    .body-content-wrapper {
       margin-top: var(--header-height);
       flex-grow: 1;
     }
 
     layout-header,
-    .content,
+    .body-content-wrapper,
     layout-footer {
       width: 100%;
       flex-shrink: 0;
@@ -310,9 +310,9 @@
 </head>
 
 <body>
-  <div class="page">
+  <div class="page-wrapper">
     <layout-header></layout-header>
-    <div class="content">{{{body}}} {{{lwr_resources}}}</div>
+    <div class="body-content-wrapper">{{{body}}} {{{lwr_resources}}}</div>
     <layout-footer></layout-footer>
   </div>
 </body>
