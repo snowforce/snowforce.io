@@ -150,6 +150,10 @@
       "urlPath": "/lib/slds"
     },
     {
+      "file": "$rootDir/src/assets/fontSizes.css",
+      "urlPath": "/fontSizes.css"
+    },
+    {
       "file": "$rootDir/src/server/data/conferences.json",
       "urlPath": "/api/v1/data/conferences.json"
     },

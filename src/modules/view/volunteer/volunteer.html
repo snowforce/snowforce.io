@@ -8,26 +8,32 @@
           <lightning-button variant="brand" label="Submit" onclick={handleSubmit}></lightning-button>
         </lightning-button-group>
       </div>
-      <div class="dreamin-form dreamin-card-content" onchange={handleChange}>
+      <div class="dreamin-form slds-grid slds-wrap slds-gutters" onchange={handleChange}>
         <template if:true={showError}>
-          <p>
+          <p class="slds-col slds-size_1-of-1">
             There was an error submitting your form. Please try again or you can
             submit through an email to {vounteerOrganizerEmail}
           </p>
-          <p>Sorry for any inconfinence</p>
+          <p class="slds-col slds-size_1-of-1">Sorry for any inconfinence</p>
         </template>
         <template if:false={haveSubmitted}>
-          <p>Please fill out a few pieces of information!</p>
-          <lightning-input label="First Name" data-prop="firstName"></lightning-input>
-          <lightning-input label="Last Name" data-prop="lastName"></lightning-input>
-          <lightning-input label="Email" type="email" data-prop="email"></lightning-input>
-          <lightning-input label="Phone" type="tel" data-prop="phone"></lightning-input>
-          <lightning-input label="City" data-prop="city"></lightning-input>
-          <lightning-textarea name="details" label="What would you like to help with?" data-prop="details">
+          <p class="slds-col slds-size_1-of-1">Please fill out a few pieces of information!</p>
+          <lightning-input class="slds-col slds-size_1-of-1 slds-large-size_6-of-12 slds-medium-size_6-of-12"
+            label="First Name" data-prop="firstName"></lightning-input>
+          <lightning-input class="slds-col slds-size_1-of-1 slds-large-size_6-of-12 slds-medium-size_6-of-12"
+            label="Last Name" data-prop="lastName"></lightning-input>
+          <lightning-input class="slds-col slds-size_1-of-1 slds-large-size_4-of-12 slds-medium-size_6-of-12"
+            label="Email" type="email" data-prop="email"></lightning-input>
+          <lightning-input class="slds-col slds-size_1-of-1 slds-large-size_4-of-12 slds-medium-size_6-of-12"
+            label="Phone" type="tel" data-prop="phone"></lightning-input>
+          <lightning-input class="slds-col slds-size_1-of-1 slds-large-size_4-of-12 slds-medium-size_12-of-12"
+            label="City" data-prop="city"></lightning-input>
+          <lightning-textarea class="slds-col slds-size_1-of-1" name="details" label="What would you like to help with?"
+            data-prop="details">
           </lightning-textarea>
         </template>
         <template if:true={haveSubmitted}>
-          <p>Thank you for your interest! We will get back to you shortly!</p>
+          <p class="slds-col slds-size_1-of-1">Thank you for your interest! We will get back to you shortly!</p>
         </template>
       </div>
     </lightning-card>

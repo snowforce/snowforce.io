@@ -7,13 +7,15 @@
   "scripts": {
     "prestart": "node scripts/compileStaticResources.js",
     "prebuild": "node scripts/compileStaticResources.js",
+    "processStyles": "node scripts/processStyles.js",
     "clean": "rm -rf __lwr_cache__",
     "dev": "lwr serve",
     "start": "lwr serve --mode prod",
     "compileResources": "node scripts/compileStaticResources.js",
     "prebuild:development": "node scripts/devBuildStaticResources.js",
     "start:compat": "lwr serve --mode compat",
-    "start:prod-compat": "lwr serve --mode prod-compat"
+    "start:prod-compat": "lwr serve --mode prod-compat",
+    "postinstall": "node scripts/processStyles.js"
   },
   "dependencies": {
     "@lwc/synthetic-shadow": "^2.27.0",

@@ -10,37 +10,63 @@
           <lightning-button variant="brand" label="Submit" onclick={handleSubmit}></lightning-button>
         </lightning-button-group>
       </div>
-      <div class="dreamin-form dreamin-card-content" onchange={handleChange}>
+      <div class="dreamin-form slds-grid slds-wrap slds-gutters" onchange={handleChange}>
         <template if:true={showError}>
-          <p>There was an error submitting your form. Please try again or you can submit through an email to
+          <p class="slds-col slds-size_1-of-1">There was an error submitting your form. Please try again or you can
+            submit
+            through an email to
             {speakerOrganizerEmail}</p>
-          <p>Sorry for any inconfinence</p>
+          <p class="slds-col slds-size_1-of-1">Sorry for any inconfinence</p>
         </template>
         <template if:false={haveSubmitted}>
           <template if:false={showError}>
-            <p>
+            <p class="slds-col slds-size_1-of-1">
               Tell us a little about who you are and your presentation!
             </p>
           </template>
-          <lightning-input label="First Name" data-prop="firstName"></lightning-input>
-          <lightning-input label="Last Name" data-prop="lastName"></lightning-input>
-          <lightning-input label="Title" data-prop="position"></lightning-input>
-          <lightning-input label="Company" data-prop="company"></lightning-input>
-          <lightning-input label="Email" type="email" data-prop="email"></lightning-input>
-          <lightning-input label="Phone" type="tel" data-prop="phone"></lightning-input>
-          <lightning-input label="Session Title" data-prop="headline"></lightning-input>
-          <lightning-combobox name="Audience" label="Audience" data-prop="audience" value={value}
-            placeholder="Select..." options={audienceOptions}></lightning-combobox>
-          <lightning-combobox name="AudienceLevel" label="Audience Level" data-prop="audienceLevel" value={value}
-            placeholder="Select..." options={audienceLevelOptions}></lightning-combobox>
-          <lightning-combobox name="Format" label="Format" value={value} data-prop="format" placeholder="Select..."
-            options={formatOptions}>
+          <lightning-input class="slds-col slds-size_1-of-1 slds-large-size_6-of-12 slds-medium-size_6-of-12"
+            label="First Name" data-prop="firstName">
+          </lightning-input>
+          <lightning-input class="slds-col slds-size_1-of-1 slds-large-size_6-of-12 slds-medium-size_6-of-12"
+            label="Last Name" data-prop="lastName">
+          </lightning-input>
+          <lightning-input class="slds-col slds-size_1-of-1 slds-large-size_6-of-12 slds-medium-size_6-of-12"
+            label="Title" data-prop="position">
+          </lightning-input>
+          <lightning-input class="slds-col slds-size_1-of-1 slds-large-size_6-of-12 slds-medium-size_6-of-12"
+            label="Company" data-prop="company">
+          </lightning-input>
+          <lightning-input class="slds-col slds-size_1-of-1 slds-large-size_6-of-12 slds-medium-size_6-of-12"
+            label="Email" type="email" data-prop="email"></lightning-input>
+          <lightning-input class="slds-col slds-size_1-of-1 slds-large-size_6-of-12 slds-medium-size_6-of-12"
+            label="Phone" type="tel" data-prop="phone">
+          </lightning-input>
+          <lightning-input class="slds-col slds-size_1-of-1" label="Session Title" data-prop="headline">
+          </lightning-input>
+          <lightning-combobox class="slds-col slds-size_1-of-1 slds-large-size_4-of-12 slds-medium-size_6-of-12"
+            name="Audience" label="Audience" data-prop="audience" value={value} placeholder="Select..."
+            options={audienceOptions}></lightning-combobox>
+          <lightning-combobox class="slds-col slds-size_1-of-1 slds-large-size_4-of-12 slds-medium-size_6-of-12"
+            name="AudienceLevel" label="Audience Level" data-prop="audienceLevel" value={value} placeholder="Select..."
+            options={audienceLevelOptions}>
           </lightning-combobox>
-          <lightning-textarea name="Abstract" label="Session Abstract" data-prop="abstract"></lightning-textarea>
-          <lightning-textarea name="Bio" label="Please Share A Little About You" data-prop="bio"></lightning-textarea>
-          <lightning-input label="Linkedin" data-prop="linkedin"></lightning-input>
-          <lightning-input label="Twitter" data-prop="twitter"></lightning-input>
-          <lightning-input label="Website" data-prop="website"></lightning-input>
+          <lightning-combobox class="slds-col slds-size_1-of-1 slds-large-size_4-of-12" name="Format" label="Format"
+            value={value} data-prop="format" placeholder="Select..." options={formatOptions}>
+          </lightning-combobox>
+          <lightning-textarea class="slds-col slds-size_1-of-1" name="Abstract" label="Session Abstract"
+            data-prop="abstract">
+          </lightning-textarea>
+          <lightning-textarea class="slds-col slds-size_1-of-1" name="Bio" label="Please Share A Little About You"
+            data-prop="bio"></lightning-textarea>
+          <lightning-input class="slds-col slds-size_1-of-1 slds-large-size_4-of-12 slds-medium-size_6-of-12"
+            label="Linkedin" data-prop="linkedin">
+          </lightning-input>
+          <lightning-input class="slds-col slds-size_1-of-1 slds-large-size_4-of-12 slds-medium-size_6-of-12"
+            label="Twitter" data-prop="twitter">
+          </lightning-input>
+          <lightning-input class="slds-col slds-size_1-of-1 slds-large-size_4-of-12" label="Website"
+            data-prop="website">
+          </lightning-input>
         </template>
         <template if:true={haveSubmitted}>
           <p>

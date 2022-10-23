@@ -46,6 +46,7 @@
   </script>
 
   <link rel="stylesheet" type="text/css" href="/lib/slds/styles/salesforce-lightning-design-system.css" />
+  <link rel="stylesheet" type="text/css" href="/fontSizes.css" />
 
   <style>
     :root {
@@ -62,10 +63,27 @@
 
       --section-height: calc(100vh - var(--header-height));
 
-      --spacing-small: 0.625rem;
-      --spacing-medium: 1rem;
-      --spacing-large: 1.5rem;
-      --spacing-x-large: 2rem;
+      --font-size-xxx-small: .625em;
+      --font-size-xx-small: .75em;
+      --font-size-x-small: .8125em;
+      --font-size-small: .875em;
+      --font-size: 1em;
+      --font-size-large: 1.125em;
+      --font-size-x-large: 1.25em;
+      --font-size-xx-large: 1.5em;
+      --font-size-xxx-large: 1.75em;
+      --font-size-xxxx-large: 2em;
+
+      --spacing-x-small: 0.5em;
+      --spacing-small: 0.625em;
+      --spacing-medium: 1em;
+      --spacing-large: 1.5em;
+      --spacing-x-large: 2em;
+
+      --slds-c-button-text-color: var(--primary-color-dark, var(--primary-color, #2c4049));
+      --slds-c-button-color-border: var(--primary-color-dark, var(--primary-color, #2c4049));
+      --slds-c-button-color-background: var(--primary-color-dark, var(--primary-color, #2c4049));
+      --slds-c-button-brand-color-border: var(--primary-color-dark, var(--primary-color, #2c4049));
     }
 
     body,
@@ -76,6 +94,7 @@
       margin: 0;
       font-family: Jost, "Poppins", sans-serif;
       color: var(--font-color);
+      font-size: var(--font-size);
 
       /* PWA Fixes */
       -webkit-user-select: none;
@@ -84,6 +103,159 @@
 
       /* In some weird scenarios body will get stuck on the bottom screen in PWA format scroll is set in app */
       overflow: hidden;
+
+      --primary-color: #95deda;
+      --primary-color-dark: #2c4049;
+      --contrast-color-light: #e6dfc6;
+
+      --background-color: #fff;
+      --background-color-lighter: #323232;
+      --font-color: #14171a;
+
+      --header-height: 5rem;
+      --header-font-color: #fff;
+
+      --section-height: calc(100vh - var(--header-height));
+
+      --font-size-xxx-small: .625em;
+      --font-size-xx-small: .75em;
+      --font-size-x-small: .8125em;
+      --font-size-small: .875em;
+      --font-size: 1em;
+      --font-size-large: 1.125em;
+      --font-size-x-large: 1.25em;
+      --font-size-xx-large: 1.5em;
+      --font-size-xxx-large: 1.75em;
+      --font-size-xxxx-large: 2em;
+
+      --spacing-x-small: 0.5em;
+      --spacing-small: 0.625em;
+      --spacing-medium: 1em;
+      --spacing-large: 1.5em;
+      --spacing-x-large: 2em;
+
+      --slds-c-button-text-color: var(--primary-color-dark, var(--primary-color, #2c4049));
+      --slds-c-button-color-border: var(--primary-color-dark, var(--primary-color, #2c4049));
+      --slds-c-button-color-background: var(--primary-color-dark, var(--primary-color, #2c4049));
+      --slds-c-button-brand-color-border: var(--primary-color-dark, var(--primary-color, #2c4049));
+    }
+
+    .slds-radio {
+      font-size: var(--font-size);
+    }
+
+    .slds-form-element__label {
+      font-size: var(--font-size);
+    }
+
+    .slds-form-element__helper {
+      font-size: var(--font-size-small);
+    }
+
+    .slds-form-element__static {
+      font-size: var(--font-size);
+    }
+
+    .slds-color-picker__input-custom-hex {
+      font-size: var(--font-size-small);
+    }
+
+    input {
+      font-size: var(--font-size-small);
+    }
+
+    .slds-input[readonly] {
+      font-size: var(--font-size);
+    }
+
+    .slds-timeline__date {
+      font-size: var(--font-size-small);
+    }
+
+    .slds-form-error {
+      padding-top: var(--spacing-x-small);
+      font-size: var(--font-size-small);
+    }
+
+    .slds-color-picker {
+      padding-top: var(--spacing-x-small);
+      font-size: var(--font-size-small);
+    }
+
+    .slds-accordion__summary-heading {
+      font-size: var(--font-size-large);
+    }
+
+    .slds-dynamic-menu__header {
+      font-size: var(--font-size);
+    }
+
+    .slds-carousel__content-title {
+      font-size: var(--font-size-large);
+    }
+
+    .slds-card__header-title {
+      font-size: var(--font-size-large);
+    }
+
+    .slds-card__footer {
+      font-size: var(--font-size);
+    }
+
+    .slds-chat-message__text {
+      font-size: var(--font-size);
+    }
+
+    .slds-chat-message__meta {
+      font-size: var(--font-size-x-small);
+    }
+
+    .slds-chat-message__action {
+      font-size: var(--font-size-small);
+    }
+
+    .slds-chat-event {
+      font-size: var(--font-size);
+    }
+
+    .slds-chat-event__agent-message {
+      font-size: var(--font-size-small);
+    }
+
+    .slds-chat-bookend {
+      font-size: var(--font-size);
+    }
+
+    .slds-radio {
+      font-size: var(--font-size);
+    }
+
+    .slds-form-element__label {
+      font-size: var(--font-size);
+    }
+
+    .slds-checkbox {
+      font-size: var(--font-size-small);
+    }
+
+    .slds-checkbox_stacked {
+      font-size: var(--font-size-small);
+    }
+
+    .slds-form-element__label {
+      font-size: var(--font-size-small);
+    }
+
+    .slds-checkbox {
+      font-size: var(--font-size);
+    }
+
+    .slds-checkbox__label {
+      font-size: var(--font-size);
+    }
+
+    .slds-form-element__label {
+      font-size: var(--font-size);
     }
 
     .unsupported {
